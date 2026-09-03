@@ -1,0 +1,53 @@
+{
+  "kind" : "TASK_PLAN",
+  "producedBy" : "plan",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "e62bdc13682ae57c",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+    "ARCHITECTURE" : "6bd3ce43fe7e1214"
+  },
+  "createdAt" : "2026-09-03T01:40:38.600908460Z",
+  "content" : {
+    "summary" : "Four tasks in TDD order. T1 writes the acceptance tests and must be red. T2 lands the domain model and persistence (compile-gated; the suite is expected to stay red until T3). T3 and T4 both depend on T2 and run in parallel: T3 wires enforcement and the HTTP mapping and must turn the suite green; T4 adds upgrade tests for the migration path.",
+    "tasks" : [ {
+      "id" : "T1",
+      "title" : "Write failing acceptance tests for expiry",
+      "description" : "Create ExpiryIntegrationTest covering AC-1..AC-5 through the HTTP layer (real Tomcat, random port). Must compile against the current code and fail at runtime.",
+      "files" : [ "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java" ],
+      "dependsOn" : [ ],
+      "verify" : "tests-red",
+      "riskLevel" : "low",
+      "acceptance" : "Suite compiles; the new tests fail; all existing tests still pass."
+    }, {
+      "id" : "T2",
+      "title" : "Domain model and persistence for expiresAt",
+      "description" : "Add expiresAt to Link/CreateLinkRequest/LinkResponse, expiredAt(now), store it in LinkService.create, SchemaMigrator v2, JDBC column mapping, contract/migrator/service tests updated.",
+      "files" : [ "src/main/java/dev/rajeev/shortener/domain/Link.java", "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java", "src/main/java/dev/rajeev/shortener/domain/LinkResponse.java", "src/main/java/dev/rajeev/shortener/domain/LinkService.java", "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java", "src/main/java/dev/rajeev/shortener/repository/JdbcLinkRepository.java", "src/test/java/dev/rajeev/shortener/repository/LinkRepositoryContractTest.java", "src/test/java/dev/rajeev/shortener/repository/SchemaMigratorTest.java", "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java" ],
+      "dependsOn" : [ "T1" ],
+      "verify" : "typecheck",
+      "riskLevel" : "medium",
+      "acceptance" : "Compiles; contract tests cover expiresAt persistence."
+    }, {
+      "id" : "T3",
+      "title" : "Enforce expiry in the service and map it through the API",
+      "description" : "Add EXPIRED to ErrorCode and to the exhaustive status switch in ApiExceptionHandler; reject a past expiresAt; throw EXPIRED in resolve(); fake-clock unit tests.",
+      "files" : [ "src/main/java/dev/rajeev/shortener/domain/ErrorCode.java", "src/main/java/dev/rajeev/shortener/domain/LinkService.java", "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java", "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java" ],
+      "dependsOn" : [ "T2" ],
+      "verify" : "tests-green",
+      "riskLevel" : "medium",
+      "acceptance" : "Compiles and the whole suite, including T1's acceptance tests, is green."
+    }, {
+      "id" : "T4",
+      "title" : "Upgrade tests for the v1 -> v2 migration path",
+      "description" : "Create a v1-shaped H2 database, open it with the repository, assert the column is added, legacy rows read back with expiresAt null, and reopening is idempotent.",
+      "files" : [ "src/test/java/dev/rajeev/shortener/repository/SchemaUpgradeTest.java" ],
+      "dependsOn" : [ "T2" ],
+      "verify" : "typecheck",
+      "riskLevel" : "low",
+      "acceptance" : "Compiles; tests are green once T3 lands (verified by the test stage)."
+    } ],
+    "sequencingRationale" : "T1 first so the feature is specified executably. T2 is the shared foundation. T3 and T4 are independent once T2 exists, so they run in parallel in separate worktrees and join at the test stage, which runs the complete suite once on the merged tree."
+  }
+}

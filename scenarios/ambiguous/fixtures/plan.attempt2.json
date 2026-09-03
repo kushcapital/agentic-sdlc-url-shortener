@@ -1,0 +1,54 @@
+{
+  "summary": "Three tasks after the scope change. T1 writes all acceptance tests (red). T2 (code length) and T3 (alias rule split) touch disjoint files and run in parallel in separate worktrees; each is compile-gated in isolation and the test stage proves the merged result.",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Red acceptance tests: 8-char codes, alias minimum 6, legacy codes resolve",
+      "description": "Update the ApiIntegrationTest code-length assertion; add GuessabilityIntegrationTest (AC-1..AC-3).",
+      "files": [
+        "src/test/java/dev/rajeev/shortener/web/ApiIntegrationTest.java",
+        "src/test/java/dev/rajeev/shortener/web/GuessabilityIntegrationTest.java"
+      ],
+      "dependsOn": [],
+      "verify": "tests-red",
+      "riskLevel": "low",
+      "acceptance": "Compiles; new tests fail."
+    },
+    {
+      "id": "T2",
+      "title": "Raise the generated code length to 8",
+      "description": "ShortenerProperties @DefaultValue and application.yml 7 -> 8, with a test pinning the bound value.",
+      "files": [
+        "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java",
+        "src/main/resources/application.yml",
+        "src/test/java/dev/rajeev/shortener/config/ShortenerPropertiesTest.java"
+      ],
+      "dependsOn": [
+        "T1"
+      ],
+      "verify": "typecheck",
+      "riskLevel": "low",
+      "acceptance": "Compiles; properties test present."
+    },
+    {
+      "id": "T3",
+      "title": "Alias minimum length 6 with a separate path-resolution rule",
+      "description": "Split CUSTOM_ALIAS_REGEX (6-32, creation) from LinkRules.CODE_PATH (4-32, path templates); switch the controllers' templates; unit test.",
+      "files": [
+        "src/main/java/dev/rajeev/shortener/domain/LinkRules.java",
+        "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java",
+        "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+        "src/main/java/dev/rajeev/shortener/web/LinkController.java",
+        "src/main/java/dev/rajeev/shortener/web/RedirectController.java",
+        "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java"
+      ],
+      "dependsOn": [
+        "T1"
+      ],
+      "verify": "typecheck",
+      "riskLevel": "medium",
+      "acceptance": "Compiles; legacy aliases resolve (proved by the test stage)."
+    }
+  ],
+  "sequencingRationale": "T2 and T3 share no files, so they fork separate worktrees and merge independently; the full suite runs once on the merged tree in the test stage."
+}

@@ -1,0 +1,64 @@
+{
+  "kind" : "ARCHITECTURE",
+  "producedBy" : "architecture",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "e003bb6dfef28c89",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "6932862e93332223"
+  },
+  "createdAt" : "2026-09-03T01:42:02.549874526Z",
+  "content" : {
+    "summary" : "Single-knob change: the generated code length is bound from shortener.code-length (ShortenerProperties, default 7, also set in application.yml). Raise it to 8; RandomCodeGenerator takes the length from configuration and the controllers' path templates accept 4-32 characters, so legacy codes keep resolving with no other change.",
+    "components" : [ {
+      "name" : "ShortenerProperties / application.yml",
+      "responsibility" : "codeLength 7 -> 8",
+      "path" : "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java"
+    }, {
+      "name" : "RandomCodeGenerator",
+      "responsibility" : "Unchanged; length is injected",
+      "path" : "src/main/java/dev/rajeev/shortener/domain/RandomCodeGenerator.java"
+    } ],
+    "impactedModules" : [ {
+      "path" : "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java",
+      "changeType" : "modify",
+      "reason" : "@DefaultValue 8."
+    }, {
+      "path" : "src/main/resources/application.yml",
+      "changeType" : "modify",
+      "reason" : "shortener.code-length: 8 (explicit value overrides the record default)."
+    }, {
+      "path" : "src/main/java/dev/rajeev/shortener/domain/RandomCodeGenerator.java",
+      "changeType" : "none",
+      "reason" : "Parameterised by length."
+    }, {
+      "path" : "src/main/java/dev/rajeev/shortener/web/LinkController.java",
+      "changeType" : "none",
+      "reason" : "Path template accepts 4-32; 8 fits."
+    }, {
+      "path" : "src/test/java/dev/rajeev/shortener/web/ApiIntegrationTest.java",
+      "changeType" : "modify",
+      "reason" : "Assertion on code length."
+    }, {
+      "path" : "src/test/java/dev/rajeev/shortener/config/ShortenerPropertiesTest.java",
+      "changeType" : "create",
+      "reason" : "Pin the bound default."
+    } ],
+    "dataFlow" : [ "POST /api/links -> LinkService.create -> RandomCodeGenerator(props.codeLength()=8) -> 8-char code" ],
+    "apiChanges" : [ {
+      "method" : "POST",
+      "path" : "/api/links",
+      "change" : "Generated codes are 8 chars (was 7). Not a contract change; clients must not assume a length."
+    } ],
+    "schemaChanges" : [ ],
+    "decisions" : [ {
+      "id" : "D-1",
+      "decision" : "Raise entropy by length (8 chars) rather than by alphabet.",
+      "rationale" : "Base62 is already the largest URL-safe unambiguous alphabet; one more character multiplies the keyspace by 62.",
+      "alternatives" : [ "Base64url (adds - and _; marginal gain)", "Longer codes (10+)" ],
+      "tradeoffs" : "Slightly longer URLs."
+    } ],
+    "securityConsiderations" : [ "Random codes use crypto.randomBytes with rejection sampling; unchanged." ],
+    "rollbackStrategy" : "Revert the default; 8-char codes already issued still resolve because the path templates accept 4-32."
+  }
+}

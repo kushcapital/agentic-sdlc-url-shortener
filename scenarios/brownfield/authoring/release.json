@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "changeSummary": "Optional hard expiry for short links (expiresAt). Expired links answer 410 EXPIRED; stats remain readable; additive SQLite migration to schema v2.",
+  "changes": [
+    "POST /api/links accepts optional expiresAt (ISO-8601, future-only)",
+    "All link responses include expiresAt (null when absent)",
+    "GET /:code and GET /api/links/:code return 410 EXPIRED after expiry",
+    "Schema v2: links.expires_at (nullable, additive, idempotent migration; H2 and PostgreSQL)",
+    "Tests: acceptance (AC-1..AC-5), service fake-clock, repository contract, v1->v2 upgrade"
+  ],
+  "riskAssessment": {
+    "level": "low",
+    "rationale": "Backward-compatible API (optional field), additive schema, read-time enforcement with no new infrastructure, full suite green including migration tests."
+  },
+  "rollbackPlan": [
+    "Redeploy the previous build (v1.0.0).",
+    "Leave the expires_at column and schema_version=2 in place; v1 ignores both.",
+    "Communicate that links created with an expiry during the window will not expire under v1 until roll-forward.",
+    "Roll forward once the issue is fixed; the migration is idempotent so no manual schema work is needed."
+  ],
+  "checklist": [
+    {
+      "item": "Typecheck and full test suite green",
+      "status": "done",
+      "evidence": "test-report: green"
+    },
+    {
+      "item": "Security/quality review approved",
+      "status": "done",
+      "evidence": "review-report: approve, no high/critical findings"
+    },
+    {
+      "item": "Protected-file change approved by a human",
+      "status": "done",
+      "evidence": "policy:implement:T3 approval"
+    },
+    {
+      "item": "Schema migration is additive and tested",
+      "status": "done",
+      "evidence": "src/test/java/dev/rajeev/shortener/repository/SchemaUpgradeTest.java"
+    },
+    {
+      "item": "openapi.yaml updated for expiresAt and 410 EXPIRED",
+      "status": "done",
+      "evidence": "docs stage patch"
+    },
+    {
+      "item": "CHANGELOG and README updated",
+      "status": "done",
+      "evidence": "docs stage patch"
+    },
+    {
+      "item": "Rollback plan documented",
+      "status": "done",
+      "evidence": "this checklist"
+    }
+  ],
+  "goNoGo": "go"
+}

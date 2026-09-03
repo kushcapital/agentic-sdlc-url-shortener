@@ -1,0 +1,1 @@
+{ "taskId": "T4", "summary": "HTTP adapter: create (URL scheme validation), 302 + no-store redirect with click recording, stats, health. Turns the acceptance suite green.", "notes": ["Replaces nothing: the T2 App stub stays as the composition root."] }

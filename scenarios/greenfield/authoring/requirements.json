@@ -1,0 +1,169 @@
+{
+  "problemStatement": "Build a minimal, internet-safe URL shortener as a Spring Boot 3 / Java 21 HTTP service: create a short code for an absolute http(s) URL, redirect visitors of the short code to the original URL while counting the click, expose per-link click statistics, and provide a health endpoint. v0 runs locally with no external dependencies; persistence is in-memory behind a storage port so a JDBC store can be added without touching the HTTP layer.",
+  "scenarioType": "greenfield",
+  "functionalRequirements": [
+    {
+      "id": "FR-1",
+      "text": "POST /api/links with {url} returns 201 with a 7-character base62 code and the full short URL.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-2",
+      "text": "GET /:code redirects (302) to the original URL and records a click.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-3",
+      "text": "GET /api/links/:code/stats returns the click count and last click time.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-4",
+      "text": "Only absolute http/https URLs are accepted; anything else is a 400.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-5",
+      "text": "Unknown codes return 404 on redirect and stats.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-6",
+      "text": "GET /health returns {status:'ok'} for load balancers.",
+      "priority": "should"
+    }
+  ],
+  "nonFunctionalRequirements": [
+    {
+      "id": "NFR-1",
+      "text": "Codes are random (not sequential) so links cannot be enumerated.",
+      "category": "security"
+    },
+    {
+      "id": "NFR-2",
+      "text": "Redirects use 302 with Cache-Control: no-store so every click is counted.",
+      "category": "correctness"
+    },
+    {
+      "id": "NFR-3",
+      "text": "Runs with `mvn spring-boot:run`; no database or container required for v0.",
+      "category": "operability"
+    },
+    {
+      "id": "NFR-4",
+      "text": "Storage is behind an interface with a contract test so a durable adapter can be added later.",
+      "category": "maintainability"
+    }
+  ],
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "given": "a valid https URL",
+      "when": "POST /api/links",
+      "then": "201 with a 7-char base62 code and shortUrl = baseUrl/code"
+    },
+    {
+      "id": "AC-2",
+      "given": "javascript:, ftp:, malformed or empty URL",
+      "when": "POST /api/links",
+      "then": "400"
+    },
+    {
+      "id": "AC-3",
+      "given": "an existing code",
+      "when": "GET /:code",
+      "then": "302 with Location = original URL"
+    },
+    {
+      "id": "AC-4",
+      "given": "an unknown code",
+      "when": "GET /:code",
+      "then": "404"
+    },
+    {
+      "id": "AC-5",
+      "given": "a code clicked twice",
+      "when": "GET /api/links/:code/stats",
+      "then": "200 with clicks=2 and a lastClickAt timestamp"
+    },
+    {
+      "id": "AC-6",
+      "given": "the service is up",
+      "when": "GET /health",
+      "then": "200 {status:'ok'}"
+    }
+  ],
+  "assumptions": [
+    "No authentication in v0; anyone can create links (rate limiting is a v1 concern and is noted as a risk).",
+    "'How many times clicked' means a total count plus last click time; referrer/UA breakdowns are v1.",
+    "'Safe to expose' means: scheme allowlist on targets, random codes, no caching of redirects, schema-validated input.",
+    "In-memory persistence is acceptable for v0 as long as the storage port makes replacement straightforward."
+  ],
+  "outOfScope": [
+    "Custom aliases",
+    "Link deletion or expiry",
+    "Durable storage",
+    "Per-referrer analytics",
+    "Rate limiting and abuse controls"
+  ],
+  "ambiguities": [
+    {
+      "id": "AMB-1",
+      "question": "What does 'how many times each link was clicked' need to include?",
+      "options": [
+        {
+          "key": "count+last",
+          "description": "Total clicks and last click time",
+          "impact": "Trivial in-memory counter; enough for v0."
+        },
+        {
+          "key": "breakdown",
+          "description": "Per-day, referrer and user-agent breakdowns",
+          "impact": "Requires an event log and aggregation; better as v1 once storage is durable."
+        }
+      ],
+      "recommended": "count+last",
+      "blocking": false,
+      "resolution": "count+last for v0; breakdowns tracked as a follow-up."
+    },
+    {
+      "id": "AMB-2",
+      "question": "Does 'safe to expose on the internet' require rate limiting in v0?",
+      "options": [
+        {
+          "key": "no",
+          "description": "Input validation and random codes only",
+          "impact": "Ships faster; abuse control added with durable storage."
+        },
+        {
+          "key": "yes",
+          "description": "Per-IP rate limiting on the create endpoint",
+          "impact": "One more dependency and config surface."
+        }
+      ],
+      "recommended": "no",
+      "blocking": false,
+      "resolution": "Not in v0; recorded as a risk with a mitigation plan."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Open redirect abuse (phishing links).",
+      "likelihood": "medium",
+      "impact": "medium",
+      "mitigation": "Scheme allowlist now; denylist/reputation checks and rate limiting in v1."
+    },
+    {
+      "risk": "In-memory store loses data on restart.",
+      "likelihood": "high",
+      "impact": "low",
+      "mitigation": "Documented v0 limitation; storage port + contract test make SQLite/Postgres a contained change."
+    },
+    {
+      "risk": "Code collisions as the keyspace fills.",
+      "likelihood": "low",
+      "impact": "low",
+      "mitigation": "62^7 keys, collision check with bounded retry."
+    }
+  ]
+}

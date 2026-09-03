@@ -1,0 +1,7 @@
+{
+  "taskId": "T2",
+  "summary": "Raise the generated code length from 7 to 8 (62^8 keyspace): @DefaultValue in ShortenerProperties and shortener.code-length in application.yml, with a test pinning the bound default and the override bounds.",
+  "notes": [
+    "Adds ShortenerPropertiesTest as requested in the reviewer's rejection."
+  ]
+}

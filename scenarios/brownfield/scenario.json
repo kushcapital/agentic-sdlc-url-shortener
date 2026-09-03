@@ -1,0 +1,17 @@
+{
+  "name": "brownfield",
+  "title": "Brownfield: add link expiry to the existing URL shortener",
+  "kind": "brownfield",
+  "description": "Enhance the running v1 Spring Boot service with an optional hard expiry on short links, without breaking existing links, clients or stored data. Exercises codebase reasoning (impact analysis), TDD sequencing, parallel task execution in isolated worktrees, a policy block with retry, a compile failure with retry and rollback, a protected-file approval, and release readiness with a rollback plan.",
+  "requirement": "Marketing runs time-boxed campaigns and wants campaign links that stop working after the campaign ends. Add optional expiry to short links: callers can set an expiry when creating a link; expired links must stop redirecting and tell the client clearly that the link expired (not that it doesn't exist); click statistics must remain available after expiry. Existing links, clients and stored data must keep working unchanged.",
+  "seedFrom": "url-shortener",
+  "fixtures": "fixtures",
+  "toolchain": "auto",
+  "approvals": {
+    "design-review": { "decision": "approve", "note": "Impact analysis matches the codebase; additive migration and read-time expiry check are the right calls. Proceed." },
+    "policy:implement:T3": { "decision": "approve", "note": "Reviewed the ApiExceptionHandler diff: one case added to the exhaustive status switch (EXPIRED -> 410). No change to handler logic." },
+    "release-approval": { "decision": "approve", "note": "Green suite incl. upgrade tests, review approved, rollback plan is a code rollback with the additive column left in place. Go." }
+  },
+  "injections": [],
+  "expectations": { "status": "completed", "minRetries": 2, "minRollbacks": 2, "policyBlocks": 1, "humanApprovals": 3, "parallelStages": ["implement:T3", "implement:T4"] }
+}

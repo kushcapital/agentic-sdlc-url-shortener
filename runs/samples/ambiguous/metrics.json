@@ -1,0 +1,33 @@
+{
+  "stagesTotal" : 10,
+  "stagesSucceeded" : 10,
+  "stagesFailed" : 0,
+  "attemptsTotal" : 15,
+  "retries" : 2,
+  "rollbacks" : 1,
+  "replans" : 1,
+  "approvalsRequested" : 5,
+  "approvalsHuman" : 5,
+  "approvalsAuto" : 0,
+  "policyViolations" : 1,
+  "policyBlocks" : 0,
+  "llmCalls" : 14,
+  "llmInputTokens" : 34101,
+  "llmOutputTokens" : 15913,
+  "toolCalls" : 10,
+  "mttrMs" : 8925,
+  "endToEndMs" : 49154,
+  "stageLatencyMs" : {
+    "requirements" : 28,
+    "architecture" : 26,
+    "plan" : 12,
+    "test" : 20284,
+    "review" : 100,
+    "docs" : 111,
+    "release" : 29,
+    "implement:T1" : 19060,
+    "implement:T2" : 9027,
+    "implement:T3" : 8920
+  },
+  "successRate" : 0.867
+}

@@ -1,0 +1,1 @@
+{ "taskId": "T2", "summary": "TDD red: acceptance tests AC-1..AC-6 over real HTTP against a booted Spring Boot context, plus a compile-only App stub so the suite compiles and fails at runtime (404s).", "notes": [] }

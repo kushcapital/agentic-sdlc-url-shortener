@@ -1,0 +1,1 @@
+{ "taskId": "T1", "summary": "TDD red: acceptance tests for link expiry (AC-1..AC-5) through the HTTP layer. They compile against the current domain model and fail at runtime until the feature exists.", "notes": ["Black-box only so the file needs no reference to the not-yet-existing Link.expiresAt accessor."] }

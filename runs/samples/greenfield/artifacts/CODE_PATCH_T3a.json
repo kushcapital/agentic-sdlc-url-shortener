@@ -1,0 +1,30 @@
+{
+  "kind" : "CODE_PATCH",
+  "producedBy" : "implement:T3a",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "18118de0ae1097ef",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+    "ARCHITECTURE" : "61359cc9c6858e7d",
+    "TASK_PLAN" : "f6fc3fe0fbea830c"
+  },
+  "createdAt" : "2026-09-03T01:40:08.470019827Z",
+  "content" : {
+    "summary" : "Short-code generation: random base62 with rejection sampling and a bounded collision-retry helper. Unit tests included.",
+    "taskId" : "T3a",
+    "files" : [ {
+      "path" : "src/main/java/demo/Codes.java",
+      "action" : "write",
+      "content" : "package demo;\n\nimport java.security.SecureRandom;\nimport java.util.function.IntFunction;\nimport java.util.function.Predicate;\n\n/**\n * Random base62 codes with rejection sampling (bytes >= 248 are discarded so every character is\n * equally likely). Random rather than sequential so codes cannot be enumerated.\n */\npublic final class Codes {\n\n    public static final String BASE62 = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";\n    private static final SecureRandom RANDOM = new SecureRandom();\n\n    private Codes() {}\n\n    public static String random(int length) {\n        return random(length, n -> {\n            byte[] b = new byte[n];\n            RANDOM.nextBytes(b);\n            return b;\n        });\n    }\n\n    public static String random(int length, IntFunction<byte[]> bytes) {\n        if (length < 1) throw new IllegalArgumentException(\"length must be >= 1\");\n        StringBuilder out = new StringBuilder(length);\n        while (out.length() < length) {\n            for (byte b : bytes.apply(length * 2)) {\n                int v = b & 0xFF;\n                if (v < 248) {\n                    out.append(BASE62.charAt(v % 62));\n                    if (out.length() == length) break;\n                }\n            }\n        }\n        return out.toString();\n    }\n\n    /** Generate a code that {@code exists} reports as free; bounded so a full keyspace can't spin forever. */\n    public static String unique(Predicate<String> exists, int length, int maxAttempts) {\n        for (int i = 0; i < maxAttempts; i++) {\n            String c = random(length);\n            if (!exists.test(c)) return c;\n        }\n        throw new IllegalStateException(\"no free code after \" + maxAttempts + \" attempts\");\n    }\n}\n",
+      "delete" : false
+    }, {
+      "path" : "src/test/java/demo/CodesTest.java",
+      "action" : "write",
+      "content" : "package demo;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport java.util.concurrent.atomic.AtomicInteger;\nimport org.junit.jupiter.api.Test;\n\nclass CodesTest {\n\n    @Test\n    void emitsBase62CodesOfTheRequestedLength() {\n        for (int i = 0; i < 100; i++) {\n            String c = Codes.random(7);\n            assertEquals(7, c.length());\n            for (char ch : c.toCharArray()) assertTrue(Codes.BASE62.indexOf(ch) >= 0);\n        }\n    }\n\n    @Test\n    void skipsBiasedBytes() {\n        AtomicInteger calls = new AtomicInteger();\n        String c = Codes.random(3, n -> {\n            if (calls.incrementAndGet() == 1) return new byte[] {(byte) 255, (byte) 250, 0, 1, 2};\n            byte[] b = new byte[n];\n            java.util.Arrays.fill(b, (byte) 3);\n            return b;\n        });\n        assertEquals(\"012\", c);\n    }\n\n    @Test\n    void retriesOnCollisionAndGivesUpAfterMaxAttempts() {\n        AtomicInteger probes = new AtomicInteger();\n        String code = Codes.unique(c -> probes.incrementAndGet() < 3, 7, 5);\n        assertEquals(7, code.length());\n        assertEquals(3, probes.get());\n        assertThrows(IllegalStateException.class, () -> Codes.unique(c -> true, 7, 2));\n    }\n}\n",
+      "delete" : false
+    } ],
+    "dependencyChanges" : [ ],
+    "notes" : [ ]
+  }
+}

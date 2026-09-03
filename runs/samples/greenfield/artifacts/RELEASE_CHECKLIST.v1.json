@@ -1,0 +1,44 @@
+{
+  "kind" : "RELEASE_CHECKLIST",
+  "producedBy" : "release",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "bc46fe855e463135",
+  "inputHashes" : {
+    "TEST_REPORT" : "9397b5136a4e1f48",
+    "REVIEW_REPORT" : "33afe13fd7d2d591",
+    "ARCHITECTURE" : "61359cc9c6858e7d"
+  },
+  "createdAt" : "2026-09-03T01:40:34.449660776Z",
+  "content" : {
+    "version" : "0.1.0",
+    "changeSummary" : "v0 URL shortener: create, redirect with click counting, stats, health. In-memory storage behind a port.",
+    "changes" : [ "POST /api/links", "GET /{code} (302, no-store)", "GET /api/links/{code}/stats", "GET /health", "Random base62 codes", "Acceptance + unit tests (11)" ],
+    "riskAssessment" : {
+      "level" : "low",
+      "rationale" : "New internal-preview service, no data migration, suite green, review approved with v1 follow-ups (rate limiting, private-IP guard) recorded."
+    },
+    "rollbackPlan" : [ "Stop the process.", "No persistent state to clean up in v0." ],
+    "checklist" : [ {
+      "item" : "Acceptance suite green",
+      "status" : "done",
+      "evidence" : "test-report: green"
+    }, {
+      "item" : "Review approved; medium finding tracked as v1 work",
+      "status" : "done",
+      "evidence" : "review-report"
+    }, {
+      "item" : "Dependencies approved by a human",
+      "status" : "done",
+      "evidence" : "policy:implement:T1"
+    }, {
+      "item" : "README documents run/test and v0 limitations",
+      "status" : "done",
+      "evidence" : "docs stage"
+    }, {
+      "item" : "Rollback plan documented",
+      "status" : "done"
+    } ],
+    "goNoGo" : "go"
+  }
+}

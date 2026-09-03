@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--
+    Aggregator only. Each module inherits from spring-boot-starter-parent directly so that a module
+    copied on its own (the orchestrator seeds its sandbox from url-shortener/) still builds with `mvn test`.
+  -->
+  <groupId>dev.rajeev</groupId>
+  <artifactId>agentic-sdlc</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>Agentic SDLC orchestration — URL shortener</name>
+
+  <modules>
+    <module>url-shortener</module>
+    <module>orchestrator</module>
+  </modules>
+</project>

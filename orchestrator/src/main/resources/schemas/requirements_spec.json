@@ -1,0 +1,209 @@
+{
+  "type": "object",
+  "properties": {
+    "problemStatement": {
+      "type": "string"
+    },
+    "scenarioType": {
+      "type": "string",
+      "enum": [
+        "greenfield",
+        "brownfield",
+        "ambiguous"
+      ]
+    },
+    "functionalRequirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "must",
+              "should",
+              "could"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "priority"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "nonFunctionalRequirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "category"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "given": {
+            "type": "string"
+          },
+          "when": {
+            "type": "string"
+          },
+          "then": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "given",
+          "when",
+          "then"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outOfScope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "impact": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "description",
+                "impact"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "recommended": {
+            "type": "string"
+          },
+          "blocking": {
+            "type": "boolean"
+          },
+          "resolution": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "question",
+          "options",
+          "recommended",
+          "blocking"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "risk": {
+            "type": "string"
+          },
+          "likelihood": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "impact": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "mitigation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "risk",
+          "likelihood",
+          "impact",
+          "mitigation"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "problemStatement",
+    "scenarioType",
+    "functionalRequirements",
+    "nonFunctionalRequirements",
+    "acceptanceCriteria",
+    "assumptions",
+    "outOfScope",
+    "ambiguities",
+    "risks"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,39 @@
+# Bitbucket Pipelines equivalent of .github/workflows/ci.yml
+image: maven:3.9-eclipse-temurin-21
+
+definitions:
+  caches:
+    maven: ~/.m2/repository
+
+pipelines:
+  default:
+    - step:
+        name: Build and test
+        caches: [maven]
+        script:
+          - mvn -B verify
+          - ORCHESTRATOR_REPO_ROOT="$PWD" java -jar orchestrator/target/orchestrator.jar fixtures
+          - git diff --exit-code -- scenarios/*/fixtures
+        artifacts:
+          - "**/target/surefire-reports/*.xml"
+          - orchestrator/target/orchestrator.jar
+    - step:
+        name: Run scenarios end-to-end
+        caches: [maven]
+        script:
+          - mvn -B -DskipTests package
+          - ./scripts/setup-fast-toolchain.sh
+          - source .orchestrator-env && ./scripts/run-scenarios.sh
+          - source .orchestrator-env && mvn -B -pl orchestrator test -Dorchestrator.scenarios=true
+        artifacts:
+          - runs/**/report.md
+          - runs/**/report.html
+          - runs/**/events.jsonl
+          - runs/**/metrics.json
+  pull-requests:
+    "**":
+      - step:
+          name: Build and test
+          caches: [maven]
+          script:
+            - mvn -B verify

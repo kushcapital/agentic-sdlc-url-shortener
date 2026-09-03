@@ -1,0 +1,1 @@
+{ "taskId": "T1", "summary": "TDD red: guessability acceptance tests (8-char generated codes, custom alias minimum length 6, legacy codes keep resolving) and the existing create-link assertion updated to 8 characters.", "notes": [] }

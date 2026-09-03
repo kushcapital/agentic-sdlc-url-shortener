@@ -1,0 +1,35 @@
+{
+  "kind" : "CODE_PATCH",
+  "producedBy" : "implement:T2",
+  "attempt" : 2,
+  "version" : 1,
+  "hash" : "cc01e1b348bd5162",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+    "ARCHITECTURE" : "942c74df4def626e",
+    "TASK_PLAN" : "b61bb86a9b4071fa"
+  },
+  "createdAt" : "2026-09-03T01:42:30.791094156Z",
+  "content" : {
+    "summary" : "Raise the generated code length from 7 to 8 (62^8 keyspace): @DefaultValue in ShortenerProperties and shortener.code-length in application.yml, with a test pinning the bound default and the override bounds.",
+    "taskId" : "T2",
+    "files" : [ {
+      "path" : "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java",
+      "action" : "write",
+      "content" : "package dev.rajeev.shortener.config;\n\nimport org.springframework.boot.context.properties.ConfigurationProperties;\nimport org.springframework.boot.context.properties.bind.DefaultValue;\n\n/**\n * Typed configuration bound from {@code shortener.*}. Defaults are the values used in tests;\n * a misconfigured deployment fails at startup (binding), not on the first request.\n */\n@ConfigurationProperties(prefix = \"shortener\")\npublic record ShortenerProperties(\n        @DefaultValue(\"http://localhost:8080\") String baseUrl,\n        // 8 chars = 62^8 ≈ 2.2e14 keys. Raised from 7 after users reported links felt guessable; legacy 7-char codes still resolve.\n        @DefaultValue(\"8\") int codeLength,\n        @DefaultValue(\"2048\") int maxUrlLength,\n        @DefaultValue RateLimit rateLimit,\n        @DefaultValue Analytics analytics) {\n\n    public record RateLimit(@DefaultValue(\"100\") int max, @DefaultValue(\"60000\") long windowMs) {}\n\n    public record Analytics(\n            @DefaultValue(\"500\") long flushIntervalMs,\n            @DefaultValue(\"200\") int maxBatch,\n            @DefaultValue(\"10000\") int maxQueue,\n            @DefaultValue(\"3\") int maxRetries) {}\n\n    public ShortenerProperties {\n        if (codeLength < 4 || codeLength > 16) throw new IllegalArgumentException(\"shortener.code-length must be between 4 and 16\");\n        if (maxUrlLength < 64) throw new IllegalArgumentException(\"shortener.max-url-length must be >= 64\");\n    }\n}\n",
+      "delete" : false
+    }, {
+      "path" : "src/main/resources/application.yml",
+      "action" : "write",
+      "content" : "server:\n  port: 8080\n  shutdown: graceful\n\nspring:\n  application:\n    name: url-shortener\n  datasource:\n    url: jdbc:h2:file:./data/shortener;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE\n    username: sa\n    password: \"\"\n  jackson:\n    default-property-inclusion: always\n  lifecycle:\n    timeout-per-shutdown-phase: 10s\n\nshortener:\n  base-url: http://localhost:8080\n  code-length: 8\n  max-url-length: 2048\n  rate-limit:\n    max: 100\n    window-ms: 60000\n  analytics:\n    flush-interval-ms: 500\n    max-batch: 200\n    max-queue: 10000\n    max-retries: 3\n\nmanagement:\n  endpoints:\n    web:\n      exposure:\n        include: health,metrics,info\n  endpoint:\n    health:\n      probes:\n        enabled: true\n      show-details: always\n      group:\n        readiness:\n          include: readinessState,store\n  health:\n    db:\n      enabled: false\n\nlogging:\n  pattern:\n    console: \"%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%X{requestId}] %logger{36} - %msg%n\"\n  level:\n    root: INFO\n    dev.rajeev: INFO\n",
+      "delete" : false
+    }, {
+      "path" : "src/test/java/dev/rajeev/shortener/config/ShortenerPropertiesTest.java",
+      "action" : "write",
+      "content" : "package dev.rajeev.shortener.config;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\n\nimport dev.rajeev.shortener.web.TestServer;\nimport org.junit.jupiter.api.Test;\n\nclass ShortenerPropertiesTest {\n\n    @Test\n    void defaultsGeneratedCodeLengthToEightCharacters() {\n        try (TestServer server = new TestServer()) {\n            assertEquals(8, server.ctx.getBean(ShortenerProperties.class).codeLength());\n        }\n    }\n\n    @Test\n    void stillAllowsAnExplicitOverrideWithinBounds() {\n        try (TestServer server = new TestServer(\"--shortener.code-length=10\")) {\n            assertEquals(10, server.ctx.getBean(ShortenerProperties.class).codeLength());\n        }\n        assertThrows(IllegalArgumentException.class, () -> new ShortenerProperties(\"http://x\", 3, 2048, new ShortenerProperties.RateLimit(1, 1000), new ShortenerProperties.Analytics(500, 200, 10000, 3)));\n    }\n}\n",
+      "delete" : false
+    } ],
+    "dependencyChanges" : [ ],
+    "notes" : [ "Adds ShortenerPropertiesTest as requested in the reviewer's rejection." ]
+  }
+}

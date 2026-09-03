@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verify": {
+            "type": "string",
+            "enum": [
+              "none",
+              "typecheck",
+              "tests-red",
+              "tests-green"
+            ]
+          },
+          "riskLevel": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "acceptance": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "files",
+          "dependsOn",
+          "verify",
+          "riskLevel",
+          "acceptance"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "sequencingRationale": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "summary",
+    "tasks",
+    "sequencingRationale"
+  ],
+  "additionalProperties": false
+}

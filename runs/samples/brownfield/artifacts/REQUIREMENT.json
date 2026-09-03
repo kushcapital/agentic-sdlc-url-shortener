@@ -1,0 +1,12 @@
+{
+  "kind" : "REQUIREMENT",
+  "producedBy" : "scenario",
+  "attempt" : 0,
+  "version" : 1,
+  "hash" : "a71f634bc931c086",
+  "inputHashes" : { },
+  "createdAt" : "2026-09-03T01:40:38.178640195Z",
+  "content" : {
+    "text" : "Marketing runs time-boxed campaigns and wants campaign links that stop working after the campaign ends. Add optional expiry to short links: callers can set an expiry when creating a link; expired links must stop redirecting and tell the client clearly that the link expired (not that it doesn't exist); click statistics must remain available after expiry. Existing links, clients and stored data must keep working unchanged."
+  }
+}

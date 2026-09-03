@@ -1,0 +1,38 @@
+{
+  "verdict": "approve",
+  "summary": "Change is small, additive and well-tested. Expiry is enforced in one place (LinkService.resolve) and inherited by both read paths; stats intentionally bypass it. Migration is additive and idempotent with upgrade tests against a v1 database. The only protected-file change (ApiExceptionHandler) is a single switch case.",
+  "findings": [
+    {
+      "severity": "low",
+      "category": "correctness",
+      "file": "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+      "issue": "validateExpiry runs after the idempotency short-circuit, so a replayed request with a now-past expiresAt still returns the original link.",
+      "recommendation": "Intended: idempotent replays must return the original outcome. Document it."
+    },
+    {
+      "severity": "low",
+      "category": "maintainability",
+      "file": "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java",
+      "issue": "Migrations are hand-rolled inside the repository.",
+      "recommendation": "Fine at v2; move to Flyway before v4."
+    },
+    {
+      "severity": "info",
+      "category": "testing",
+      "file": "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java",
+      "issue": "AC-4/AC-5 use real sleeps (1.2 s).",
+      "recommendation": "Inject a Clock bean override for integration tests to remove wall-clock waits."
+    },
+    {
+      "severity": "info",
+      "category": "compliance",
+      "file": "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java",
+      "issue": "Protected file modified.",
+      "recommendation": "Diff reviewed: `case GONE, EXPIRED -> HttpStatus.GONE`. No handler logic changed. Approved via policy:implement:T3 checkpoint."
+    }
+  ],
+  "policySummary": [
+    "path-allowlist blocked a stray .env.local in T2 attempt 1 (retry succeeded)",
+    "protected-files-require-approval raised on T3 attempt 2 and was approved by the reviewer"
+  ]
+}

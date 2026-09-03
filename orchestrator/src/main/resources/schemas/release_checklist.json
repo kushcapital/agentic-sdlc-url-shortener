@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "changeSummary": {
+      "type": "string"
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "riskAssessment": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "level",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "rollbackPlan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "checklist": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "done",
+              "pending",
+              "n/a"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "status"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "goNoGo": {
+      "type": "string",
+      "enum": [
+        "go",
+        "no-go"
+      ]
+    }
+  },
+  "required": [
+    "version",
+    "changeSummary",
+    "changes",
+    "riskAssessment",
+    "rollbackPlan",
+    "checklist",
+    "goNoGo"
+  ],
+  "additionalProperties": false
+}

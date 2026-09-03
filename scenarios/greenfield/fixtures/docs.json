@@ -1,0 +1,13 @@
+{
+  "summary" : "README with run/test instructions, API summary and v0 limitations; ADR-0001 on random codes and 302 redirects.",
+  "files" : [ {
+    "path" : "README.md",
+    "action" : "write",
+    "content" : "# URL shortener (v0)\n\nCreate short links, redirect with click counting, read stats. Spring Boot 3 / Java 21.\n\n```bash\nmvn test\nmvn spring-boot:run          # http://localhost:8080 ; APP_BASE_URL to change the short-link host\n```\n\n## API\n| Method | Path | Purpose |\n|---|---|---|\n| POST | /api/links `{url}` | Create a short link (201) |\n| GET | /{code} | 302 redirect, counts the click |\n| GET | /api/links/{code}/stats | `{code, clicks, lastClickAt}` |\n| GET | /health | Liveness |\n\nOnly absolute `http`/`https` URLs are accepted.\n\n## v0 limitations\n- In-memory storage: links are lost on restart. `LinkStore` is the seam for a JDBC adapter.\n- No rate limiting or authentication. Do not expose publicly without them.\n- Stats are a count + last click time; breakdowns come with durable storage.\n"
+  }, {
+    "path" : "docs/adr/0001-random-codes-and-302.md",
+    "action" : "write",
+    "content" : "# ADR-0001: Random base62 codes and 302 redirects\n\n**Status:** accepted\n\n## Decisions\n- Short codes are 7 random base62 characters (rejection-sampled) with a bounded collision retry, not an encoded counter: sequential codes let anyone enumerate every link.\n- Redirects are `302` with `Cache-Control: no-store`: a `301` would be cached by browsers and hide repeat clicks from analytics.\n\n## Consequences\n- One existence check per create; negligible at this scale.\n- Slightly more redirect traffic reaches the service; required for click counting.\n"
+  } ],
+  "notes" : [ ]
+}

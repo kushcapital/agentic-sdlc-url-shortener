@@ -1,0 +1,149 @@
+{
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "responsibility": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "responsibility"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "impactedModules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "changeType": {
+            "type": "string",
+            "enum": [
+              "create",
+              "modify",
+              "delete",
+              "none"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "changeType",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "dataFlow": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "apiChanges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "change": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "method",
+          "path",
+          "change"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "schemaChanges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tradeoffs": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "decision",
+          "rationale",
+          "alternatives",
+          "tradeoffs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "securityConsiderations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollbackStrategy": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "summary",
+    "components",
+    "impactedModules",
+    "dataFlow",
+    "apiChanges",
+    "schemaChanges",
+    "decisions",
+    "securityConsiderations",
+    "rollbackStrategy"
+  ],
+  "additionalProperties": false
+}

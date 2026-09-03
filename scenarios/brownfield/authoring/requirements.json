@@ -1,0 +1,173 @@
+{
+  "problemStatement": "Extend the existing URL shortener (Spring Boot 3 / Java 21, JdbcTemplate over H2/PostgreSQL, batched analytics queue, soft delete) so that a short link can carry an optional hard expiry. After the expiry instant, redirect and metadata requests must fail with a distinct 'expired' outcome (410 EXPIRED) rather than 'not found' or 'deleted', while click statistics remain readable. The change must be backward compatible for existing rows (no expiry), existing API clients (field is optional) and the persisted schema (additive migration).",
+  "scenarioType": "brownfield",
+  "functionalRequirements": [
+    {
+      "id": "FR-1",
+      "text": "POST /api/links accepts an optional expiresAt (ISO-8601 instant, must be in the future); the created link records it.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-2",
+      "text": "Every link response (create, metadata, idempotent replay) includes expiresAt, null when the link never expires.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-3",
+      "text": "GET /:code and GET /api/links/:code return HTTP 410 with error code EXPIRED once now >= expiresAt.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-4",
+      "text": "GET /api/links/:code/stats keeps returning analytics for expired links.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-5",
+      "text": "Links created without expiresAt behave exactly as today.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-6",
+      "text": "Existing H2/PostgreSQL databases are migrated in place (schema_version 1 -> 2) without data loss.",
+      "priority": "must"
+    },
+    {
+      "id": "FR-7",
+      "text": "openapi.yaml reflects the new field and the 410 EXPIRED outcome.",
+      "priority": "should"
+    }
+  ],
+  "nonFunctionalRequirements": [
+    {
+      "id": "NFR-1",
+      "text": "Expiry adds no measurable latency to the redirect path (a timestamp comparison, no extra I/O).",
+      "category": "performance"
+    },
+    {
+      "id": "NFR-2",
+      "text": "No background job or scheduler is introduced; expiry is evaluated at read time.",
+      "category": "operability"
+    },
+    {
+      "id": "NFR-3",
+      "text": "Rollback of the deployment must be possible without a schema rollback.",
+      "category": "reliability"
+    },
+    {
+      "id": "NFR-4",
+      "text": "Both repository adapters (in-memory, JDBC) satisfy the same contract test.",
+      "category": "maintainability"
+    }
+  ],
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "given": "a valid URL and an expiresAt one hour in the future",
+      "when": "POST /api/links is called",
+      "then": "201 is returned and the response echoes expiresAt"
+    },
+    {
+      "id": "AC-2",
+      "given": "an expiresAt in the past",
+      "when": "POST /api/links is called",
+      "then": "400 VALIDATION is returned and nothing is stored"
+    },
+    {
+      "id": "AC-3",
+      "given": "a link created without expiresAt",
+      "when": "it is created and redirected",
+      "then": "expiresAt is null and the redirect is a 302 as before"
+    },
+    {
+      "id": "AC-4",
+      "given": "a link whose expiresAt has passed",
+      "when": "GET /:code or GET /api/links/:code is called",
+      "then": "410 with error EXPIRED is returned"
+    },
+    {
+      "id": "AC-5",
+      "given": "a link that was clicked and then expired",
+      "when": "GET /api/links/:code/stats is called",
+      "then": "200 with the recorded clicks is returned"
+    },
+    {
+      "id": "AC-6",
+      "given": "a database created by schema v1",
+      "when": "the service opens it",
+      "then": "the schema is upgraded to v2, legacy rows read back with expiresAt null, and re-opening is idempotent"
+    }
+  ],
+  "assumptions": [
+    "Expiry is a hard cut-off evaluated against the server clock; no grace period.",
+    "Expired links are not purged; they stay soft-present so codes are never reissued and stats remain.",
+    "There is no requirement to extend or edit expiry after creation (would need a PATCH endpoint; out of scope).",
+    "Callers supply absolute instants (expiresAt, ISO-8601) rather than durations; a ttl convenience can be layered on later."
+  ],
+  "outOfScope": [
+    "Editing expiry after creation",
+    "Notifying owners before expiry",
+    "Purging expired rows",
+    "Per-owner default expiry policies"
+  ],
+  "ambiguities": [
+    {
+      "id": "AMB-1",
+      "question": "Should an expired link return 410 Gone (same status as deleted, different error code) or 404?",
+      "options": [
+        {
+          "key": "410-EXPIRED",
+          "description": "410 with a distinct error code EXPIRED",
+          "impact": "Clients can distinguish deleted vs expired; consistent with 'resource intentionally gone'."
+        },
+        {
+          "key": "404",
+          "description": "Treat expired as not found",
+          "impact": "Simpler but violates the requirement to 'tell the client clearly that the link expired'."
+        }
+      ],
+      "recommended": "410-EXPIRED",
+      "blocking": false,
+      "resolution": "410 with error code EXPIRED \u2014 the requirement explicitly asks for a distinct outcome."
+    },
+    {
+      "id": "AMB-2",
+      "question": "Absolute expiresAt or relative ttlSeconds in the request?",
+      "options": [
+        {
+          "key": "expiresAt",
+          "description": "Absolute ISO-8601 instant",
+          "impact": "Unambiguous across retries and clock skew; validated at the edge."
+        },
+        {
+          "key": "ttlSeconds",
+          "description": "Relative duration",
+          "impact": "Friendlier for scripts but retried requests drift; would need idempotency care."
+        }
+      ],
+      "recommended": "expiresAt",
+      "blocking": false,
+      "resolution": "expiresAt; a ttl convenience can be added later without breaking the contract."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "ApiExceptionHandler.statusFor is an exhaustive switch expression over ErrorCode; adding a code without a case fails compilation.",
+      "likelihood": "medium",
+      "impact": "low",
+      "mitigation": "Compile gate on every implementation task."
+    },
+    {
+      "risk": "Schema change on a live database.",
+      "likelihood": "low",
+      "impact": "high",
+      "mitigation": "Additive nullable column, idempotent migration guarded by schema_version, upgrade tests against a v1 database."
+    },
+    {
+      "risk": "Clock skew between API instances makes expiry appear inconsistent for a few seconds.",
+      "likelihood": "medium",
+      "impact": "low",
+      "mitigation": "Document; acceptable for campaign links. NTP on hosts."
+    }
+  ]
+}

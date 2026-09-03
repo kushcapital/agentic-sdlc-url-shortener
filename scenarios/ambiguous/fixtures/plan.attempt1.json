@@ -1,0 +1,35 @@
+{
+  "summary": "Two tasks: red tests, then the configuration change.",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Red tests for 8-char codes",
+      "description": "Update the create-link assertion and add an acceptance test.",
+      "files": [
+        "src/test/java/dev/rajeev/shortener/web/ApiIntegrationTest.java",
+        "src/test/java/dev/rajeev/shortener/web/GuessabilityIntegrationTest.java"
+      ],
+      "dependsOn": [],
+      "verify": "tests-red",
+      "riskLevel": "low",
+      "acceptance": "Suite red on code length."
+    },
+    {
+      "id": "T2",
+      "title": "Raise the generated code length to 8",
+      "description": "ShortenerProperties default + application.yml + a test pinning the bound value.",
+      "files": [
+        "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java",
+        "src/main/resources/application.yml",
+        "src/test/java/dev/rajeev/shortener/config/ShortenerPropertiesTest.java"
+      ],
+      "dependsOn": [
+        "T1"
+      ],
+      "verify": "tests-green",
+      "riskLevel": "low",
+      "acceptance": "Suite green."
+    }
+  ],
+  "sequencingRationale": "Tests first; single implementation task."
+}

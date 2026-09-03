@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: URL Shortener API
+  version: 1.0.0
+  description: Create short links, redirect with click analytics, and read statistics. Contract-first; every path below is covered by an integration test.
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: links
+  - name: analytics
+  - name: ops
+paths:
+  /api/links:
+    post:
+      tags: [links]
+      summary: Create a short link
+      description: Send an `Idempotency-Key` header to make retries safe; the same key returns the original link with 200 instead of creating a duplicate. Rate-limited per client IP.
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: false
+          schema: { type: string, maxLength: 128 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateLinkRequest' }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/LinkResponse' } } } }
+        '200': { description: Existing link returned for a repeated Idempotency-Key, content: { application/json: { schema: { $ref: '#/components/schemas/LinkResponse' } } } }
+        '400': { description: Malformed request or URL (VALIDATION, INVALID_URL), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }
+        '409': { description: Custom alias already in use (ALIAS_TAKEN), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }
+        '422': { description: URL rejected by policy or alias reserved (URL_NOT_ALLOWED, ALIAS_RESERVED), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }
+        '429': { description: Rate limited (RATE_LIMITED), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }
+  /api/links/{code}:
+    parameters:
+      - $ref: '#/components/parameters/Code'
+    get:
+      tags: [links]
+      summary: Get short link metadata
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/LinkResponse' } } } }
+        '404': { description: Unknown code, content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }
+        '410': { description: Link was deleted (GONE), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }
+    delete:
+      tags: [links]
+      summary: Delete a short link (soft delete; the code is never reissued)
+      responses:
+        '204': { description: Deleted }
+        '404': { description: Unknown code }
+        '410': { description: Already deleted }
+  /api/links/{code}/stats:
+    parameters:
+      - $ref: '#/components/parameters/Code'
+    get:
+      tags: [analytics]
+      summary: Click analytics for a short link (readable after deletion)
+      parameters:
+        - { in: query, name: days, schema: { type: integer, minimum: 1, maximum: 365, default: 30 } }
+        - { in: query, name: topN, schema: { type: integer, minimum: 1, maximum: 50, default: 5 } }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/LinkStats' } } } }
+        '404': { description: Unknown code }
+  /{code}:
+    parameters:
+      - $ref: '#/components/parameters/Code'
+    get:
+      tags: [links]
+      summary: Redirect to the target URL (302, Cache-Control no-store); records a click asynchronously. Not rate-limited.
+      responses:
+        '302': { description: Redirect, headers: { Location: { schema: { type: string, format: uri } } } }
+        '404': { description: Unknown code }
+        '410': { description: Deleted }
+  /actuator/health/liveness:
+    get: { tags: [ops], summary: Liveness, responses: { '200': { description: UP } } }
+  /actuator/health/readiness:
+    get: { tags: [ops], summary: Readiness (503 when the store cannot be pinged), responses: { '200': { description: UP }, '503': { description: OUT_OF_SERVICE } } }
+  /actuator/metrics/{name}:
+    get:
+      tags: [ops]
+      summary: Micrometer metric (e.g. analytics.queue.dropped, analytics.queue.pending)
+      parameters:
+        - { in: path, name: name, required: true, schema: { type: string } }
+      responses:
+        '200': { description: OK }
+components:
+  parameters:
+    Code:
+      in: path
+      name: code
+      required: true
+      schema: { type: string, pattern: '^[A-Za-z0-9_-]{4,32}$' }
+  schemas:
+    CreateLinkRequest:
+      type: object
+      required: [url]
+      properties:
+        url: { type: string, maxLength: 8192, description: Absolute http(s) URL. Private-network, credentialed and self-referencing targets are rejected. }
+        customAlias: { type: string, pattern: '^[A-Za-z0-9_-]{4,32}$' }
+        ownerId: { type: string, maxLength: 128 }
+    LinkResponse:
+      type: object
+      required: [code, shortUrl, targetUrl, createdAt, custom]
+      properties:
+        code: { type: string }
+        shortUrl: { type: string, format: uri }
+        targetUrl: { type: string, format: uri }
+        createdAt: { type: string, format: date-time }
+        custom: { type: boolean }
+    LinkStats:
+      type: object
+      required: [code, totalClicks, clicksByDay, topReferrers, topUserAgents, lastClickAt]
+      properties:
+        code: { type: string }
+        totalClicks: { type: integer, format: int64 }
+        clicksByDay: { type: array, items: { type: object, properties: { day: { type: string, format: date }, clicks: { type: integer } } } }
+        topReferrers: { type: array, items: { type: object, properties: { referrer: { type: string }, clicks: { type: integer } } } }
+        topUserAgents: { type: array, items: { type: object, properties: { userAgent: { type: string }, clicks: { type: integer } } } }
+        lastClickAt: { type: string, format: date-time, nullable: true }
+    ApiError:
+      type: object
+      required: [error, message]
+      properties:
+        error: { type: string, enum: [VALIDATION, INVALID_URL, URL_NOT_ALLOWED, ALIAS_TAKEN, ALIAS_RESERVED, NOT_FOUND, GONE, CODE_EXHAUSTED, RATE_LIMITED, INTERNAL] }
+        message: { type: string }
+        requestId: { type: string }

@@ -1,0 +1,1 @@
+{ "taskId": "T3a", "summary": "Short-code generation: random base62 with rejection sampling and a bounded collision-retry helper. Unit tests included.", "notes": [] }

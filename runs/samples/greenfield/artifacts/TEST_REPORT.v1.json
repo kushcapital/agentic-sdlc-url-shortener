@@ -1,0 +1,27 @@
+{
+  "kind" : "TEST_REPORT",
+  "producedBy" : "test",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "9397b5136a4e1f48",
+  "inputHashes" : {
+    "TASK_PLAN" : "f6fc3fe0fbea830c"
+  },
+  "createdAt" : "2026-09-03T01:40:34.417818775Z",
+  "content" : {
+    "toolchain" : "javac",
+    "typecheck" : {
+      "ok" : true,
+      "output" : "Picked up JAVA_TOOL_OPTIONS: \nPicked up JAVA_TOOL_OPTIONS:"
+    },
+    "tests" : {
+      "ok" : true,
+      "passed" : 11,
+      "failed" : 0,
+      "total" : 11,
+      "durationMs" : 9452,
+      "failures" : [ ]
+    },
+    "verdict" : "green"
+  }
+}

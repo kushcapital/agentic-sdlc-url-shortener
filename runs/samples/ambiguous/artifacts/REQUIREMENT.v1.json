@@ -1,0 +1,12 @@
+{
+  "kind" : "REQUIREMENT",
+  "producedBy" : "scenario",
+  "attempt" : 0,
+  "version" : 1,
+  "hash" : "35d1fd1bfa007a6c",
+  "inputHashes" : { },
+  "createdAt" : "2026-09-03T01:42:02.120249263Z",
+  "content" : {
+    "text" : "Several users have told support that our short links \"feel too easy to guess\". Fix it."
+  }
+}

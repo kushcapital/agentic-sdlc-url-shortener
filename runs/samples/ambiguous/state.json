@@ -1,0 +1,1043 @@
+{
+  "runId" : "ambiguous",
+  "scenario" : "ambiguous",
+  "status" : "COMPLETED",
+  "createdAt" : "2026-09-03T01:42:01.961795268Z",
+  "updatedAt" : "2026-09-03T01:42:51.123164878Z",
+  "requirement" : "Several users have told support that our short links \"feel too easy to guess\". Fix it. UPDATE from product after reviewing the tickets: half of the complaints are about custom aliases like 'sale1' and 'promo2', not generated codes. Also enforce a minimum length of 6 characters for custom aliases. Existing short aliases must keep working.",
+  "stages" : {
+    "requirements" : {
+      "id" : "requirements",
+      "status" : "SUCCEEDED",
+      "attempts" : 3,
+      "attemptBase" : 2,
+      "startedAt" : "2026-09-03T01:42:02.626241782Z",
+      "finishedAt" : "2026-09-03T01:42:02.654382063Z",
+      "feedback" : [ "requirement revised by stakeholder: Product reviewed the support tickets after planning had started and widened the scope to custom aliases." ],
+      "inputHashes" : { },
+      "outputHash" : "d6619414407c6df1",
+      "invalidationReason" : "requirement revised: Product reviewed the support tickets after planning had started and widened the scope to custom aliases."
+    },
+    "architecture" : {
+      "id" : "architecture",
+      "status" : "SUCCEEDED",
+      "attempts" : 2,
+      "attemptBase" : 1,
+      "startedAt" : "2026-09-03T01:42:02.656669572Z",
+      "finishedAt" : "2026-09-03T01:42:02.682381026Z",
+      "feedback" : [ "re-planned: requirement revised: Product reviewed the support tickets after planning had started and widened the scope to custom aliases." ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1"
+      },
+      "outputHash" : "942c74df4def626e",
+      "invalidationReason" : "requirement revised: Product reviewed the support tickets after planning had started and widened the scope to custom aliases."
+    },
+    "plan" : {
+      "id" : "plan",
+      "status" : "SUCCEEDED",
+      "attempts" : 2,
+      "attemptBase" : 1,
+      "startedAt" : "2026-09-03T01:42:02.683873178Z",
+      "finishedAt" : "2026-09-03T01:42:02.695944681Z",
+      "feedback" : [ "re-planned: requirement revised: Product reviewed the support tickets after planning had started and widened the scope to custom aliases." ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e"
+      },
+      "outputHash" : "b61bb86a9b4071fa",
+      "invalidationReason" : "requirement revised: Product reviewed the support tickets after planning had started and widened the scope to custom aliases."
+    },
+    "test" : {
+      "id" : "test",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:42:30.799579760Z",
+      "finishedAt" : "2026-09-03T01:42:51.083184060Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "outputHash" : "ea5f1785e1349f59"
+    },
+    "review" : {
+      "id" : "review",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:42:30.797767251Z",
+      "finishedAt" : "2026-09-03T01:42:30.897811388Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "outputHash" : "be08ed9520596f48"
+    },
+    "docs" : {
+      "id" : "docs",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:42:30.797948510Z",
+      "finishedAt" : "2026-09-03T01:42:30.908941494Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e"
+      },
+      "outputHash" : "c085cd1162b3f9c9"
+    },
+    "release" : {
+      "id" : "release",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:42:51.086157828Z",
+      "finishedAt" : "2026-09-03T01:42:51.115919739Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "TEST_REPORT" : "ea5f1785e1349f59",
+        "REVIEW_REPORT" : "be08ed9520596f48",
+        "ARCHITECTURE" : "942c74df4def626e"
+      },
+      "outputHash" : "0e98eb54dc8d3c6c"
+    },
+    "implement:T1" : {
+      "id" : "implement:T1",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:42:02.699437639Z",
+      "finishedAt" : "2026-09-03T01:42:21.759337750Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "outputHash" : "ee08ba8a21cf5842"
+    },
+    "implement:T2" : {
+      "id" : "implement:T2",
+      "status" : "SUCCEEDED",
+      "attempts" : 2,
+      "startedAt" : "2026-09-03T01:42:21.765581645Z",
+      "finishedAt" : "2026-09-03T01:42:30.792970723Z",
+      "firstFailureAt" : "2026-09-03T01:42:21.867087362Z",
+      "feedback" : [ "approval 'policy:implement:T2' rejected by scripted-stakeholder: A changed default with no test pinning it will silently regress. Add a test asserting shortener.code-length binds to 8 before this lands." ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "outputHash" : "cc01e1b348bd5162"
+    },
+    "implement:T3" : {
+      "id" : "implement:T3",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:42:21.765595032Z",
+      "finishedAt" : "2026-09-03T01:42:30.685691590Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "outputHash" : "c076de444d460d8d"
+    }
+  },
+  "stageOrder" : [ "requirements", "architecture", "plan", "implement:T1", "implement:T2", "implement:T3", "test", "review", "docs", "release" ],
+  "graph" : [ {
+    "id" : "requirements",
+    "name" : "Requirement understanding",
+    "phase" : "REQUIREMENTS",
+    "agent" : "REQUIREMENTS_ANALYST",
+    "dependsOn" : [ ],
+    "consumes" : [ ],
+    "produces" : "REQUIREMENTS_SPEC",
+    "entryGates" : [ "workspace-ready" ],
+    "exitGates" : [ "clarifications-resolved" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "architecture",
+    "name" : "Architecture & impact analysis",
+    "phase" : "DESIGN",
+    "agent" : "ARCHITECT",
+    "dependsOn" : [ "requirements" ],
+    "consumes" : [ "REQUIREMENTS_SPEC" ],
+    "produces" : "ARCHITECTURE",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ ],
+    "approval" : {
+      "gateId" : "design-review",
+      "reason" : "Architecture and impacted-module analysis need a human design sign-off before implementation starts.",
+      "riskLevel" : "MEDIUM"
+    },
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "plan",
+    "name" : "Task decomposition",
+    "phase" : "PLANNING",
+    "agent" : "PLANNER",
+    "dependsOn" : [ "architecture" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE" ],
+    "produces" : "TASK_PLAN",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "plan-valid" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : {
+      "expands" : "implement"
+    }
+  }, {
+    "id" : "implement:T1",
+    "name" : "Implementation: Red acceptance tests: 8-char codes, alias minimum 6, legacy codes resolve",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T1"
+    },
+    "params" : {
+      "verify" : "tests-red",
+      "riskLevel" : "low"
+    }
+  }, {
+    "id" : "implement:T2",
+    "name" : "Implementation: Raise the generated code length to 8",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T1" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T2"
+    },
+    "params" : {
+      "verify" : "typecheck",
+      "riskLevel" : "low"
+    }
+  }, {
+    "id" : "implement:T3",
+    "name" : "Implementation: Alias minimum length 6 with a separate path-resolution rule",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T1" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T3"
+    },
+    "params" : {
+      "verify" : "typecheck",
+      "riskLevel" : "medium"
+    }
+  }, {
+    "id" : "test",
+    "name" : "Verification (compile + full suite)",
+    "phase" : "TESTING",
+    "agent" : "TESTER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3" ],
+    "consumes" : [ "TASK_PLAN" ],
+    "produces" : "TEST_REPORT",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "tests-green" ],
+    "retry" : {
+      "maxAttempts" : 1,
+      "backoffMs" : 0,
+      "factor" : 2.0
+    },
+    "onFailure" : "ESCALATE",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 900000,
+    "params" : { }
+  }, {
+    "id" : "review",
+    "name" : "Security & quality review",
+    "phase" : "REVIEW",
+    "agent" : "REVIEWER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3" ],
+    "consumes" : [ "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "REVIEW_REPORT",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "review-approved" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "ESCALATE",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "docs",
+    "name" : "Documentation",
+    "phase" : "DOCUMENTATION",
+    "agent" : "DOC_WRITER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE" ],
+    "produces" : "DOC_UPDATE",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "SKIP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "release",
+    "name" : "Release readiness",
+    "phase" : "RELEASE",
+    "agent" : "RELEASE_MANAGER",
+    "dependsOn" : [ "test", "review", "docs" ],
+    "consumes" : [ "TEST_REPORT", "REVIEW_REPORT", "ARCHITECTURE" ],
+    "produces" : "RELEASE_CHECKLIST",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "release-ready" ],
+    "approval" : {
+      "gateId" : "release-approval",
+      "reason" : "Releasing to production is a high-impact action; a human owns the go/no-go.",
+      "riskLevel" : "HIGH"
+    },
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  } ],
+  "templates" : {
+    "implement" : {
+      "id" : "implement",
+      "name" : "Implementation",
+      "phase" : "IMPLEMENTATION",
+      "agent" : "IMPLEMENTER",
+      "dependsOn" : [ "plan" ],
+      "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+      "produces" : "CODE_PATCH",
+      "entryGates" : [ "upstream-artifacts-present" ],
+      "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+      "retry" : {
+        "maxAttempts" : 3,
+        "backoffMs" : 100,
+        "factor" : 2.0
+      },
+      "onFailure" : "ROLLBACK_AND_STOP",
+      "mutatesWorkspace" : true,
+      "timeoutMs" : 600000,
+      "params" : { }
+    }
+  },
+  "artifacts" : {
+    "REQUIREMENT" : {
+      "kind" : "REQUIREMENT",
+      "producedBy" : "scenario",
+      "attempt" : 0,
+      "version" : 2,
+      "hash" : "c980ed8af5a5a073",
+      "inputHashes" : { },
+      "createdAt" : "2026-09-03T01:42:02.615669948Z",
+      "content" : {
+        "note" : "Product reviewed the support tickets after planning had started and widened the scope to custom aliases.",
+        "text" : "Several users have told support that our short links \"feel too easy to guess\". Fix it. UPDATE from product after reviewing the tickets: half of the complaints are about custom aliases like 'sale1' and 'promo2', not generated codes. Also enforce a minimum length of 6 characters for custom aliases. Existing short aliases must keep working."
+      }
+    },
+    "CLARIFICATIONS" : {
+      "kind" : "CLARIFICATIONS",
+      "producedBy" : "human",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "de4417401bc3d6cf",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "0f909a277396371d"
+      },
+      "createdAt" : "2026-09-03T01:42:02.366120940Z",
+      "content" : {
+        "AMB-1" : "A"
+      }
+    },
+    "REQUIREMENTS_SPEC" : {
+      "kind" : "REQUIREMENTS_SPEC",
+      "producedBy" : "requirements",
+      "attempt" : 3,
+      "version" : 2,
+      "hash" : "d6619414407c6df1",
+      "inputHashes" : { },
+      "createdAt" : "2026-09-03T01:42:02.652099406Z",
+      "content" : {
+        "problemStatement" : "Users report short links feel guessable. Product reviewed the tickets: complaints cover both generated codes (7 chars) and short custom aliases ('sale1'). Harden both: newly generated codes become 8 base62 characters, and custom aliases must be at least 6 characters at creation. Nothing already issued may break: legacy 7-char codes and existing 4/5-char aliases must keep resolving, which means the creation-time alias rule and the path-resolution rule must be separated.",
+        "scenarioType" : "ambiguous",
+        "functionalRequirements" : [ {
+          "id" : "FR-1",
+          "text" : "Newly generated codes are 8 base62 characters by default (configurable via shortener.code-length).",
+          "priority" : "must"
+        }, {
+          "id" : "FR-2",
+          "text" : "All previously issued codes (7-char generated, custom aliases of any accepted length) keep resolving on GET /:code, metadata and stats.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-3",
+          "text" : "Collision handling (bounded retry) is unchanged.",
+          "priority" : "should"
+        }, {
+          "id" : "FR-4",
+          "text" : "POST /api/links rejects customAlias shorter than 6 characters with 400 VALIDATION.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-5",
+          "text" : "Path resolution (GET /:code, /api/links/:code, /stats) still accepts 4-32 character codes so legacy aliases resolve.",
+          "priority" : "must"
+        } ],
+        "nonFunctionalRequirements" : [ {
+          "id" : "NFR-1",
+          "text" : "No measurable latency change on redirect.",
+          "category" : "performance"
+        }, {
+          "id" : "NFR-2",
+          "text" : "Backward compatible API for existing clients.",
+          "category" : "compatibility"
+        } ],
+        "acceptanceCriteria" : [ {
+          "id" : "AC-1",
+          "given" : "a valid URL",
+          "when" : "POST /api/links without customAlias",
+          "then" : "the code is 8 base62 characters"
+        }, {
+          "id" : "AC-3",
+          "given" : "a legacy 7-char code exists in the store",
+          "when" : "GET /:code",
+          "then" : "302 to its target"
+        }, {
+          "id" : "AC-2",
+          "given" : "customAlias 'sale1'",
+          "when" : "POST /api/links",
+          "then" : "400; 'spring-sale' is accepted"
+        }, {
+          "id" : "AC-3b",
+          "given" : "a legacy 4-char alias exists in the store",
+          "when" : "GET /:code and GET /api/links/:code/stats",
+          "then" : "302 and 200 respectively"
+        } ],
+        "assumptions" : [ "'Guess' refers to an attacker or curious user finding links they were not given.", "No incident has occurred; this is preventive hardening." ],
+        "outOfScope" : [ "Rotating or regenerating existing codes", "Authentication for viewing links (unless AMB-1 selects C)" ],
+        "ambiguities" : [ {
+          "id" : "AMB-1",
+          "question" : "What does 'too easy to guess' mean for the users who complained?",
+          "options" : [ {
+            "key" : "A",
+            "description" : "Generated codes are short (7 base62 chars); raise their entropy (e.g. 8 chars, 62^8 ≈ 2.2e14).",
+            "impact" : "Small, contained change to config/codegen and tests; legacy 7-char codes keep resolving."
+          }, {
+            "key" : "B",
+            "description" : "User-chosen custom aliases are predictable ('sale1', 'promo2'); enforce alias rules (minimum length, maybe a denylist).",
+            "impact" : "Validation change in the domain model and routes; must not break already-issued short aliases."
+          }, {
+            "key" : "C",
+            "description" : "Users expect links to be private; add unlisted/authenticated links.",
+            "impact" : "A new feature (tokens or auth), not a hardening change; separate product decision."
+          } ],
+          "recommended" : "A",
+          "blocking" : false,
+          "resolution" : "Stakeholder chose A, then product widened scope to B as well after reviewing tickets (requirement revised mid-run). C remains out of scope."
+        }, {
+          "id" : "AMB-2",
+          "question" : "Should already-issued codes be regenerated to the new rule?",
+          "options" : [ {
+            "key" : "no",
+            "description" : "Only new links follow the new rule",
+            "impact" : "Zero breakage; old links stay as guessable as they were."
+          }, {
+            "key" : "yes",
+            "description" : "Rotate existing codes",
+            "impact" : "Breaks every link already shared; unacceptable."
+          } ],
+          "recommended" : "no",
+          "blocking" : false,
+          "resolution" : "No: never rotate issued codes."
+        } ],
+        "risks" : [ {
+          "risk" : "Building the wrong interpretation wastes an implementation cycle.",
+          "likelihood" : "high",
+          "impact" : "medium",
+          "mitigation" : "Blocking clarification before design."
+        }, {
+          "risk" : "Tightening any pattern used by the routes breaks legacy codes.",
+          "likelihood" : "medium",
+          "impact" : "high",
+          "mitigation" : "Separate creation-time rules from path-resolution rules; acceptance test for legacy codes."
+        }, {
+          "risk" : "The same regex currently validates aliases at creation AND appears in the controllers' path templates; raising the minimum in one place would 404 legacy aliases.",
+          "likelihood" : "high",
+          "impact" : "high",
+          "mitigation" : "Introduce LinkRules.CODE_PATH for the path templates, keep CUSTOM_ALIAS_REGEX for creation; acceptance test AC-3."
+        } ]
+      }
+    },
+    "ARCHITECTURE" : {
+      "kind" : "ARCHITECTURE",
+      "producedBy" : "architecture",
+      "attempt" : 2,
+      "version" : 2,
+      "hash" : "942c74df4def626e",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1"
+      },
+      "createdAt" : "2026-09-03T01:42:02.680847646Z",
+      "content" : {
+        "summary" : "Two independent hardenings. (1) Generated code length: shortener.code-length 7 -> 8. (2) Custom alias minimum length 4 -> 6 at creation. The trap in (2): LinkRules.CUSTOM_ALIAS_REGEX validates aliases at creation, and the same 4-32 regex is hard-coded in the controllers' @GetMapping path templates; raising the creation minimum is fine, but tightening the path templates would make legacy 4/5-char aliases 404. Split: CUSTOM_ALIAS_REGEX (creation, 6-32) and a new LinkRules.CODE_PATH constant (resolution, 4-32) used by the controllers.",
+        "components" : [ {
+          "name" : "ShortenerProperties / application.yml",
+          "responsibility" : "codeLength 7 -> 8",
+          "path" : "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java"
+        }, {
+          "name" : "RandomCodeGenerator",
+          "responsibility" : "Unchanged; length is injected",
+          "path" : "src/main/java/dev/rajeev/shortener/domain/RandomCodeGenerator.java"
+        }, {
+          "name" : "LinkRules",
+          "responsibility" : "CUSTOM_ALIAS_REGEX (creation) and CODE_PATH (path templates)",
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkRules.java"
+        }, {
+          "name" : "Controllers",
+          "responsibility" : "Use LinkRules.CODE_PATH in path templates; the request record keeps @Pattern(CUSTOM_ALIAS_REGEX)",
+          "path" : "src/main/java/dev/rajeev/shortener/web/LinkController.java, src/main/java/dev/rajeev/shortener/web/RedirectController.java"
+        } ],
+        "impactedModules" : [ {
+          "path" : "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java",
+          "changeType" : "modify",
+          "reason" : "@DefaultValue 8."
+        }, {
+          "path" : "src/main/resources/application.yml",
+          "changeType" : "modify",
+          "reason" : "shortener.code-length: 8 (explicit value overrides the record default)."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/RandomCodeGenerator.java",
+          "changeType" : "none",
+          "reason" : "Parameterised by length."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/LinkController.java",
+          "changeType" : "none",
+          "reason" : "Path template accepts 4-32; 8 fits."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/web/ApiIntegrationTest.java",
+          "changeType" : "modify",
+          "reason" : "Assertion on code length."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/config/ShortenerPropertiesTest.java",
+          "changeType" : "create",
+          "reason" : "Pin the bound default."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkRules.java",
+          "changeType" : "modify",
+          "reason" : "Raise alias minimum to 6; add CODE_PATH for resolution."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java",
+          "changeType" : "modify",
+          "reason" : "Validation message."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+          "changeType" : "modify",
+          "reason" : "Validation message."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/LinkController.java",
+          "changeType" : "modify",
+          "reason" : "Path templates use LinkRules.CODE_PATH."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/RedirectController.java",
+          "changeType" : "modify",
+          "reason" : "Path template uses LinkRules.CODE_PATH."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/web/GuessabilityIntegrationTest.java",
+          "changeType" : "create",
+          "reason" : "AC-1, AC-2, AC-3 acceptance tests."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java",
+          "changeType" : "modify",
+          "reason" : "Rule split unit test."
+        } ],
+        "dataFlow" : [ "POST /api/links -> LinkService.create -> RandomCodeGenerator(props.codeLength()=8) -> 8-char code", "POST /api/links with customAlias -> LinkService validation (CUSTOM_ALIAS_PATTERN 6-32) -> 400 VALIDATION if too short", "GET /{code} -> path template {code:CODE_PATH} (4-32) -> LinkService.resolve -> legacy aliases still found" ],
+        "apiChanges" : [ {
+          "method" : "POST",
+          "path" : "/api/links",
+          "change" : "Generated codes are 8 chars (was 7). Not a contract change; clients must not assume a length."
+        }, {
+          "method" : "POST",
+          "path" : "/api/links",
+          "change" : "customAlias now requires 6-32 characters (was 4-32). Breaking for clients creating short aliases; documented."
+        } ],
+        "schemaChanges" : [ ],
+        "decisions" : [ {
+          "id" : "D-1",
+          "decision" : "Raise entropy by length (8 chars) rather than by alphabet.",
+          "rationale" : "Base62 is already the largest URL-safe unambiguous alphabet; one more character multiplies the keyspace by 62.",
+          "alternatives" : [ "Base64url (adds - and _; marginal gain)", "Longer codes (10+)" ],
+          "tradeoffs" : "Slightly longer URLs."
+        }, {
+          "id" : "D-2",
+          "decision" : "Separate the creation-time alias rule from the path-resolution rule (LinkRules.CUSTOM_ALIAS_REGEX vs LinkRules.CODE_PATH).",
+          "rationale" : "Issued codes are a contract; the resolution pattern must stay as wide as anything ever issued. Only creation gets stricter.",
+          "alternatives" : [ "Tighten one shared pattern (breaks legacy aliases)", "Migrate legacy aliases (rewrites shared URLs)" ],
+          "tradeoffs" : "Two patterns to keep in mind; documented in code comments and ADR."
+        } ],
+        "securityConsiderations" : [ "Random codes use crypto.randomBytes with rejection sampling; unchanged.", "Alias minimum length is a validation rule, not a security boundary; a denylist for common words is a possible follow-up." ],
+        "rollbackStrategy" : "Revert both; nothing issued under the new rules becomes unresolvable because the path templates are unchanged (4-32)."
+      }
+    },
+    "TASK_PLAN" : {
+      "kind" : "TASK_PLAN",
+      "producedBy" : "plan",
+      "attempt" : 2,
+      "version" : 2,
+      "hash" : "b61bb86a9b4071fa",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e"
+      },
+      "createdAt" : "2026-09-03T01:42:02.694498226Z",
+      "content" : {
+        "summary" : "Three tasks after the scope change. T1 writes all acceptance tests (red). T2 (code length) and T3 (alias rule split) touch disjoint files and run in parallel in separate worktrees; each is compile-gated in isolation and the test stage proves the merged result.",
+        "tasks" : [ {
+          "id" : "T1",
+          "title" : "Red acceptance tests: 8-char codes, alias minimum 6, legacy codes resolve",
+          "description" : "Update the ApiIntegrationTest code-length assertion; add GuessabilityIntegrationTest (AC-1..AC-3).",
+          "files" : [ "src/test/java/dev/rajeev/shortener/web/ApiIntegrationTest.java", "src/test/java/dev/rajeev/shortener/web/GuessabilityIntegrationTest.java" ],
+          "dependsOn" : [ ],
+          "verify" : "tests-red",
+          "riskLevel" : "low",
+          "acceptance" : "Compiles; new tests fail."
+        }, {
+          "id" : "T2",
+          "title" : "Raise the generated code length to 8",
+          "description" : "ShortenerProperties @DefaultValue and application.yml 7 -> 8, with a test pinning the bound value.",
+          "files" : [ "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java", "src/main/resources/application.yml", "src/test/java/dev/rajeev/shortener/config/ShortenerPropertiesTest.java" ],
+          "dependsOn" : [ "T1" ],
+          "verify" : "typecheck",
+          "riskLevel" : "low",
+          "acceptance" : "Compiles; properties test present."
+        }, {
+          "id" : "T3",
+          "title" : "Alias minimum length 6 with a separate path-resolution rule",
+          "description" : "Split CUSTOM_ALIAS_REGEX (6-32, creation) from LinkRules.CODE_PATH (4-32, path templates); switch the controllers' templates; unit test.",
+          "files" : [ "src/main/java/dev/rajeev/shortener/domain/LinkRules.java", "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java", "src/main/java/dev/rajeev/shortener/domain/LinkService.java", "src/main/java/dev/rajeev/shortener/web/LinkController.java", "src/main/java/dev/rajeev/shortener/web/RedirectController.java", "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java" ],
+          "dependsOn" : [ "T1" ],
+          "verify" : "typecheck",
+          "riskLevel" : "medium",
+          "acceptance" : "Compiles; legacy aliases resolve (proved by the test stage)."
+        } ],
+        "sequencingRationale" : "T2 and T3 share no files, so they fork separate worktrees and merge independently; the full suite runs once on the merged tree in the test stage."
+      }
+    },
+    "CODE_PATCH:T1" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T1",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "ee08ba8a21cf5842",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "createdAt" : "2026-09-03T01:42:21.754798219Z",
+      "content" : {
+        "summary" : "TDD red: guessability acceptance tests (8-char generated codes, custom alias minimum length 6, legacy codes keep resolving) and the existing create-link assertion updated to 8 characters.",
+        "taskId" : "T1",
+        "files" : [ {
+          "path" : "src/test/java/dev/rajeev/shortener/web/ApiIntegrationTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.web;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\nimport static org.junit.jupiter.api.Assertions.assertNull;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport java.util.List;\nimport java.util.Map;\nimport org.junit.jupiter.api.AfterAll;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.params.ParameterizedTest;\nimport org.junit.jupiter.params.provider.CsvSource;\n\nclass ApiIntegrationTest {\n\n    static TestServer server;\n\n    @BeforeAll\n    static void start() {\n        server = new TestServer();\n    }\n\n    @AfterAll\n    static void stop() {\n        server.close();\n    }\n\n    @Test\n    void postCreatesALinkAndReturns201() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/a\\\"}\");\n        assertEquals(201, r.status());\n        Map<String, Object> body = server.json(r);\n        String code = (String) body.get(\"code\");\n        assertTrue(code.matches(\"^[0-9A-Za-z]{8}$\"), code); // 8 chars since the guessability fix (62^8 keys)\n        assertEquals(\"http://short.test/\" + code, body.get(\"shortUrl\"));\n        assertEquals(\"https://example.com/a\", body.get(\"targetUrl\"));\n        assertEquals(false, body.get(\"custom\"));\n        assertNotNull(r.header(\"X-Request-Id\"));\n    }\n\n    @Test\n    void echoesACallerSuppliedRequestIdForCorrelation() {\n        TestServer.Resp r = server.get(\"/actuator/health/liveness\", \"X-Request-Id\", \"corr-123\");\n        assertEquals(\"corr-123\", r.header(\"X-Request-Id\"));\n    }\n\n    @Test\n    void redirectsWith302AndNoStore() {\n        String code = server.create(\"https://example.com/r\");\n        TestServer.Resp r = server.get(\"/\" + code, \"User-Agent\", \"curl/8.0\");\n        assertEquals(302, r.status());\n        assertEquals(\"https://example.com/r\", r.header(\"Location\"));\n        assertEquals(\"no-store\", r.header(\"Cache-Control\"));\n    }\n\n    @Test\n    void statsReflectClicks() {\n        String code = server.create(\"https://example.com/s\");\n        for (int i = 0; i < 3; i++) server.get(\"/\" + code, \"Referer\", \"https://t.co/x\", \"User-Agent\", \"curl/8\");\n        TestServer.Resp r = server.get(\"/api/links/\" + code + \"/stats?topN=2\");\n        assertEquals(200, r.status());\n        Map<String, Object> stats = server.json(r);\n        assertEquals(3, stats.get(\"totalClicks\"));\n        assertEquals(List.of(Map.of(\"referrer\", \"t.co\", \"clicks\", 3)), stats.get(\"topReferrers\"));\n        assertEquals(List.of(Map.of(\"userAgent\", \"curl\", \"clicks\", 3)), stats.get(\"topUserAgents\"));\n        assertEquals(1, ((List<?>) stats.get(\"clicksByDay\")).size());\n        assertNotNull(stats.get(\"lastClickAt\"));\n    }\n\n    @Test\n    void supportsCustomAliasesAndRejectsCollisionsWith409() {\n        TestServer.Resp a = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com\\\",\\\"customAlias\\\":\\\"launch-2026\\\"}\");\n        assertEquals(201, a.status());\n        assertEquals(\"launch-2026\", server.json(a).get(\"code\"));\n        TestServer.Resp b = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.org\\\",\\\"customAlias\\\":\\\"launch-2026\\\"}\");\n        assertEquals(409, b.status());\n        assertEquals(\"ALIAS_TAKEN\", server.json(b).get(\"error\"));\n    }\n\n    @Test\n    void rejectsReservedAliasesWith422() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com\\\",\\\"customAlias\\\":\\\"health\\\"}\");\n        assertEquals(422, r.status());\n        assertEquals(\"ALIAS_RESERVED\", server.json(r).get(\"error\"));\n    }\n\n    @ParameterizedTest\n    @CsvSource({\n        \"javascript:alert(1), 422, URL_NOT_ALLOWED\",\n        \"http://localhost:3000/x, 422, URL_NOT_ALLOWED\",\n        \"http://169.254.169.254/, 422, URL_NOT_ALLOWED\",\n        \"https://short.test/abc, 422, URL_NOT_ALLOWED\",\n        \"not-a-url, 400, INVALID_URL\"\n    })\n    void rejectsDisallowedUrls(String url, int status, String error) {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"\" + url + \"\\\"}\");\n        assertEquals(status, r.status(), url);\n        assertEquals(error, server.json(r).get(\"error\"));\n    }\n\n    @Test\n    void returns400ValidationForAMalformedBody() {\n        assertEquals(\"VALIDATION\", server.json(server.post(\"/api/links\", \"{\\\"nope\\\":1}\")).get(\"error\"));\n        TestServer.Resp garbage = server.post(\"/api/links\", \"{not json\");\n        assertEquals(400, garbage.status());\n        assertEquals(\"VALIDATION\", server.json(garbage).get(\"error\"));\n        TestServer.Resp shortAlias = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com\\\",\\\"customAlias\\\":\\\"ab\\\"}\");\n        assertEquals(400, shortAlias.status());\n    }\n\n    @Test\n    void honoursIdempotencyKey() {\n        String body = \"{\\\"url\\\":\\\"https://example.com/i\\\"}\";\n        TestServer.Resp a = server.post(\"/api/links\", body, \"Idempotency-Key\", \"order-42\");\n        TestServer.Resp b = server.post(\"/api/links\", body, \"Idempotency-Key\", \"order-42\");\n        assertEquals(201, a.status());\n        assertEquals(200, b.status());\n        assertEquals(server.json(a).get(\"code\"), server.json(b).get(\"code\"));\n    }\n\n    @Test\n    void deleteSoftDeletesMetadataAndRedirectReturn410StatsStayReadable() {\n        String code = server.create(\"https://example.com/d\");\n        server.get(\"/\" + code);\n        assertEquals(204, server.delete(\"/api/links/\" + code).status());\n        assertEquals(410, server.get(\"/\" + code).status());\n        assertEquals(\"GONE\", server.json(server.get(\"/api/links/\" + code)).get(\"error\"));\n        assertEquals(410, server.delete(\"/api/links/\" + code).status());\n        TestServer.Resp stats = server.get(\"/api/links/\" + code + \"/stats\");\n        assertEquals(200, stats.status());\n        assertEquals(1, server.json(stats).get(\"totalClicks\"));\n    }\n\n    @Test\n    void returns404ForUnknownCodes() {\n        assertEquals(404, server.get(\"/zzzzzzz\").status());\n        assertEquals(404, server.get(\"/api/links/zzzzzzz\").status());\n        assertEquals(404, server.get(\"/api/links/zzzzzzz/stats\").status());\n        assertEquals(\"NOT_FOUND\", server.json(server.get(\"/api/links/zzzzzzz\")).get(\"error\"));\n    }\n\n    @Test\n    void exposesHealthProbesMetricsAndTheOpenApiContract() {\n        assertEquals(\"UP\", server.json(server.get(\"/actuator/health/liveness\")).get(\"status\"));\n        assertEquals(\"UP\", server.json(server.get(\"/actuator/health/readiness\")).get(\"status\"));\n        assertEquals(200, server.get(\"/actuator/metrics/analytics.queue.flushed\").status());\n        TestServer.Resp spec = server.get(\"/openapi.yaml\");\n        assertEquals(200, spec.status());\n        assertTrue(spec.body().contains(\"/api/links/{code}/stats\"));\n    }\n\n    @Test\n    void neverExposesRawInternalsOnUnknownRoutes() {\n        TestServer.Resp r = server.get(\"/api/does-not-exist\");\n        assertEquals(404, r.status());\n        assertNull(server.json(r).get(\"trace\"));\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/web/GuessabilityIntegrationTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.web;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport dev.rajeev.shortener.domain.Link;\nimport dev.rajeev.shortener.repository.LinkRepository;\nimport java.time.Instant;\nimport org.junit.jupiter.api.AfterAll;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.Test;\n\n/**\n * Acceptance tests for the \"links are too easy to guess\" fix (written first):\n * generated codes are 8 characters (62^8 ≈ 2.2e14 keyspace), custom aliases must be at least 6\n * characters, and codes that already exist (legacy 7-char generated, 4-char aliases) keep resolving.\n */\nclass GuessabilityIntegrationTest {\n\n    static TestServer server;\n\n    @BeforeAll\n    static void start() {\n        server = new TestServer();\n    }\n\n    @AfterAll\n    static void stop() {\n        server.close();\n    }\n\n    @Test\n    void ac1_generatedCodesAreEightBase62Characters() {\n        for (int i = 0; i < 5; i++) {\n            TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/e\\\"}\");\n            assertEquals(201, r.status());\n            String code = (String) server.json(r).get(\"code\");\n            assertTrue(code.matches(\"^[0-9A-Za-z]{8}$\"), code);\n        }\n    }\n\n    @Test\n    void ac2_customAliasesShorterThanSixCharactersAreRejectedWith400() {\n        for (String alias : new String[] {\"sale\", \"sale1\", \"ab-12\"}) {\n            TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/a\\\",\\\"customAlias\\\":\\\"\" + alias + \"\\\"}\");\n            assertEquals(400, r.status(), alias);\n        }\n        assertEquals(201, server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/a\\\",\\\"customAlias\\\":\\\"spring-sale\\\"}\").status());\n    }\n\n    @Test\n    void ac3_existingShortCodesKeepResolving() {\n        LinkRepository repo = server.ctx.getBean(LinkRepository.class);\n        Instant now = Instant.now();\n        repo.insert(new Link(\"abc1234\", \"https://example.com/legacy7\", now, null, false, null));\n        repo.insert(new Link(\"shop\", \"https://example.com/legacy4\", now, null, true, null));\n        assertEquals(\"https://example.com/legacy7\", server.get(\"/abc1234\").header(\"Location\"));\n        assertEquals(\"https://example.com/legacy4\", server.get(\"/shop\").header(\"Location\"));\n        assertEquals(200, server.get(\"/api/links/shop/stats\").status());\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "CODE_PATCH:T3" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T3",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "c076de444d460d8d",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "createdAt" : "2026-09-03T01:42:30.674924190Z",
+      "content" : {
+        "summary" : "Custom aliases must be at least 6 characters at creation, while URL-path resolution keeps accepting 4-32 so every code ever issued still resolves: CUSTOM_ALIAS_REGEX (creation) is split from a new CODE_PATH constant used by the controllers' path templates. Unit test for both rules.",
+        "taskId" : "T3",
+        "files" : [ {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport jakarta.validation.constraints.NotBlank;\nimport jakarta.validation.constraints.Pattern;\nimport jakarta.validation.constraints.Size;\n\n/**\n * Create request. Bean Validation annotations document the contract and fail fast at the edge;\n * {@link LinkService} re-validates explicitly so the rules hold for every caller (not only HTTP).\n */\npublic record CreateLinkRequest(\n        @NotBlank @Size(max = 8192) String url,\n        @Pattern(regexp = LinkRules.CUSTOM_ALIAS_REGEX, message = \"alias must be 6-32 URL-safe characters\") String customAlias,\n        @Size(max = 128) String ownerId) {}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkRules.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport java.util.Set;\nimport java.util.regex.Pattern;\n\n/** Shared validation constants for codes and aliases. */\npublic final class LinkRules {\n\n    /**\n     * Custom aliases at creation time: 6-32 URL-safe characters. The minimum was raised from 4 because\n     * short aliases (\"sale1\") are trivially guessable.\n     */\n    public static final String CUSTOM_ALIAS_REGEX = \"^[A-Za-z0-9_-]{6,32}$\";\n    public static final Pattern CUSTOM_ALIAS_PATTERN = Pattern.compile(CUSTOM_ALIAS_REGEX);\n\n    /**\n     * What a code may look like in a URL path (used by the controllers' path templates). Deliberately\n     * wider than the creation rule (4-32) so every code ever issued — legacy 4/5-char aliases, 7-char\n     * generated codes — keeps resolving. Tightening this would be a breaking change.\n     */\n    public static final String CODE_PATH = \"[A-Za-z0-9_-]{4,32}\";\n    public static final Pattern CODE_PATH_PATTERN = Pattern.compile(\"^\" + CODE_PATH + \"$\");\n\n    /** First path segments a custom alias must never shadow. */\n    public static final Set<String> RESERVED_CODES = Set.of(\"api\", \"actuator\", \"health\", \"ready\", \"metrics\", \"docs\", \"openapi\", \"error\");\n\n    private LinkRules() {}\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport dev.rajeev.shortener.analytics.AnalyticsQueue;\nimport dev.rajeev.shortener.analytics.ClickEvent;\nimport dev.rajeev.shortener.analytics.ClickNormalizer;\nimport dev.rajeev.shortener.repository.AliasTakenException;\nimport dev.rajeev.shortener.repository.LinkRepository;\nimport dev.rajeev.shortener.repository.LinkStats;\nimport java.time.Clock;\nimport java.util.Locale;\n\n/**\n * Application service: owns the use cases, knows nothing about HTTP. Routes are a thin adapter\n * over this class, which is what makes behaviour testable without a server and what lets the\n * orchestrator's impact analysis point at one module when a rule changes.\n */\npublic class LinkService {\n\n    public record CreateResult(Link link, boolean created) {}\n\n    private final LinkRepository repo;\n    private final CodeGenerator codegen;\n    private final AnalyticsQueue analytics;\n    private final UrlPolicy urlPolicy;\n    private final Clock clock;\n\n    public LinkService(LinkRepository repo, CodeGenerator codegen, AnalyticsQueue analytics, UrlPolicy urlPolicy, Clock clock) {\n        this.repo = repo;\n        this.codegen = codegen;\n        this.analytics = analytics;\n        this.urlPolicy = urlPolicy;\n        this.clock = clock;\n    }\n\n    public CreateResult create(CreateLinkRequest req, String idempotencyKey) {\n        if (idempotencyKey != null && !idempotencyKey.isBlank()) {\n            var existing = repo.findByIdempotencyKey(idempotencyKey);\n            if (existing.isPresent()) return new CreateResult(existing.get(), false);\n        }\n        validate(req);\n\n        String normalized = switch (urlPolicy.evaluate(req.url())) {\n            case UrlPolicy.Ok ok -> ok.normalized();\n            case UrlPolicy.Rejected rejected -> throw new DomainException(rejected.code(), rejected.message());\n        };\n\n        String code;\n        if (req.customAlias() != null) {\n            if (LinkRules.RESERVED_CODES.contains(req.customAlias().toLowerCase(Locale.ROOT))) {\n                throw new DomainException(ErrorCode.ALIAS_RESERVED, \"'\" + req.customAlias() + \"' is reserved\");\n            }\n            code = req.customAlias();\n        } else {\n            try {\n                code = codegen.generate(repo::exists);\n            } catch (CodeExhaustedException e) {\n                throw new DomainException(ErrorCode.CODE_EXHAUSTED, e.getMessage());\n            }\n        }\n\n        Link link = new Link(code, normalized, clock.instant(), null, req.customAlias() != null, req.ownerId());\n        try {\n            repo.insert(link);\n        } catch (AliasTakenException e) {\n            throw new DomainException(ErrorCode.ALIAS_TAKEN, e.getMessage());\n        }\n        if (idempotencyKey != null && !idempotencyKey.isBlank()) repo.rememberIdempotencyKey(idempotencyKey, code, clock.instant());\n        return new CreateResult(link, true);\n    }\n\n    /** Explicit validation so the rules hold for every caller, not only for @Valid at the HTTP edge. */\n    private static void validate(CreateLinkRequest req) {\n        if (req == null || req.url() == null || req.url().isBlank()) throw new DomainException(ErrorCode.VALIDATION, \"url is required\");\n        if (req.url().length() > 8192) throw new DomainException(ErrorCode.VALIDATION, \"url is too long\");\n        if (req.customAlias() != null && !LinkRules.CUSTOM_ALIAS_PATTERN.matcher(req.customAlias()).matches()) {\n            throw new DomainException(ErrorCode.VALIDATION, \"alias must be 6-32 URL-safe characters\");\n        }\n        if (req.ownerId() != null && req.ownerId().length() > 128) throw new DomainException(ErrorCode.VALIDATION, \"ownerId is too long\");\n    }\n\n    /** Returns the active link or throws NOT_FOUND / GONE. */\n    public Link resolve(String code) {\n        Link link = repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        if (link.deleted()) throw new DomainException(ErrorCode.GONE, \"short link has been deleted\");\n        return link;\n    }\n\n    /** Resolve + fire-and-forget analytics. Redirect latency never waits on the store. */\n    public Link resolveAndTrack(String code, String referrer, String userAgent) {\n        Link link = resolve(code);\n        analytics.enqueue(new ClickEvent(link.code(), clock.instant(), ClickNormalizer.referrer(referrer), ClickNormalizer.userAgent(userAgent)));\n        return link;\n    }\n\n    public Link get(String code) {\n        return resolve(code);\n    }\n\n    public void remove(String code) {\n        Link link = repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        if (link.deleted()) throw new DomainException(ErrorCode.GONE, \"short link has already been deleted\");\n        repo.softDelete(code, clock.instant());\n    }\n\n    public LinkStats stats(String code, int days, int topN) {\n        repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        // Stats stay readable after deletion: owners often want the final numbers.\n        analytics.flush();\n        return repo.stats(code, days, topN);\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/LinkController.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.web;\n\nimport dev.rajeev.shortener.config.ShortenerProperties;\nimport dev.rajeev.shortener.domain.CreateLinkRequest;\nimport dev.rajeev.shortener.domain.LinkResponse;\nimport dev.rajeev.shortener.domain.LinkRules;\nimport dev.rajeev.shortener.domain.LinkService;\nimport dev.rajeev.shortener.repository.LinkStats;\nimport jakarta.validation.Valid;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.DeleteMapping;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RequestHeader;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.bind.annotation.RestController;\n\n/** Link lifecycle and analytics. Contract: src/main/resources/static/openapi.yaml. */\n@RestController\n@RequestMapping(\"/api/links\")\npublic class LinkController {\n\n    private final LinkService service;\n    private final String baseUrl;\n\n    public LinkController(LinkService service, ShortenerProperties props) {\n        this.service = service;\n        this.baseUrl = props.baseUrl();\n    }\n\n    /**\n     * Create a short link. Send an {@code Idempotency-Key} header to make retries safe: the same key\n     * returns the original link with 200 instead of creating a duplicate.\n     */\n    @PostMapping\n    public ResponseEntity<LinkResponse> create(@Valid @RequestBody CreateLinkRequest body,\n                                               @RequestHeader(name = \"Idempotency-Key\", required = false) String idempotencyKey) {\n        LinkService.CreateResult result = service.create(body, idempotencyKey);\n        return ResponseEntity.status(result.created() ? HttpStatus.CREATED : HttpStatus.OK).body(LinkResponse.from(result.link(), baseUrl));\n    }\n\n    @GetMapping(\"/{code:\" + LinkRules.CODE_PATH + \"}\")\n    public LinkResponse get(@PathVariable(\"code\") String code) {\n        return LinkResponse.from(service.get(code), baseUrl);\n    }\n\n    /** Soft delete: the code is never reissued; stats remain readable. */\n    @DeleteMapping(\"/{code:\" + LinkRules.CODE_PATH + \"}\")\n    public ResponseEntity<Void> delete(@PathVariable(\"code\") String code) {\n        service.remove(code);\n        return ResponseEntity.noContent().build();\n    }\n\n    @GetMapping(\"/{code:\" + LinkRules.CODE_PATH + \"}/stats\")\n    public LinkStats stats(@PathVariable(\"code\") String code,\n                           @RequestParam(name = \"days\", defaultValue = \"30\") int days,\n                           @RequestParam(name = \"topN\", defaultValue = \"5\") int topN) {\n        return service.stats(code, Math.max(1, Math.min(days, 365)), Math.max(1, Math.min(topN, 50)));\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/RedirectController.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.web;\n\nimport dev.rajeev.shortener.domain.Link;\nimport dev.rajeev.shortener.domain.LinkRules;\nimport dev.rajeev.shortener.domain.LinkService;\nimport java.net.URI;\nimport org.springframework.http.CacheControl;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.RequestHeader;\nimport org.springframework.web.bind.annotation.RestController;\n\n/**\n * GET /{code} -> 302 to the target.\n *\n * 302 (not 301) is deliberate: a 301 is cached aggressively by browsers, which means we would stop\n * seeing clicks after the first visit and a deleted link would keep redirecting from cache.\n * {@code Cache-Control: no-store} reinforces the same intent for intermediaries.\n */\n@RestController\npublic class RedirectController {\n\n    private final LinkService service;\n\n    public RedirectController(LinkService service) {\n        this.service = service;\n    }\n\n    @GetMapping(\"/{code:\" + LinkRules.CODE_PATH + \"}\")\n    public ResponseEntity<Void> redirect(@PathVariable(\"code\") String code,\n                                         @RequestHeader(name = \"Referer\", required = false) String referer,\n                                         @RequestHeader(name = \"User-Agent\", required = false) String userAgent) {\n        Link link = service.resolveAndTrack(code, referer, userAgent);\n        return ResponseEntity.status(HttpStatus.FOUND)\n                .cacheControl(CacheControl.noStore())\n                .location(URI.create(link.targetUrl()))\n                .build();\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertNull;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport dev.rajeev.shortener.analytics.AnalyticsQueue;\nimport dev.rajeev.shortener.repository.InMemoryLinkRepository;\nimport dev.rajeev.shortener.repository.LinkStats;\nimport java.time.Clock;\nimport java.time.Instant;\nimport java.time.ZoneOffset;\nimport java.util.ArrayDeque;\nimport java.util.Deque;\nimport java.util.List;\nimport java.util.function.Predicate;\nimport org.junit.jupiter.api.AfterEach;\nimport org.junit.jupiter.api.Test;\n\nclass LinkServiceTest {\n\n    /** Test clock that advances one second per read, so ordering is deterministic. */\n    static class TickingClock extends Clock {\n        private Instant now = Instant.now().minusSeconds(60);\n\n        @Override public ZoneOffset getZone() { return ZoneOffset.UTC; }\n        @Override public Clock withZone(java.time.ZoneId zone) { return this; }\n        @Override public Instant instant() { now = now.plusSeconds(1); return now; }\n    }\n\n    static class QueuedCodes implements CodeGenerator {\n        final Deque<String> codes = new ArrayDeque<>(List.of(\"gen0001\", \"gen0002\", \"gen0003\"));\n\n        @Override\n        public String generate(Predicate<String> exists) {\n            while (!codes.isEmpty()) {\n                String c = codes.pop();\n                if (!exists.test(c)) return c;\n            }\n            throw new IllegalStateException(\"out of test codes\");\n        }\n    }\n\n    private final InMemoryLinkRepository repo = new InMemoryLinkRepository();\n    private final AnalyticsQueue analytics = new AnalyticsQueue(repo, 10_000, 10, 100, 3);\n    private final LinkService service = new LinkService(repo, new QueuedCodes(), analytics, new UrlPolicy(2048, List.of(\"localhost:8080\"), false), new TickingClock());\n\n    @AfterEach\n    void tearDown() {\n        analytics.close();\n    }\n\n    private static ErrorCode codeOf(Runnable r) {\n        DomainException e = assertThrows(DomainException.class, r::run);\n        return e.code();\n    }\n\n    @Test\n    void createsALinkWithAGeneratedCode() {\n        var result = service.create(new CreateLinkRequest(\"https://example.com\", null, null), null);\n        assertTrue(result.created());\n        assertEquals(\"gen0001\", result.link().code());\n        assertEquals(\"https://example.com/\", result.link().targetUrl());\n        assertFalse(result.link().custom());\n        assertNull(result.link().deletedAt());\n    }\n\n    @Test\n    void usesACustomAliasWhenGiven() {\n        var result = service.create(new CreateLinkRequest(\"https://example.com\", \"my-link\", \"owner-1\"), null);\n        assertEquals(\"my-link\", result.link().code());\n        assertTrue(result.link().custom());\n        assertEquals(\"owner-1\", result.link().ownerId());\n    }\n\n    @Test\n    void rejectsTakenReservedAndInvalidAliases() {\n        service.create(new CreateLinkRequest(\"https://example.com\", \"taken1\", null), null);\n        assertEquals(ErrorCode.ALIAS_TAKEN, codeOf(() -> service.create(new CreateLinkRequest(\"https://other.com\", \"taken1\", null), null)));\n        assertEquals(ErrorCode.ALIAS_RESERVED, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", \"health\", null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", \"a b\", null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"\", null, null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", null, \"x\".repeat(200)), null)));\n    }\n\n    @Test\n    void separatesAliasCreationRuleFromPathResolutionRule() {\n        assertFalse(LinkRules.CUSTOM_ALIAS_PATTERN.matcher(\"sale1\").matches());\n        assertTrue(LinkRules.CUSTOM_ALIAS_PATTERN.matcher(\"spring-sale\").matches());\n        assertTrue(LinkRules.CODE_PATH_PATTERN.matcher(\"sale\").matches());\n        assertTrue(LinkRules.CODE_PATH_PATTERN.matcher(\"abc1234\").matches());\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", \"sale1\", null), null)));\n    }\n\n    @Test\n    void rejectsDisallowedUrlsWithThePolicyReason() {\n        assertEquals(ErrorCode.URL_NOT_ALLOWED, codeOf(() -> service.create(new CreateLinkRequest(\"javascript:alert(1)\", null, null), null)));\n        assertEquals(ErrorCode.INVALID_URL, codeOf(() -> service.create(new CreateLinkRequest(\"nope\", null, null), null)));\n        assertEquals(ErrorCode.URL_NOT_ALLOWED, codeOf(() -> service.create(new CreateLinkRequest(\"http://localhost:8080/x\", null, null), null)));\n    }\n\n    @Test\n    void isIdempotentOnIdempotencyKey() {\n        var a = service.create(new CreateLinkRequest(\"https://example.com\", null, null), \"key-1\");\n        var b = service.create(new CreateLinkRequest(\"https://example.com\", null, null), \"key-1\");\n        assertTrue(a.created());\n        assertFalse(b.created());\n        assertEquals(a.link().code(), b.link().code());\n    }\n\n    @Test\n    void mapsCodeExhaustionToCodeExhausted() {\n        LinkService exhausted = new LinkService(repo, exists -> { throw new CodeExhaustedException(5); }, analytics, new UrlPolicy(2048, List.of(), false), Clock.systemUTC());\n        assertEquals(ErrorCode.CODE_EXHAUSTED, codeOf(() -> exhausted.create(new CreateLinkRequest(\"https://example.com\", null, null), null)));\n    }\n\n    @Test\n    void resolvesActiveLinksAndTracksClicksAsynchronously() {\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null), null).link();\n        Link resolved = service.resolveAndTrack(link.code(), \"https://news.ycombinator.com/\", \"curl/8\");\n        assertEquals(\"https://example.com/\", resolved.targetUrl());\n        assertEquals(1, analytics.metrics().enqueued());\n        LinkStats stats = service.stats(link.code(), 30, 5);\n        assertEquals(1, stats.totalClicks());\n        assertEquals(List.of(new LinkStats.ReferrerCount(\"news.ycombinator.com\", 1)), stats.topReferrers());\n        assertEquals(List.of(new LinkStats.UserAgentCount(\"curl\", 1)), stats.topUserAgents());\n    }\n\n    @Test\n    void returnsNotFoundForUnknownAndGoneForDeleted() {\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.resolve(\"missing\")));\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null), null).link();\n        service.remove(link.code());\n        assertEquals(ErrorCode.GONE, codeOf(() -> service.resolve(link.code())));\n        assertEquals(ErrorCode.GONE, codeOf(() -> service.remove(link.code())));\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.remove(\"missing\")));\n    }\n\n    @Test\n    void keepsStatsReadableAfterDeletion() {\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null), null).link();\n        service.resolveAndTrack(link.code(), null, null);\n        service.remove(link.code());\n        assertEquals(1, service.stats(link.code(), 30, 5).totalClicks());\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.stats(\"missing\", 30, 5)));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ "Splitting the two rules is what prevents this hardening from breaking legacy 4/5-char aliases." ]
+      }
+    },
+    "CODE_PATCH:T2" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T2",
+      "attempt" : 2,
+      "version" : 1,
+      "hash" : "cc01e1b348bd5162",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "createdAt" : "2026-09-03T01:42:30.791094156Z",
+      "content" : {
+        "summary" : "Raise the generated code length from 7 to 8 (62^8 keyspace): @DefaultValue in ShortenerProperties and shortener.code-length in application.yml, with a test pinning the bound default and the override bounds.",
+        "taskId" : "T2",
+        "files" : [ {
+          "path" : "src/main/java/dev/rajeev/shortener/config/ShortenerProperties.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.config;\n\nimport org.springframework.boot.context.properties.ConfigurationProperties;\nimport org.springframework.boot.context.properties.bind.DefaultValue;\n\n/**\n * Typed configuration bound from {@code shortener.*}. Defaults are the values used in tests;\n * a misconfigured deployment fails at startup (binding), not on the first request.\n */\n@ConfigurationProperties(prefix = \"shortener\")\npublic record ShortenerProperties(\n        @DefaultValue(\"http://localhost:8080\") String baseUrl,\n        // 8 chars = 62^8 ≈ 2.2e14 keys. Raised from 7 after users reported links felt guessable; legacy 7-char codes still resolve.\n        @DefaultValue(\"8\") int codeLength,\n        @DefaultValue(\"2048\") int maxUrlLength,\n        @DefaultValue RateLimit rateLimit,\n        @DefaultValue Analytics analytics) {\n\n    public record RateLimit(@DefaultValue(\"100\") int max, @DefaultValue(\"60000\") long windowMs) {}\n\n    public record Analytics(\n            @DefaultValue(\"500\") long flushIntervalMs,\n            @DefaultValue(\"200\") int maxBatch,\n            @DefaultValue(\"10000\") int maxQueue,\n            @DefaultValue(\"3\") int maxRetries) {}\n\n    public ShortenerProperties {\n        if (codeLength < 4 || codeLength > 16) throw new IllegalArgumentException(\"shortener.code-length must be between 4 and 16\");\n        if (maxUrlLength < 64) throw new IllegalArgumentException(\"shortener.max-url-length must be >= 64\");\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/resources/application.yml",
+          "action" : "write",
+          "content" : "server:\n  port: 8080\n  shutdown: graceful\n\nspring:\n  application:\n    name: url-shortener\n  datasource:\n    url: jdbc:h2:file:./data/shortener;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE\n    username: sa\n    password: \"\"\n  jackson:\n    default-property-inclusion: always\n  lifecycle:\n    timeout-per-shutdown-phase: 10s\n\nshortener:\n  base-url: http://localhost:8080\n  code-length: 8\n  max-url-length: 2048\n  rate-limit:\n    max: 100\n    window-ms: 60000\n  analytics:\n    flush-interval-ms: 500\n    max-batch: 200\n    max-queue: 10000\n    max-retries: 3\n\nmanagement:\n  endpoints:\n    web:\n      exposure:\n        include: health,metrics,info\n  endpoint:\n    health:\n      probes:\n        enabled: true\n      show-details: always\n      group:\n        readiness:\n          include: readinessState,store\n  health:\n    db:\n      enabled: false\n\nlogging:\n  pattern:\n    console: \"%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%X{requestId}] %logger{36} - %msg%n\"\n  level:\n    root: INFO\n    dev.rajeev: INFO\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/config/ShortenerPropertiesTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.config;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\n\nimport dev.rajeev.shortener.web.TestServer;\nimport org.junit.jupiter.api.Test;\n\nclass ShortenerPropertiesTest {\n\n    @Test\n    void defaultsGeneratedCodeLengthToEightCharacters() {\n        try (TestServer server = new TestServer()) {\n            assertEquals(8, server.ctx.getBean(ShortenerProperties.class).codeLength());\n        }\n    }\n\n    @Test\n    void stillAllowsAnExplicitOverrideWithinBounds() {\n        try (TestServer server = new TestServer(\"--shortener.code-length=10\")) {\n            assertEquals(10, server.ctx.getBean(ShortenerProperties.class).codeLength());\n        }\n        assertThrows(IllegalArgumentException.class, () -> new ShortenerProperties(\"http://x\", 3, 2048, new ShortenerProperties.RateLimit(1, 1000), new ShortenerProperties.Analytics(500, 200, 10000, 3)));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ "Adds ShortenerPropertiesTest as requested in the reviewer's rejection." ]
+      }
+    },
+    "REVIEW_REPORT" : {
+      "kind" : "REVIEW_REPORT",
+      "producedBy" : "review",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "be08ed9520596f48",
+      "inputHashes" : {
+        "ARCHITECTURE" : "942c74df4def626e",
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "createdAt" : "2026-09-03T01:42:30.891593390Z",
+      "content" : {
+        "verdict" : "approve",
+        "summary" : "Both hardenings are minimal and backward compatible for issued codes. The creation/resolution pattern split is the important correctness point and is covered by acceptance test AC-3/3b. The rejected first attempt of T2 (no test) was corrected.",
+        "findings" : [ {
+          "severity" : "low",
+          "category" : "security",
+          "file" : "src/main/java/dev/rajeev/shortener/domain/LinkRules.java",
+          "issue" : "Minimum alias length does not stop dictionary-word aliases ('summer', 'promos').",
+          "recommendation" : "Consider a denylist of common words or require a digit/hyphen; track as follow-up."
+        }, {
+          "severity" : "low",
+          "category" : "compliance",
+          "file" : "src/main/java/dev/rajeev/shortener/web/LinkController.java",
+          "issue" : "customAlias rule change is breaking for API clients that create 4-5 char aliases.",
+          "recommendation" : "Call it out in CHANGELOG and OpenAPI description (done in docs stage)."
+        }, {
+          "severity" : "info",
+          "category" : "testing",
+          "file" : "src/test/java/dev/rajeev/shortener/web/GuessabilityIntegrationTest.java",
+          "issue" : "Legacy-code test seeds the repository directly.",
+          "recommendation" : "Appropriate: there is no API to create sub-6 aliases any more."
+        } ],
+        "policySummary" : [ "tests-accompany-source escalated T2 attempt 1; reviewer rejected; attempt 2 added ShortenerPropertiesTest" ]
+      }
+    },
+    "DOC_UPDATE" : {
+      "kind" : "DOC_UPDATE",
+      "producedBy" : "docs",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "c085cd1162b3f9c9",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+        "ARCHITECTURE" : "942c74df4def626e"
+      },
+      "createdAt" : "2026-09-03T01:42:30.901686982Z",
+      "content" : {
+        "summary" : "CHANGELOG for 1.0.1 and ADR-0004 on the creation/resolution rule split.",
+        "files" : [ {
+          "path" : "CHANGELOG.md",
+          "action" : "write",
+          "content" : "# Changelog\n\n## 1.0.1 — guessability hardening\n\n### Changed\n- Generated short codes are now 8 base62 characters (was 7; `shortener.code-length`). Clients must not assume a code length.\n- **Breaking for alias creation:** `customAlias` must be 6-32 characters (was 4-32). Codes already issued, including 4/5-character aliases, keep resolving.\n\n### Why\nSupport tickets reported links that \"feel too easy to guess\" — both short generated codes and short custom aliases. Raising the keyspace to 62^8 and the alias minimum to 6 addresses both without touching anything already shared.\n\n## 1.0.0\n- Initial release.\n",
+          "delete" : false
+        }, {
+          "path" : "docs/adr/0004-creation-vs-resolution-patterns.md",
+          "action" : "write",
+          "content" : "# ADR-0004: Separate the alias creation rule from the code resolution rule\n\n**Status:** accepted\n\n## Context\nOne regex (`LinkRules.CUSTOM_ALIAS_REGEX`, 4-32 chars) validated custom aliases on creation, and the same expression was hard-coded in the controllers' `{code:...}` path templates. Raising the alias minimum to 6 in that single place would have made every legacy 4/5-character alias return 404.\n\n## Decision\n- `LinkRules.CUSTOM_ALIAS_REGEX` (6-32) applies only when a client creates an alias.\n- `LinkRules.CODE_PATH` (4-32) is the path-template constant for every route that resolves a code. It must stay at least as wide as anything ever issued.\n\n## Consequences\n- Hardening creation rules never breaks issued links.\n- Two patterns to keep in sync mentally; both are documented at their definition and covered by tests.\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "TEST_REPORT" : {
+      "kind" : "TEST_REPORT",
+      "producedBy" : "test",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "ea5f1785e1349f59",
+      "inputHashes" : {
+        "TASK_PLAN" : "b61bb86a9b4071fa"
+      },
+      "createdAt" : "2026-09-03T01:42:51.081667589Z",
+      "content" : {
+        "toolchain" : "javac",
+        "typecheck" : {
+          "ok" : true,
+          "output" : "Picked up JAVA_TOOL_OPTIONS: \nPicked up JAVA_TOOL_OPTIONS:"
+        },
+        "tests" : {
+          "ok" : true,
+          "passed" : 100,
+          "failed" : 0,
+          "total" : 100,
+          "durationMs" : 15385,
+          "failures" : [ ]
+        },
+        "verdict" : "green"
+      }
+    },
+    "RELEASE_CHECKLIST" : {
+      "kind" : "RELEASE_CHECKLIST",
+      "producedBy" : "release",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "0e98eb54dc8d3c6c",
+      "inputHashes" : {
+        "TEST_REPORT" : "ea5f1785e1349f59",
+        "REVIEW_REPORT" : "be08ed9520596f48",
+        "ARCHITECTURE" : "942c74df4def626e"
+      },
+      "createdAt" : "2026-09-03T01:42:51.114188963Z",
+      "content" : {
+        "version" : "1.0.1",
+        "changeSummary" : "Guessability hardening: 8-char generated codes; custom aliases >= 6 chars; legacy codes unaffected.",
+        "changes" : [ "Default generated code length 8 (shortener.code-length still configurable)", "customAlias must be 6-32 characters at creation", "Route resolution keeps accepting 4-32 so issued codes resolve", "Acceptance tests for legacy resolution" ],
+        "riskAssessment" : {
+          "level" : "low",
+          "rationale" : "No data migration; resolution rules unchanged; one documented breaking validation rule for alias creation."
+        },
+        "rollbackPlan" : [ "Redeploy previous build.", "No data changes to undo; 8-char codes issued meanwhile still resolve under the old build (pattern 4-32)." ],
+        "checklist" : [ {
+          "item" : "Suite green including legacy-resolution tests",
+          "status" : "done",
+          "evidence" : "test-report"
+        }, {
+          "item" : "Review approved",
+          "status" : "done",
+          "evidence" : "review-report"
+        }, {
+          "item" : "Change-control rejection resolved (config test added)",
+          "status" : "done",
+          "evidence" : "policy:implement:T2 history"
+        }, {
+          "item" : "CHANGELOG notes the alias rule change",
+          "status" : "done",
+          "evidence" : "docs stage"
+        }, {
+          "item" : "Rollback plan documented",
+          "status" : "done"
+        } ],
+        "goNoGo" : "go"
+      }
+    }
+  },
+  "approvals" : {
+    "clarify-requirements" : {
+      "gateId" : "clarify-requirements",
+      "stageId" : "requirements",
+      "spec" : {
+        "gateId" : "clarify-requirements",
+        "reason" : "AMB-1: What does 'too easy to guess' mean for the users who complained? [options: A/B/C; recommended: A]",
+        "riskLevel" : "MEDIUM",
+        "questionsFrom" : "REQUIREMENTS_SPEC"
+      },
+      "requestedAt" : "2026-09-03T01:42:02.349272620Z",
+      "decidedAt" : "2026-09-03T01:42:02.362040896Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "The tickets are about generated codes being short (7 chars). Go with A: raise entropy of generated codes. Private/authenticated links are a separate product decision.",
+      "answers" : {
+        "AMB-1" : "A"
+      },
+      "consumedAt" : "2026-09-03T01:42:02.362040896Z"
+    },
+    "design-review" : {
+      "gateId" : "design-review",
+      "stageId" : "architecture",
+      "spec" : {
+        "gateId" : "design-review",
+        "reason" : "Architecture and impacted-module analysis need a human design sign-off before implementation starts.",
+        "riskLevel" : "MEDIUM"
+      },
+      "requestedAt" : "2026-09-03T01:42:02.678389021Z",
+      "decidedAt" : "2026-09-03T01:42:02.679446999Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "Agree with keeping the path pattern wide so legacy codes still resolve; the split between creation and resolution rules is the key design point.",
+      "consumedAt" : "2026-09-03T01:42:02.679446999Z"
+    },
+    "policy:implement:T2" : {
+      "gateId" : "policy:implement:T2",
+      "stageId" : "implement:T2",
+      "spec" : {
+        "gateId" : "policy:implement:T2",
+        "reason" : "[tests-accompany-source] source changed without any test change",
+        "riskLevel" : "MEDIUM"
+      },
+      "requestedAt" : "2026-09-03T01:42:21.864155465Z",
+      "decidedAt" : "2026-09-03T01:42:21.865510237Z",
+      "decision" : "REJECT",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "A changed default with no test pinning it will silently regress. Add a test asserting shortener.code-length binds to 8 before this lands.",
+      "consumedAt" : "2026-09-03T01:42:21.865510237Z"
+    },
+    "release-approval" : {
+      "gateId" : "release-approval",
+      "stageId" : "release",
+      "spec" : {
+        "gateId" : "release-approval",
+        "reason" : "Releasing to production is a high-impact action; a human owns the go/no-go.",
+        "riskLevel" : "HIGH"
+      },
+      "requestedAt" : "2026-09-03T01:42:51.107483415Z",
+      "decidedAt" : "2026-09-03T01:42:51.112714849Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "Suite green including legacy-resolution tests; no breaking change for issued codes; alias rule change is documented in the CHANGELOG. Go.",
+      "consumedAt" : "2026-09-03T01:42:51.112714849Z"
+    }
+  },
+  "metrics" : {
+    "stagesTotal" : 10,
+    "stagesSucceeded" : 10,
+    "stagesFailed" : 0,
+    "attemptsTotal" : 15,
+    "retries" : 2,
+    "rollbacks" : 1,
+    "replans" : 1,
+    "approvalsRequested" : 5,
+    "approvalsHuman" : 5,
+    "approvalsAuto" : 0,
+    "policyViolations" : 1,
+    "policyBlocks" : 0,
+    "llmCalls" : 14,
+    "llmInputTokens" : 34101,
+    "llmOutputTokens" : 15913,
+    "toolCalls" : 10,
+    "mttrMs" : 8925,
+    "endToEndMs" : 49154,
+    "stageLatencyMs" : {
+      "requirements" : 28,
+      "architecture" : 26,
+      "plan" : 12,
+      "test" : 20284,
+      "review" : 100,
+      "docs" : 111,
+      "release" : 29,
+      "implement:T1" : 19060,
+      "implement:T2" : 9027,
+      "implement:T3" : 8920
+    },
+    "successRate" : 0.867
+  },
+  "notices" : [ ]
+}

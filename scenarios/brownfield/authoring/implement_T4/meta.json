@@ -1,0 +1,1 @@
+{ "taskId": "T4", "summary": "Migration tests: a schema-v1 H2 database is upgraded in place to v2, legacy rows read back with expiresAt=null, new rows persist an expiry, and re-opening is idempotent.", "notes": [] }

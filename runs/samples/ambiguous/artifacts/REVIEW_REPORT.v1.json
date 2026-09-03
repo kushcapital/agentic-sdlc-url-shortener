@@ -1,0 +1,36 @@
+{
+  "kind" : "REVIEW_REPORT",
+  "producedBy" : "review",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "be08ed9520596f48",
+  "inputHashes" : {
+    "ARCHITECTURE" : "942c74df4def626e",
+    "TASK_PLAN" : "b61bb86a9b4071fa"
+  },
+  "createdAt" : "2026-09-03T01:42:30.891593390Z",
+  "content" : {
+    "verdict" : "approve",
+    "summary" : "Both hardenings are minimal and backward compatible for issued codes. The creation/resolution pattern split is the important correctness point and is covered by acceptance test AC-3/3b. The rejected first attempt of T2 (no test) was corrected.",
+    "findings" : [ {
+      "severity" : "low",
+      "category" : "security",
+      "file" : "src/main/java/dev/rajeev/shortener/domain/LinkRules.java",
+      "issue" : "Minimum alias length does not stop dictionary-word aliases ('summer', 'promos').",
+      "recommendation" : "Consider a denylist of common words or require a digit/hyphen; track as follow-up."
+    }, {
+      "severity" : "low",
+      "category" : "compliance",
+      "file" : "src/main/java/dev/rajeev/shortener/web/LinkController.java",
+      "issue" : "customAlias rule change is breaking for API clients that create 4-5 char aliases.",
+      "recommendation" : "Call it out in CHANGELOG and OpenAPI description (done in docs stage)."
+    }, {
+      "severity" : "info",
+      "category" : "testing",
+      "file" : "src/test/java/dev/rajeev/shortener/web/GuessabilityIntegrationTest.java",
+      "issue" : "Legacy-code test seeds the repository directly.",
+      "recommendation" : "Appropriate: there is no API to create sub-6 aliases any more."
+    } ],
+    "policySummary" : [ "tests-accompany-source escalated T2 attempt 1; reviewer rejected; attempt 2 added ShortenerPropertiesTest" ]
+  }
+}

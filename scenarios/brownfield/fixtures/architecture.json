@@ -1,0 +1,181 @@
+{
+  "summary": "Expiry is a property of the Link record, enforced at read time inside LinkService.resolve() so every read path (redirect, metadata) inherits it and the analytics path (stats) deliberately bypasses it. Persistence is an additive nullable column with an idempotent v1->v2 migration in SchemaMigrator; the in-memory adapter needs no change beyond carrying the field. The web layer only needs the EXPIRED -> 410 case in the exhaustive status switch.",
+  "components": [
+    {
+      "name": "Link record",
+      "responsibility": "Carry expiresAt; expose expiredAt(now).",
+      "path": "src/main/java/dev/rajeev/shortener/domain/Link.java"
+    },
+    {
+      "name": "LinkService",
+      "responsibility": "Reject a past expiresAt on create; throw EXPIRED in resolve(); leave stats() untouched.",
+      "path": "src/main/java/dev/rajeev/shortener/domain/LinkService.java"
+    },
+    {
+      "name": "SchemaMigrator",
+      "responsibility": "v1 -> v2: ALTER TABLE links ADD COLUMN expires_at (nullable), idempotent via INFORMATION_SCHEMA.",
+      "path": "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java"
+    },
+    {
+      "name": "JdbcLinkRepository",
+      "responsibility": "Persist and read expires_at.",
+      "path": "src/main/java/dev/rajeev/shortener/repository/JdbcLinkRepository.java"
+    },
+    {
+      "name": "InMemoryLinkRepository",
+      "responsibility": "No code change; stores the whole record.",
+      "path": "src/main/java/dev/rajeev/shortener/repository/InMemoryLinkRepository.java"
+    },
+    {
+      "name": "ApiExceptionHandler",
+      "responsibility": "Map EXPIRED to HTTP 410 in the exhaustive statusFor switch.",
+      "path": "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java"
+    }
+  ],
+  "impactedModules": [
+    {
+      "path": "src/main/java/dev/rajeev/shortener/domain/Link.java",
+      "changeType": "modify",
+      "reason": "Add expiresAt component, expiredAt(now), keep withDeletedAt carrying it."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java",
+      "changeType": "modify",
+      "reason": "Optional expiresAt (Instant, ISO-8601 via Jackson jsr310)."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/domain/LinkResponse.java",
+      "changeType": "modify",
+      "reason": "Expose expiresAt on every link response (null when absent)."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/domain/ErrorCode.java",
+      "changeType": "modify",
+      "reason": "Add EXPIRED."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+      "changeType": "modify",
+      "reason": "Store expiresAt; reject past values; enforce in resolve() via the injected Clock so unit tests can move time."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java",
+      "changeType": "modify",
+      "reason": "v2 migration, CURRENT_VERSION = 2."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/repository/JdbcLinkRepository.java",
+      "changeType": "modify",
+      "reason": "Column in INSERT/SELECT and row mapping."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/repository/LinkRepository.java",
+      "changeType": "none",
+      "reason": "Port unchanged: the Link record carries the field."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java",
+      "changeType": "modify",
+      "reason": "statusFor is an exhaustive switch; EXPIRED -> GONE (410). Protected file: reviewer approval required."
+    },
+    {
+      "path": "src/main/java/dev/rajeev/shortener/web/RedirectController.java",
+      "changeType": "none",
+      "reason": "resolveAndTrack() inherits the check."
+    },
+    {
+      "path": "src/test/java/dev/rajeev/shortener/repository/LinkRepositoryContractTest.java",
+      "changeType": "modify",
+      "reason": "Link fixture gains expiresAt; persistence assertion for both adapters."
+    },
+    {
+      "path": "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java",
+      "changeType": "modify",
+      "reason": "Fake-clock tests for create/resolve/stats behaviour."
+    },
+    {
+      "path": "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java",
+      "changeType": "create",
+      "reason": "Acceptance tests AC-1..AC-5 written before implementation."
+    },
+    {
+      "path": "src/test/java/dev/rajeev/shortener/repository/SchemaUpgradeTest.java",
+      "changeType": "create",
+      "reason": "AC-6: v1 database upgraded in place, idempotent."
+    }
+  ],
+  "dataFlow": [
+    "POST /api/links -> Jackson binds expiresAt (Instant) -> LinkService.validateExpiry (future-only, injected Clock) -> repo.insert(link with expiresAt)",
+    "GET /{code} -> LinkService.resolveAndTrack -> resolve(): NOT_FOUND | GONE | EXPIRED via link.expiredAt(clock.instant()) -> 302 or 410",
+    "GET /api/links/{code}/stats -> LinkService.stats -> repo.stats (no expiry check by design)",
+    "Startup -> JdbcLinkRepository -> SchemaMigrator.migrate -> migrateToV2 (ALTER TABLE ADD COLUMN expires_at if missing; version=2)"
+  ],
+  "apiChanges": [
+    {
+      "method": "POST",
+      "path": "/api/links",
+      "change": "Optional request field expiresAt (date-time). Response gains expiresAt (string|null)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/{code}",
+      "change": "Response gains expiresAt; 410 now also covers EXPIRED."
+    },
+    {
+      "method": "GET",
+      "path": "/{code}",
+      "change": "410 EXPIRED when past expiry."
+    }
+  ],
+  "schemaChanges": [
+    "links.expires_at TIMESTAMP NULL (additive)",
+    "schema_version 1 -> 2"
+  ],
+  "decisions": [
+    {
+      "id": "D-1",
+      "decision": "Evaluate expiry at read time in LinkService.resolve(), not with a background sweeper.",
+      "rationale": "Zero new infrastructure, exact semantics, one comparison on the hot path. The injected java.time.Clock keeps it unit-testable.",
+      "alternatives": [
+        "Cron/sweeper that soft-deletes expired rows",
+        "Database-level TTL"
+      ],
+      "tradeoffs": "Expired rows persist (by requirement, stats must survive). A future purge job can be added independently."
+    },
+    {
+      "id": "D-2",
+      "decision": "Additive nullable column with an idempotent in-code migration guarded by schema_version.",
+      "rationale": "Safe on a live database; v1 code ignores the column so a code rollback needs no schema rollback (NFR-3). Idempotent via INFORMATION_SCHEMA check, same on H2 and PostgreSQL.",
+      "alternatives": [
+        "Separate link_expiry table",
+        "Rebuild table"
+      ],
+      "tradeoffs": "Migrations live in code rather than a migration tool; acceptable at this scale, documented as a limitation."
+    },
+    {
+      "id": "D-3",
+      "decision": "Validate 'future only' in LinkService against the injected Clock, mapped to 400 VALIDATION.",
+      "rationale": "One place for the rule regardless of caller; the fake clock in tests covers it. Bean Validation has no future-relative-to-injected-clock constraint.",
+      "alternatives": [
+        "@Future on the request record (wall clock, not injectable)"
+      ],
+      "tradeoffs": "Validation happens after body binding rather than by annotation; same HTTP outcome."
+    },
+    {
+      "id": "D-4",
+      "decision": "Distinct error code EXPIRED mapped to HTTP 410.",
+      "rationale": "Requirement asks for a clear 'expired' signal; 410 already means 'intentionally gone'. Clients branch on the error code.",
+      "alternatives": [
+        "404",
+        "Custom 4xx"
+      ],
+      "tradeoffs": "Two error codes share a status; documented in openapi.yaml."
+    }
+  ],
+  "securityConsiderations": [
+    "expiresAt is bound as an ISO-8601 Instant by Jackson; malformed values are a 400 like any other bad body.",
+    "Expiry does not change UrlPolicy (SSRF/scheme guards untouched).",
+    "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java is a protected file: the only change is one switch case; the reviewer must confirm no error-handling logic changed."
+  ],
+  "rollbackStrategy": "Deploy the previous build. The expires_at column stays (nullable, ignored by v1); schema_version=2 is harmless because v1 only inserts the row if missing. Links created with an expiry would stop expiring under v1 \u2014 acceptable for a short rollback window; note it in the release checklist."
+}

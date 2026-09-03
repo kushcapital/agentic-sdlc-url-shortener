@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "approve",
+        "request-changes"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "security",
+              "correctness",
+              "maintainability",
+              "performance",
+              "testing",
+              "compliance"
+            ]
+          },
+          "file": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "severity",
+          "category",
+          "issue",
+          "recommendation"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "policySummary": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "verdict",
+    "summary",
+    "findings"
+  ],
+  "additionalProperties": false
+}

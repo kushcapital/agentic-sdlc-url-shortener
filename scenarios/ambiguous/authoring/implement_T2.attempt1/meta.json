@@ -1,0 +1,7 @@
+{
+  "taskId": "T2",
+  "summary": "Raise the generated code length from 7 to 8 (62^8 keyspace): @DefaultValue in ShortenerProperties and shortener.code-length in application.yml.",
+  "notes": [
+    "Attempt 1 changes a source default without any test asserting it; the change-control policy escalates to a human, who rejects it."
+  ]
+}

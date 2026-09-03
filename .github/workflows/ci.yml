@@ -1,0 +1,64 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Build and test both modules
+        run: mvn -B verify
+      - name: Fixtures are in sync with authoring/
+        run: |
+          ORCHESTRATOR_REPO_ROOT="$PWD" java -jar orchestrator/target/orchestrator.jar fixtures
+          git diff --exit-code -- scenarios/*/fixtures
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: surefire-reports
+          path: "**/target/surefire-reports/*.xml"
+          retention-days: 14
+
+  scenarios:
+    # Runs every scenario through the real engine (scripted provider) and the end-to-end governance suite.
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - run: mvn -B -DskipTests package
+      - name: Prepare the javac toolchain (fast sandbox verification)
+        run: ./scripts/setup-fast-toolchain.sh
+      - name: Run the three scenarios end-to-end
+        run: |
+          source .orchestrator-env
+          ./scripts/run-scenarios.sh
+      - name: End-to-end governance tests
+        run: |
+          source .orchestrator-env
+          mvn -B -pl orchestrator test -Dorchestrator.scenarios=true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orchestrator-runs
+          path: |
+            runs/**/report.md
+            runs/**/report.html
+            runs/**/events.jsonl
+            runs/**/metrics.json
+          retention-days: 14

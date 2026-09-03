@@ -1,0 +1,1 @@
+{ "taskId": "T3", "summary": "Enforce and expose expiry: ErrorCode gains EXPIRED; LinkService rejects a past expiresAt (VALIDATION) and resolve() throws EXPIRED against the injected clock; service unit tests with the fake clock.", "notes": ["Attempt 1 forgets that ApiExceptionHandler.statusFor is an exhaustive switch over ErrorCode."] }

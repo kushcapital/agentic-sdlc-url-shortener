@@ -1,0 +1,1171 @@
+{
+  "runId" : "brownfield",
+  "scenario" : "brownfield",
+  "status" : "COMPLETED",
+  "createdAt" : "2026-09-03T01:40:38.019951555Z",
+  "updatedAt" : "2026-09-03T01:41:58.572162615Z",
+  "requirement" : "Marketing runs time-boxed campaigns and wants campaign links that stop working after the campaign ends. Add optional expiry to short links: callers can set an expiry when creating a link; expired links must stop redirecting and tell the client clearly that the link expired (not that it doesn't exist); click statistics must remain available after expiry. Existing links, clients and stored data must keep working unchanged.",
+  "stages" : {
+    "requirements" : {
+      "id" : "requirements",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:38.304861746Z",
+      "finishedAt" : "2026-09-03T01:40:38.472637393Z",
+      "feedback" : [ ],
+      "inputHashes" : { },
+      "outputHash" : "8e574d1e7f18ee82"
+    },
+    "architecture" : {
+      "id" : "architecture",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:38.477488737Z",
+      "finishedAt" : "2026-09-03T01:40:38.557428874Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82"
+      },
+      "outputHash" : "6bd3ce43fe7e1214"
+    },
+    "plan" : {
+      "id" : "plan",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:38.560578882Z",
+      "finishedAt" : "2026-09-03T01:40:38.603184939Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214"
+      },
+      "outputHash" : "e62bdc13682ae57c"
+    },
+    "test" : {
+      "id" : "test",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:41:36.142991289Z",
+      "finishedAt" : "2026-09-03T01:41:58.522975715Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "outputHash" : "4a63e800b3d731c0"
+    },
+    "review" : {
+      "id" : "review",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:41:36.145205187Z",
+      "finishedAt" : "2026-09-03T01:41:36.266495442Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "outputHash" : "ca85f88c7244abde"
+    },
+    "docs" : {
+      "id" : "docs",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:41:36.145316094Z",
+      "finishedAt" : "2026-09-03T01:41:36.289493646Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214"
+      },
+      "outputHash" : "1f62adb9ed356887"
+    },
+    "release" : {
+      "id" : "release",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:41:58.526694495Z",
+      "finishedAt" : "2026-09-03T01:41:58.556406094Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "TEST_REPORT" : "4a63e800b3d731c0",
+        "REVIEW_REPORT" : "ca85f88c7244abde",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214"
+      },
+      "outputHash" : "6764fa33b08be2ae"
+    },
+    "implement:T1" : {
+      "id" : "implement:T1",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:38.616833659Z",
+      "finishedAt" : "2026-09-03T01:41:00.993280841Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "outputHash" : "d5980a4474e45992"
+    },
+    "implement:T2" : {
+      "id" : "implement:T2",
+      "status" : "SUCCEEDED",
+      "attempts" : 2,
+      "startedAt" : "2026-09-03T01:41:00.995255877Z",
+      "finishedAt" : "2026-09-03T01:41:06.190504596Z",
+      "firstFailureAt" : "2026-09-03T01:41:01.084350583Z",
+      "lastError" : "exit gate 'policy-check' failed: policy blocked the patch: [path-allowlist] patch touches files outside the allowlist: .env.local",
+      "feedback" : [ "attempt 1 — policy-check: policy blocked the patch: [path-allowlist] patch touches files outside the allowlist: .env.local" ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "outputHash" : "551d79df189bc91e"
+    },
+    "implement:T3" : {
+      "id" : "implement:T3",
+      "status" : "SUCCEEDED",
+      "attempts" : 2,
+      "startedAt" : "2026-09-03T01:41:06.198477284Z",
+      "finishedAt" : "2026-09-03T01:41:36.136160336Z",
+      "firstFailureAt" : "2026-09-03T01:41:11.037301316Z",
+      "lastError" : "exit gate 'verify-patch' failed: compilation failed:\nPicked up JAVA_TOOL_OPTIONS: \n/home/claude/agentic-sdlc-java/runs/samples/brownfield/worktrees/implement_T3-a1/src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java:28: error: the switch expression does not cover all possible input values\n        return switch (code) {\n               ^\n1 error\n",
+      "feedback" : [ "attempt 1 — verify-patch: compilation failed:\nPicked up JAVA_TOOL_OPTIONS: \n/home/claude/agentic-sdlc-java/runs/samples/brownfield/worktrees/implement_T3-a1/src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java:28: error: the switch expression does not cover all possible input values\n        return switch (code) {\n               ^\n1 error\n" ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "outputHash" : "0cdf5222887566c2"
+    },
+    "implement:T4" : {
+      "id" : "implement:T4",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:41:06.198713988Z",
+      "finishedAt" : "2026-09-03T01:41:15.927549327Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "outputHash" : "579c3d7fc673de31"
+    }
+  },
+  "stageOrder" : [ "requirements", "architecture", "plan", "implement:T1", "implement:T2", "implement:T3", "implement:T4", "test", "review", "docs", "release" ],
+  "graph" : [ {
+    "id" : "requirements",
+    "name" : "Requirement understanding",
+    "phase" : "REQUIREMENTS",
+    "agent" : "REQUIREMENTS_ANALYST",
+    "dependsOn" : [ ],
+    "consumes" : [ ],
+    "produces" : "REQUIREMENTS_SPEC",
+    "entryGates" : [ "workspace-ready" ],
+    "exitGates" : [ "clarifications-resolved" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "architecture",
+    "name" : "Architecture & impact analysis",
+    "phase" : "DESIGN",
+    "agent" : "ARCHITECT",
+    "dependsOn" : [ "requirements" ],
+    "consumes" : [ "REQUIREMENTS_SPEC" ],
+    "produces" : "ARCHITECTURE",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ ],
+    "approval" : {
+      "gateId" : "design-review",
+      "reason" : "Architecture and impacted-module analysis need a human design sign-off before implementation starts.",
+      "riskLevel" : "MEDIUM"
+    },
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "plan",
+    "name" : "Task decomposition",
+    "phase" : "PLANNING",
+    "agent" : "PLANNER",
+    "dependsOn" : [ "architecture" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE" ],
+    "produces" : "TASK_PLAN",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "plan-valid" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : {
+      "expands" : "implement"
+    }
+  }, {
+    "id" : "implement:T1",
+    "name" : "Implementation: Write failing acceptance tests for expiry",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T1"
+    },
+    "params" : {
+      "verify" : "tests-red",
+      "riskLevel" : "low"
+    }
+  }, {
+    "id" : "implement:T2",
+    "name" : "Implementation: Domain model and persistence for expiresAt",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T1" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T2"
+    },
+    "params" : {
+      "verify" : "typecheck",
+      "riskLevel" : "medium"
+    }
+  }, {
+    "id" : "implement:T3",
+    "name" : "Implementation: Enforce expiry in the service and map it through the API",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T2" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T3"
+    },
+    "params" : {
+      "verify" : "tests-green",
+      "riskLevel" : "medium"
+    }
+  }, {
+    "id" : "implement:T4",
+    "name" : "Implementation: Upgrade tests for the v1 -> v2 migration path",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T2" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T4"
+    },
+    "params" : {
+      "verify" : "typecheck",
+      "riskLevel" : "low"
+    }
+  }, {
+    "id" : "test",
+    "name" : "Verification (compile + full suite)",
+    "phase" : "TESTING",
+    "agent" : "TESTER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3", "implement:T4" ],
+    "consumes" : [ "TASK_PLAN" ],
+    "produces" : "TEST_REPORT",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "tests-green" ],
+    "retry" : {
+      "maxAttempts" : 1,
+      "backoffMs" : 0,
+      "factor" : 2.0
+    },
+    "onFailure" : "ESCALATE",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 900000,
+    "params" : { }
+  }, {
+    "id" : "review",
+    "name" : "Security & quality review",
+    "phase" : "REVIEW",
+    "agent" : "REVIEWER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3", "implement:T4" ],
+    "consumes" : [ "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "REVIEW_REPORT",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "review-approved" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "ESCALATE",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "docs",
+    "name" : "Documentation",
+    "phase" : "DOCUMENTATION",
+    "agent" : "DOC_WRITER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3", "implement:T4" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE" ],
+    "produces" : "DOC_UPDATE",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "SKIP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "release",
+    "name" : "Release readiness",
+    "phase" : "RELEASE",
+    "agent" : "RELEASE_MANAGER",
+    "dependsOn" : [ "test", "review", "docs" ],
+    "consumes" : [ "TEST_REPORT", "REVIEW_REPORT", "ARCHITECTURE" ],
+    "produces" : "RELEASE_CHECKLIST",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "release-ready" ],
+    "approval" : {
+      "gateId" : "release-approval",
+      "reason" : "Releasing to production is a high-impact action; a human owns the go/no-go.",
+      "riskLevel" : "HIGH"
+    },
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  } ],
+  "templates" : {
+    "implement" : {
+      "id" : "implement",
+      "name" : "Implementation",
+      "phase" : "IMPLEMENTATION",
+      "agent" : "IMPLEMENTER",
+      "dependsOn" : [ "plan" ],
+      "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+      "produces" : "CODE_PATCH",
+      "entryGates" : [ "upstream-artifacts-present" ],
+      "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+      "retry" : {
+        "maxAttempts" : 3,
+        "backoffMs" : 100,
+        "factor" : 2.0
+      },
+      "onFailure" : "ROLLBACK_AND_STOP",
+      "mutatesWorkspace" : true,
+      "timeoutMs" : 600000,
+      "params" : { }
+    }
+  },
+  "artifacts" : {
+    "REQUIREMENT" : {
+      "kind" : "REQUIREMENT",
+      "producedBy" : "scenario",
+      "attempt" : 0,
+      "version" : 1,
+      "hash" : "a71f634bc931c086",
+      "inputHashes" : { },
+      "createdAt" : "2026-09-03T01:40:38.178640195Z",
+      "content" : {
+        "text" : "Marketing runs time-boxed campaigns and wants campaign links that stop working after the campaign ends. Add optional expiry to short links: callers can set an expiry when creating a link; expired links must stop redirecting and tell the client clearly that the link expired (not that it doesn't exist); click statistics must remain available after expiry. Existing links, clients and stored data must keep working unchanged."
+      }
+    },
+    "REQUIREMENTS_SPEC" : {
+      "kind" : "REQUIREMENTS_SPEC",
+      "producedBy" : "requirements",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "8e574d1e7f18ee82",
+      "inputHashes" : { },
+      "createdAt" : "2026-09-03T01:40:38.467002931Z",
+      "content" : {
+        "problemStatement" : "Extend the existing URL shortener (Spring Boot 3 / Java 21, JdbcTemplate over H2/PostgreSQL, batched analytics queue, soft delete) so that a short link can carry an optional hard expiry. After the expiry instant, redirect and metadata requests must fail with a distinct 'expired' outcome (410 EXPIRED) rather than 'not found' or 'deleted', while click statistics remain readable. The change must be backward compatible for existing rows (no expiry), existing API clients (field is optional) and the persisted schema (additive migration).",
+        "scenarioType" : "brownfield",
+        "functionalRequirements" : [ {
+          "id" : "FR-1",
+          "text" : "POST /api/links accepts an optional expiresAt (ISO-8601 instant, must be in the future); the created link records it.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-2",
+          "text" : "Every link response (create, metadata, idempotent replay) includes expiresAt, null when the link never expires.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-3",
+          "text" : "GET /:code and GET /api/links/:code return HTTP 410 with error code EXPIRED once now >= expiresAt.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-4",
+          "text" : "GET /api/links/:code/stats keeps returning analytics for expired links.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-5",
+          "text" : "Links created without expiresAt behave exactly as today.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-6",
+          "text" : "Existing H2/PostgreSQL databases are migrated in place (schema_version 1 -> 2) without data loss.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-7",
+          "text" : "openapi.yaml reflects the new field and the 410 EXPIRED outcome.",
+          "priority" : "should"
+        } ],
+        "nonFunctionalRequirements" : [ {
+          "id" : "NFR-1",
+          "text" : "Expiry adds no measurable latency to the redirect path (a timestamp comparison, no extra I/O).",
+          "category" : "performance"
+        }, {
+          "id" : "NFR-2",
+          "text" : "No background job or scheduler is introduced; expiry is evaluated at read time.",
+          "category" : "operability"
+        }, {
+          "id" : "NFR-3",
+          "text" : "Rollback of the deployment must be possible without a schema rollback.",
+          "category" : "reliability"
+        }, {
+          "id" : "NFR-4",
+          "text" : "Both repository adapters (in-memory, JDBC) satisfy the same contract test.",
+          "category" : "maintainability"
+        } ],
+        "acceptanceCriteria" : [ {
+          "id" : "AC-1",
+          "given" : "a valid URL and an expiresAt one hour in the future",
+          "when" : "POST /api/links is called",
+          "then" : "201 is returned and the response echoes expiresAt"
+        }, {
+          "id" : "AC-2",
+          "given" : "an expiresAt in the past",
+          "when" : "POST /api/links is called",
+          "then" : "400 VALIDATION is returned and nothing is stored"
+        }, {
+          "id" : "AC-3",
+          "given" : "a link created without expiresAt",
+          "when" : "it is created and redirected",
+          "then" : "expiresAt is null and the redirect is a 302 as before"
+        }, {
+          "id" : "AC-4",
+          "given" : "a link whose expiresAt has passed",
+          "when" : "GET /:code or GET /api/links/:code is called",
+          "then" : "410 with error EXPIRED is returned"
+        }, {
+          "id" : "AC-5",
+          "given" : "a link that was clicked and then expired",
+          "when" : "GET /api/links/:code/stats is called",
+          "then" : "200 with the recorded clicks is returned"
+        }, {
+          "id" : "AC-6",
+          "given" : "a database created by schema v1",
+          "when" : "the service opens it",
+          "then" : "the schema is upgraded to v2, legacy rows read back with expiresAt null, and re-opening is idempotent"
+        } ],
+        "assumptions" : [ "Expiry is a hard cut-off evaluated against the server clock; no grace period.", "Expired links are not purged; they stay soft-present so codes are never reissued and stats remain.", "There is no requirement to extend or edit expiry after creation (would need a PATCH endpoint; out of scope).", "Callers supply absolute instants (expiresAt, ISO-8601) rather than durations; a ttl convenience can be layered on later." ],
+        "outOfScope" : [ "Editing expiry after creation", "Notifying owners before expiry", "Purging expired rows", "Per-owner default expiry policies" ],
+        "ambiguities" : [ {
+          "id" : "AMB-1",
+          "question" : "Should an expired link return 410 Gone (same status as deleted, different error code) or 404?",
+          "options" : [ {
+            "key" : "410-EXPIRED",
+            "description" : "410 with a distinct error code EXPIRED",
+            "impact" : "Clients can distinguish deleted vs expired; consistent with 'resource intentionally gone'."
+          }, {
+            "key" : "404",
+            "description" : "Treat expired as not found",
+            "impact" : "Simpler but violates the requirement to 'tell the client clearly that the link expired'."
+          } ],
+          "recommended" : "410-EXPIRED",
+          "blocking" : false,
+          "resolution" : "410 with error code EXPIRED — the requirement explicitly asks for a distinct outcome."
+        }, {
+          "id" : "AMB-2",
+          "question" : "Absolute expiresAt or relative ttlSeconds in the request?",
+          "options" : [ {
+            "key" : "expiresAt",
+            "description" : "Absolute ISO-8601 instant",
+            "impact" : "Unambiguous across retries and clock skew; validated at the edge."
+          }, {
+            "key" : "ttlSeconds",
+            "description" : "Relative duration",
+            "impact" : "Friendlier for scripts but retried requests drift; would need idempotency care."
+          } ],
+          "recommended" : "expiresAt",
+          "blocking" : false,
+          "resolution" : "expiresAt; a ttl convenience can be added later without breaking the contract."
+        } ],
+        "risks" : [ {
+          "risk" : "ApiExceptionHandler.statusFor is an exhaustive switch expression over ErrorCode; adding a code without a case fails compilation.",
+          "likelihood" : "medium",
+          "impact" : "low",
+          "mitigation" : "Compile gate on every implementation task."
+        }, {
+          "risk" : "Schema change on a live database.",
+          "likelihood" : "low",
+          "impact" : "high",
+          "mitigation" : "Additive nullable column, idempotent migration guarded by schema_version, upgrade tests against a v1 database."
+        }, {
+          "risk" : "Clock skew between API instances makes expiry appear inconsistent for a few seconds.",
+          "likelihood" : "medium",
+          "impact" : "low",
+          "mitigation" : "Document; acceptable for campaign links. NTP on hosts."
+        } ]
+      }
+    },
+    "ARCHITECTURE" : {
+      "kind" : "ARCHITECTURE",
+      "producedBy" : "architecture",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "6bd3ce43fe7e1214",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82"
+      },
+      "createdAt" : "2026-09-03T01:40:38.550873047Z",
+      "content" : {
+        "summary" : "Expiry is a property of the Link record, enforced at read time inside LinkService.resolve() so every read path (redirect, metadata) inherits it and the analytics path (stats) deliberately bypasses it. Persistence is an additive nullable column with an idempotent v1->v2 migration in SchemaMigrator; the in-memory adapter needs no change beyond carrying the field. The web layer only needs the EXPIRED -> 410 case in the exhaustive status switch.",
+        "components" : [ {
+          "name" : "Link record",
+          "responsibility" : "Carry expiresAt; expose expiredAt(now).",
+          "path" : "src/main/java/dev/rajeev/shortener/domain/Link.java"
+        }, {
+          "name" : "LinkService",
+          "responsibility" : "Reject a past expiresAt on create; throw EXPIRED in resolve(); leave stats() untouched.",
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkService.java"
+        }, {
+          "name" : "SchemaMigrator",
+          "responsibility" : "v1 -> v2: ALTER TABLE links ADD COLUMN expires_at (nullable), idempotent via INFORMATION_SCHEMA.",
+          "path" : "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java"
+        }, {
+          "name" : "JdbcLinkRepository",
+          "responsibility" : "Persist and read expires_at.",
+          "path" : "src/main/java/dev/rajeev/shortener/repository/JdbcLinkRepository.java"
+        }, {
+          "name" : "InMemoryLinkRepository",
+          "responsibility" : "No code change; stores the whole record.",
+          "path" : "src/main/java/dev/rajeev/shortener/repository/InMemoryLinkRepository.java"
+        }, {
+          "name" : "ApiExceptionHandler",
+          "responsibility" : "Map EXPIRED to HTTP 410 in the exhaustive statusFor switch.",
+          "path" : "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java"
+        } ],
+        "impactedModules" : [ {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/Link.java",
+          "changeType" : "modify",
+          "reason" : "Add expiresAt component, expiredAt(now), keep withDeletedAt carrying it."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java",
+          "changeType" : "modify",
+          "reason" : "Optional expiresAt (Instant, ISO-8601 via Jackson jsr310)."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkResponse.java",
+          "changeType" : "modify",
+          "reason" : "Expose expiresAt on every link response (null when absent)."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/ErrorCode.java",
+          "changeType" : "modify",
+          "reason" : "Add EXPIRED."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+          "changeType" : "modify",
+          "reason" : "Store expiresAt; reject past values; enforce in resolve() via the injected Clock so unit tests can move time."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java",
+          "changeType" : "modify",
+          "reason" : "v2 migration, CURRENT_VERSION = 2."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/repository/JdbcLinkRepository.java",
+          "changeType" : "modify",
+          "reason" : "Column in INSERT/SELECT and row mapping."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/repository/LinkRepository.java",
+          "changeType" : "none",
+          "reason" : "Port unchanged: the Link record carries the field."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java",
+          "changeType" : "modify",
+          "reason" : "statusFor is an exhaustive switch; EXPIRED -> GONE (410). Protected file: reviewer approval required."
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/RedirectController.java",
+          "changeType" : "none",
+          "reason" : "resolveAndTrack() inherits the check."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/repository/LinkRepositoryContractTest.java",
+          "changeType" : "modify",
+          "reason" : "Link fixture gains expiresAt; persistence assertion for both adapters."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java",
+          "changeType" : "modify",
+          "reason" : "Fake-clock tests for create/resolve/stats behaviour."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java",
+          "changeType" : "create",
+          "reason" : "Acceptance tests AC-1..AC-5 written before implementation."
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/repository/SchemaUpgradeTest.java",
+          "changeType" : "create",
+          "reason" : "AC-6: v1 database upgraded in place, idempotent."
+        } ],
+        "dataFlow" : [ "POST /api/links -> Jackson binds expiresAt (Instant) -> LinkService.validateExpiry (future-only, injected Clock) -> repo.insert(link with expiresAt)", "GET /{code} -> LinkService.resolveAndTrack -> resolve(): NOT_FOUND | GONE | EXPIRED via link.expiredAt(clock.instant()) -> 302 or 410", "GET /api/links/{code}/stats -> LinkService.stats -> repo.stats (no expiry check by design)", "Startup -> JdbcLinkRepository -> SchemaMigrator.migrate -> migrateToV2 (ALTER TABLE ADD COLUMN expires_at if missing; version=2)" ],
+        "apiChanges" : [ {
+          "method" : "POST",
+          "path" : "/api/links",
+          "change" : "Optional request field expiresAt (date-time). Response gains expiresAt (string|null)."
+        }, {
+          "method" : "GET",
+          "path" : "/api/links/{code}",
+          "change" : "Response gains expiresAt; 410 now also covers EXPIRED."
+        }, {
+          "method" : "GET",
+          "path" : "/{code}",
+          "change" : "410 EXPIRED when past expiry."
+        } ],
+        "schemaChanges" : [ "links.expires_at TIMESTAMP NULL (additive)", "schema_version 1 -> 2" ],
+        "decisions" : [ {
+          "id" : "D-1",
+          "decision" : "Evaluate expiry at read time in LinkService.resolve(), not with a background sweeper.",
+          "rationale" : "Zero new infrastructure, exact semantics, one comparison on the hot path. The injected java.time.Clock keeps it unit-testable.",
+          "alternatives" : [ "Cron/sweeper that soft-deletes expired rows", "Database-level TTL" ],
+          "tradeoffs" : "Expired rows persist (by requirement, stats must survive). A future purge job can be added independently."
+        }, {
+          "id" : "D-2",
+          "decision" : "Additive nullable column with an idempotent in-code migration guarded by schema_version.",
+          "rationale" : "Safe on a live database; v1 code ignores the column so a code rollback needs no schema rollback (NFR-3). Idempotent via INFORMATION_SCHEMA check, same on H2 and PostgreSQL.",
+          "alternatives" : [ "Separate link_expiry table", "Rebuild table" ],
+          "tradeoffs" : "Migrations live in code rather than a migration tool; acceptable at this scale, documented as a limitation."
+        }, {
+          "id" : "D-3",
+          "decision" : "Validate 'future only' in LinkService against the injected Clock, mapped to 400 VALIDATION.",
+          "rationale" : "One place for the rule regardless of caller; the fake clock in tests covers it. Bean Validation has no future-relative-to-injected-clock constraint.",
+          "alternatives" : [ "@Future on the request record (wall clock, not injectable)" ],
+          "tradeoffs" : "Validation happens after body binding rather than by annotation; same HTTP outcome."
+        }, {
+          "id" : "D-4",
+          "decision" : "Distinct error code EXPIRED mapped to HTTP 410.",
+          "rationale" : "Requirement asks for a clear 'expired' signal; 410 already means 'intentionally gone'. Clients branch on the error code.",
+          "alternatives" : [ "404", "Custom 4xx" ],
+          "tradeoffs" : "Two error codes share a status; documented in openapi.yaml."
+        } ],
+        "securityConsiderations" : [ "expiresAt is bound as an ISO-8601 Instant by Jackson; malformed values are a 400 like any other bad body.", "Expiry does not change UrlPolicy (SSRF/scheme guards untouched).", "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java is a protected file: the only change is one switch case; the reviewer must confirm no error-handling logic changed." ],
+        "rollbackStrategy" : "Deploy the previous build. The expires_at column stays (nullable, ignored by v1); schema_version=2 is harmless because v1 only inserts the row if missing. Links created with an expiry would stop expiring under v1 — acceptable for a short rollback window; note it in the release checklist."
+      }
+    },
+    "TASK_PLAN" : {
+      "kind" : "TASK_PLAN",
+      "producedBy" : "plan",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "e62bdc13682ae57c",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214"
+      },
+      "createdAt" : "2026-09-03T01:40:38.600908460Z",
+      "content" : {
+        "summary" : "Four tasks in TDD order. T1 writes the acceptance tests and must be red. T2 lands the domain model and persistence (compile-gated; the suite is expected to stay red until T3). T3 and T4 both depend on T2 and run in parallel: T3 wires enforcement and the HTTP mapping and must turn the suite green; T4 adds upgrade tests for the migration path.",
+        "tasks" : [ {
+          "id" : "T1",
+          "title" : "Write failing acceptance tests for expiry",
+          "description" : "Create ExpiryIntegrationTest covering AC-1..AC-5 through the HTTP layer (real Tomcat, random port). Must compile against the current code and fail at runtime.",
+          "files" : [ "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java" ],
+          "dependsOn" : [ ],
+          "verify" : "tests-red",
+          "riskLevel" : "low",
+          "acceptance" : "Suite compiles; the new tests fail; all existing tests still pass."
+        }, {
+          "id" : "T2",
+          "title" : "Domain model and persistence for expiresAt",
+          "description" : "Add expiresAt to Link/CreateLinkRequest/LinkResponse, expiredAt(now), store it in LinkService.create, SchemaMigrator v2, JDBC column mapping, contract/migrator/service tests updated.",
+          "files" : [ "src/main/java/dev/rajeev/shortener/domain/Link.java", "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java", "src/main/java/dev/rajeev/shortener/domain/LinkResponse.java", "src/main/java/dev/rajeev/shortener/domain/LinkService.java", "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java", "src/main/java/dev/rajeev/shortener/repository/JdbcLinkRepository.java", "src/test/java/dev/rajeev/shortener/repository/LinkRepositoryContractTest.java", "src/test/java/dev/rajeev/shortener/repository/SchemaMigratorTest.java", "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java" ],
+          "dependsOn" : [ "T1" ],
+          "verify" : "typecheck",
+          "riskLevel" : "medium",
+          "acceptance" : "Compiles; contract tests cover expiresAt persistence."
+        }, {
+          "id" : "T3",
+          "title" : "Enforce expiry in the service and map it through the API",
+          "description" : "Add EXPIRED to ErrorCode and to the exhaustive status switch in ApiExceptionHandler; reject a past expiresAt; throw EXPIRED in resolve(); fake-clock unit tests.",
+          "files" : [ "src/main/java/dev/rajeev/shortener/domain/ErrorCode.java", "src/main/java/dev/rajeev/shortener/domain/LinkService.java", "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java", "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java" ],
+          "dependsOn" : [ "T2" ],
+          "verify" : "tests-green",
+          "riskLevel" : "medium",
+          "acceptance" : "Compiles and the whole suite, including T1's acceptance tests, is green."
+        }, {
+          "id" : "T4",
+          "title" : "Upgrade tests for the v1 -> v2 migration path",
+          "description" : "Create a v1-shaped H2 database, open it with the repository, assert the column is added, legacy rows read back with expiresAt null, and reopening is idempotent.",
+          "files" : [ "src/test/java/dev/rajeev/shortener/repository/SchemaUpgradeTest.java" ],
+          "dependsOn" : [ "T2" ],
+          "verify" : "typecheck",
+          "riskLevel" : "low",
+          "acceptance" : "Compiles; tests are green once T3 lands (verified by the test stage)."
+        } ],
+        "sequencingRationale" : "T1 first so the feature is specified executably. T2 is the shared foundation. T3 and T4 are independent once T2 exists, so they run in parallel in separate worktrees and join at the test stage, which runs the complete suite once on the merged tree."
+      }
+    },
+    "CODE_PATCH:T1" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T1",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "d5980a4474e45992",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "createdAt" : "2026-09-03T01:41:00.990293083Z",
+      "content" : {
+        "summary" : "TDD red: acceptance tests for link expiry (AC-1..AC-5) through the HTTP layer. They compile against the current domain model and fail at runtime until the feature exists.",
+        "taskId" : "T1",
+        "files" : [ {
+          "path" : "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.web;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\nimport static org.junit.jupiter.api.Assertions.assertNull;\n\nimport java.time.Instant;\nimport java.util.Map;\nimport org.junit.jupiter.api.AfterAll;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.Test;\n\n/**\n * Acceptance tests for link expiry, written first — they must fail until the feature lands.\n * Mirrors the Given/When/Then criteria in the requirements spec. Black-box through HTTP only, so the\n * file compiles against the current domain model.\n */\nclass ExpiryIntegrationTest {\n\n    static TestServer server;\n\n    @BeforeAll\n    static void start() {\n        server = new TestServer();\n    }\n\n    @AfterAll\n    static void stop() {\n        server.close();\n    }\n\n    private static String future(long seconds) {\n        return Instant.now().plusSeconds(seconds).toString();\n    }\n\n    @Test\n    void ac1_acceptsAFutureExpiresAtAndEchoesItBack() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/campaign\\\",\\\"expiresAt\\\":\\\"\" + future(3600) + \"\\\"}\");\n        assertEquals(201, r.status(), r.body());\n        assertNotNull(server.json(r).get(\"expiresAt\"));\n    }\n\n    @Test\n    void ac2_rejectsAPastExpiresAtWith400Validation() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/late\\\",\\\"expiresAt\\\":\\\"\" + Instant.now().minusSeconds(60) + \"\\\"}\");\n        assertEquals(400, r.status(), r.body());\n        assertEquals(\"VALIDATION\", server.json(r).get(\"error\"));\n    }\n\n    @Test\n    void ac3_linksWithoutExpiryKeepWorkingExactlyAsBefore() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/evergreen\\\"}\");\n        assertEquals(201, r.status());\n        Map<String, Object> body = server.json(r);\n        assertEquals(true, body.containsKey(\"expiresAt\"), \"response must carry expiresAt (null when absent)\");\n        assertNull(body.get(\"expiresAt\"));\n        assertEquals(302, server.get(\"/\" + body.get(\"code\")).status());\n    }\n\n    @Test\n    void ac4_anExpiredLinkStopsRedirectingWith410ExpiredAndMetadataSaysSo() throws InterruptedException {\n        TestServer.Resp created = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/flash\\\",\\\"expiresAt\\\":\\\"\" + future(1) + \"\\\"}\");\n        assertEquals(201, created.status(), created.body());\n        String code = (String) server.json(created).get(\"code\");\n        Thread.sleep(1200);\n        TestServer.Resp redirect = server.get(\"/\" + code);\n        assertEquals(410, redirect.status());\n        assertEquals(\"EXPIRED\", server.json(redirect).get(\"error\"));\n        TestServer.Resp meta = server.get(\"/api/links/\" + code);\n        assertEquals(410, meta.status());\n        assertEquals(\"EXPIRED\", server.json(meta).get(\"error\"));\n    }\n\n    @Test\n    void ac5_statsRemainReadableAfterExpiry() throws InterruptedException {\n        TestServer.Resp created = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/stats-after\\\",\\\"expiresAt\\\":\\\"\" + future(1) + \"\\\"}\");\n        assertEquals(201, created.status(), created.body());\n        String code = (String) server.json(created).get(\"code\");\n        server.get(\"/\" + code);\n        Thread.sleep(1200);\n        TestServer.Resp stats = server.get(\"/api/links/\" + code + \"/stats\");\n        assertEquals(200, stats.status());\n        assertEquals(1, server.json(stats).get(\"totalClicks\"));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ "Black-box only so the file needs no reference to the not-yet-existing Link.expiresAt accessor." ]
+      }
+    },
+    "CODE_PATCH:T2" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T2",
+      "attempt" : 2,
+      "version" : 1,
+      "hash" : "551d79df189bc91e",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "createdAt" : "2026-09-03T01:41:06.186893797Z",
+      "content" : {
+        "summary" : "Domain + persistence for expiry: Link.expiresAt with expiredAt(now), CreateLinkRequest.expiresAt, LinkResponse.expiresAt, SchemaMigrator v2 (additive nullable column, idempotent, forward-compatible), JdbcLinkRepository column mapping, contract/migrator/service tests updated. No files outside src/.",
+        "taskId" : "T2",
+        "files" : [ {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/CreateLinkRequest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport jakarta.validation.constraints.NotBlank;\nimport jakarta.validation.constraints.Pattern;\nimport jakarta.validation.constraints.Size;\nimport java.time.Instant;\n\n/**\n * Create request. Bean Validation annotations document the contract and fail fast at the edge;\n * {@link LinkService} re-validates explicitly so the rules hold for every caller (not only HTTP).\n */\npublic record CreateLinkRequest(\n        @NotBlank @Size(max = 8192) String url,\n        @Pattern(regexp = LinkRules.CUSTOM_ALIAS_REGEX, message = \"alias must be 4-32 URL-safe characters\") String customAlias,\n        @Size(max = 128) String ownerId,\n        /** Optional hard expiry (ISO-8601). Must be in the future at creation; enforced in LinkService. */\n        Instant expiresAt) {}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/Link.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport java.time.Instant;\n\n/**\n * A short link. {@code code} is the public identifier: either generated (base62, see\n * {@link RandomCodeGenerator}) or a user-supplied custom alias. Soft-deleted links keep their\n * row so a code is never reissued and analytics remain readable.\n */\npublic record Link(\n        String code,\n        String targetUrl,\n        Instant createdAt,\n        Instant deletedAt,\n        /** Optional hard expiry. After this instant the link answers 410 EXPIRED; stats stay readable. */\n        Instant expiresAt,\n        boolean custom,\n        String ownerId) {\n\n    public boolean deleted() {\n        return deletedAt != null;\n    }\n\n    public boolean expiredAt(Instant now) {\n        return expiresAt != null && !now.isBefore(expiresAt);\n    }\n\n    public Link withDeletedAt(Instant at) {\n        return new Link(code, targetUrl, createdAt, at, expiresAt, custom, ownerId);\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkResponse.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport java.time.Instant;\n\npublic record LinkResponse(String code, String shortUrl, String targetUrl, Instant createdAt, Instant expiresAt, boolean custom) {\n\n    public static LinkResponse from(Link link, String baseUrl) {\n        String base = baseUrl.endsWith(\"/\") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;\n        return new LinkResponse(link.code(), base + \"/\" + link.code(), link.targetUrl(), link.createdAt(), link.expiresAt(), link.custom());\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport dev.rajeev.shortener.analytics.AnalyticsQueue;\nimport dev.rajeev.shortener.analytics.ClickEvent;\nimport dev.rajeev.shortener.analytics.ClickNormalizer;\nimport dev.rajeev.shortener.repository.AliasTakenException;\nimport dev.rajeev.shortener.repository.LinkRepository;\nimport dev.rajeev.shortener.repository.LinkStats;\nimport java.time.Clock;\nimport java.util.Locale;\n\n/**\n * Application service: owns the use cases, knows nothing about HTTP. Routes are a thin adapter\n * over this class, which is what makes behaviour testable without a server and what lets the\n * orchestrator's impact analysis point at one module when a rule changes.\n */\npublic class LinkService {\n\n    public record CreateResult(Link link, boolean created) {}\n\n    private final LinkRepository repo;\n    private final CodeGenerator codegen;\n    private final AnalyticsQueue analytics;\n    private final UrlPolicy urlPolicy;\n    private final Clock clock;\n\n    public LinkService(LinkRepository repo, CodeGenerator codegen, AnalyticsQueue analytics, UrlPolicy urlPolicy, Clock clock) {\n        this.repo = repo;\n        this.codegen = codegen;\n        this.analytics = analytics;\n        this.urlPolicy = urlPolicy;\n        this.clock = clock;\n    }\n\n    public CreateResult create(CreateLinkRequest req, String idempotencyKey) {\n        if (idempotencyKey != null && !idempotencyKey.isBlank()) {\n            var existing = repo.findByIdempotencyKey(idempotencyKey);\n            if (existing.isPresent()) return new CreateResult(existing.get(), false);\n        }\n        validate(req);\n\n        String normalized = switch (urlPolicy.evaluate(req.url())) {\n            case UrlPolicy.Ok ok -> ok.normalized();\n            case UrlPolicy.Rejected rejected -> throw new DomainException(rejected.code(), rejected.message());\n        };\n\n        String code;\n        if (req.customAlias() != null) {\n            if (LinkRules.RESERVED_CODES.contains(req.customAlias().toLowerCase(Locale.ROOT))) {\n                throw new DomainException(ErrorCode.ALIAS_RESERVED, \"'\" + req.customAlias() + \"' is reserved\");\n            }\n            code = req.customAlias();\n        } else {\n            try {\n                code = codegen.generate(repo::exists);\n            } catch (CodeExhaustedException e) {\n                throw new DomainException(ErrorCode.CODE_EXHAUSTED, e.getMessage());\n            }\n        }\n\n        Link link = new Link(code, normalized, clock.instant(), null, req.expiresAt(), req.customAlias() != null, req.ownerId());\n        try {\n            repo.insert(link);\n        } catch (AliasTakenException e) {\n            throw new DomainException(ErrorCode.ALIAS_TAKEN, e.getMessage());\n        }\n        if (idempotencyKey != null && !idempotencyKey.isBlank()) repo.rememberIdempotencyKey(idempotencyKey, code, clock.instant());\n        return new CreateResult(link, true);\n    }\n\n    /** Explicit validation so the rules hold for every caller, not only for @Valid at the HTTP edge. */\n    private static void validate(CreateLinkRequest req) {\n        if (req == null || req.url() == null || req.url().isBlank()) throw new DomainException(ErrorCode.VALIDATION, \"url is required\");\n        if (req.url().length() > 8192) throw new DomainException(ErrorCode.VALIDATION, \"url is too long\");\n        if (req.customAlias() != null && !LinkRules.CUSTOM_ALIAS_PATTERN.matcher(req.customAlias()).matches()) {\n            throw new DomainException(ErrorCode.VALIDATION, \"alias must be 4-32 URL-safe characters\");\n        }\n        if (req.ownerId() != null && req.ownerId().length() > 128) throw new DomainException(ErrorCode.VALIDATION, \"ownerId is too long\");\n    }\n\n    /** Returns the active link or throws NOT_FOUND / GONE. */\n    public Link resolve(String code) {\n        Link link = repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        if (link.deleted()) throw new DomainException(ErrorCode.GONE, \"short link has been deleted\");\n        return link;\n    }\n\n    /** Resolve + fire-and-forget analytics. Redirect latency never waits on the store. */\n    public Link resolveAndTrack(String code, String referrer, String userAgent) {\n        Link link = resolve(code);\n        analytics.enqueue(new ClickEvent(link.code(), clock.instant(), ClickNormalizer.referrer(referrer), ClickNormalizer.userAgent(userAgent)));\n        return link;\n    }\n\n    public Link get(String code) {\n        return resolve(code);\n    }\n\n    public void remove(String code) {\n        Link link = repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        if (link.deleted()) throw new DomainException(ErrorCode.GONE, \"short link has already been deleted\");\n        repo.softDelete(code, clock.instant());\n    }\n\n    public LinkStats stats(String code, int days, int topN) {\n        repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        // Stats stay readable after deletion: owners often want the final numbers.\n        analytics.flush();\n        return repo.stats(code, days, topN);\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/repository/JdbcLinkRepository.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.repository;\n\nimport dev.rajeev.shortener.analytics.ClickEvent;\nimport dev.rajeev.shortener.domain.Link;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Timestamp;\nimport java.time.Clock;\nimport java.time.Instant;\nimport java.time.temporal.ChronoUnit;\nimport java.util.List;\nimport java.util.Optional;\nimport org.springframework.dao.DuplicateKeyException;\nimport org.springframework.jdbc.core.JdbcTemplate;\nimport org.springframework.jdbc.core.RowMapper;\nimport org.springframework.transaction.support.TransactionTemplate;\n\n/**\n * JdbcTemplate adapter for H2 (dev/test) and PostgreSQL (prod) — same SQL. No ORM: a two-table\n * schema with a hot write path is clearer as explicit SQL, and the batch insert in one transaction is\n * the difference between hundreds and tens of thousands of click inserts per second.\n *\n * Uniqueness of {@code code} is enforced by the primary key: the application-level {@code exists()}\n * check is an optimisation; two concurrent inserts of the same alias still resolve correctly.\n */\npublic class JdbcLinkRepository implements LinkRepository {\n\n    private static final RowMapper<Link> LINK_ROW = (rs, i) -> new Link(\n            rs.getString(\"code\"),\n            rs.getString(\"target_url\"),\n            instant(rs, \"created_at\"),\n            instant(rs, \"deleted_at\"),\n            instant(rs, \"expires_at\"),\n            rs.getBoolean(\"custom\"),\n            rs.getString(\"owner_id\"));\n\n    private final JdbcTemplate jdbc;\n    private final TransactionTemplate tx;\n    private final Clock clock;\n\n    public JdbcLinkRepository(JdbcTemplate jdbc, TransactionTemplate tx, Clock clock) {\n        this.jdbc = jdbc;\n        this.tx = tx;\n        this.clock = clock;\n        new SchemaMigrator(jdbc).migrate();\n    }\n\n    private static Instant instant(ResultSet rs, String column) throws SQLException {\n        Timestamp ts = rs.getTimestamp(column);\n        return ts == null ? null : ts.toInstant();\n    }\n\n    private static Timestamp ts(Instant i) {\n        return i == null ? null : Timestamp.from(i);\n    }\n\n    @Override\n    public void insert(Link link) {\n        try {\n            jdbc.update(\"INSERT INTO links(code, target_url, created_at, deleted_at, expires_at, custom, owner_id) VALUES (?, ?, ?, ?, ?, ?, ?)\",\n                    link.code(), link.targetUrl(), ts(link.createdAt()), ts(link.deletedAt()), ts(link.expiresAt()), link.custom(), link.ownerId());\n        } catch (DuplicateKeyException e) {\n            throw new AliasTakenException(link.code());\n        }\n    }\n\n    @Override\n    public Optional<Link> findByCode(String code) {\n        return jdbc.query(\"SELECT code, target_url, created_at, deleted_at, expires_at, custom, owner_id FROM links WHERE code = ?\", LINK_ROW, code)\n                .stream().findFirst();\n    }\n\n    @Override\n    public boolean exists(String code) {\n        Integer n = jdbc.queryForObject(\"SELECT COUNT(*) FROM links WHERE code = ?\", Integer.class, code);\n        return n != null && n > 0;\n    }\n\n    @Override\n    public boolean softDelete(String code, Instant at) {\n        return jdbc.update(\"UPDATE links SET deleted_at = ? WHERE code = ? AND deleted_at IS NULL\", ts(at), code) > 0;\n    }\n\n    @Override\n    public Optional<Link> findByIdempotencyKey(String key) {\n        return jdbc.query(\"SELECT code FROM idempotency_keys WHERE idem_key = ?\", (rs, i) -> rs.getString(1), key)\n                .stream().findFirst().flatMap(this::findByCode);\n    }\n\n    @Override\n    public void rememberIdempotencyKey(String key, String code, Instant at) {\n        try {\n            jdbc.update(\"INSERT INTO idempotency_keys(idem_key, code, created_at) VALUES (?, ?, ?)\", key, code, ts(at));\n        } catch (DuplicateKeyException ignored) {\n            // a concurrent request with the same key won; both callers observe the same link\n        }\n    }\n\n    @Override\n    public void recordClicks(List<ClickEvent> events) {\n        if (events.isEmpty()) return;\n        tx.executeWithoutResult(status -> jdbc.batchUpdate(\n                \"INSERT INTO clicks(code, occurred_at, referrer, user_agent) VALUES (?, ?, ?, ?)\",\n                events,\n                events.size(),\n                (ps, e) -> {\n                    ps.setString(1, e.code());\n                    ps.setTimestamp(2, ts(e.occurredAt()));\n                    ps.setString(3, e.referrer());\n                    ps.setString(4, e.userAgent());\n                }));\n    }\n\n    @Override\n    public LinkStats stats(String code, int days, int topN) {\n        Timestamp cutoff = ts(clock.instant().minus(days, ChronoUnit.DAYS));\n        record Totals(long n, Instant last) {}\n        Totals totals = jdbc.queryForObject(\"SELECT COUNT(*) AS n, MAX(occurred_at) AS last FROM clicks WHERE code = ?\",\n                (rs, i) -> new Totals(rs.getLong(\"n\"), instant(rs, \"last\")), code);\n        List<LinkStats.DayCount> byDay = jdbc.query(\n                \"SELECT CAST(occurred_at AS DATE) AS click_day, COUNT(*) AS clicks FROM clicks WHERE code = ? AND occurred_at >= ? GROUP BY CAST(occurred_at AS DATE) ORDER BY click_day\",\n                (rs, i) -> new LinkStats.DayCount(rs.getDate(\"click_day\").toLocalDate().toString(), rs.getLong(\"clicks\")), code, cutoff);\n        List<LinkStats.ReferrerCount> byRef = jdbc.query(\n                \"SELECT referrer, COUNT(*) AS clicks FROM clicks WHERE code = ? AND occurred_at >= ? GROUP BY referrer ORDER BY clicks DESC, referrer ASC LIMIT ?\",\n                (rs, i) -> new LinkStats.ReferrerCount(rs.getString(\"referrer\"), rs.getLong(\"clicks\")), code, cutoff, topN);\n        List<LinkStats.UserAgentCount> byUa = jdbc.query(\n                \"SELECT user_agent, COUNT(*) AS clicks FROM clicks WHERE code = ? AND occurred_at >= ? GROUP BY user_agent ORDER BY clicks DESC, user_agent ASC LIMIT ?\",\n                (rs, i) -> new LinkStats.UserAgentCount(rs.getString(\"user_agent\"), rs.getLong(\"clicks\")), code, cutoff, topN);\n        return new LinkStats(code, totals == null ? 0 : totals.n(), byDay, byRef, byUa, totals == null ? null : totals.last());\n    }\n\n    @Override\n    public void ping() {\n        jdbc.queryForObject(\"SELECT 1\", Integer.class);\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.repository;\n\nimport java.util.List;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.jdbc.core.JdbcTemplate;\n\n/**\n * Versioned, idempotent, in-code schema migration. Small enough at v1 to keep explicit; a Flyway\n * migration set is the drop-in replacement once the schema grows (documented in the limitations).\n * SQL is kept to the H2/PostgreSQL common subset.\n */\npublic class SchemaMigrator {\n\n    private static final Logger log = LoggerFactory.getLogger(SchemaMigrator.class);\n    public static final int CURRENT_VERSION = 2;\n\n    private final JdbcTemplate jdbc;\n\n    public SchemaMigrator(JdbcTemplate jdbc) {\n        this.jdbc = jdbc;\n    }\n\n    public int migrate() {\n        jdbc.execute(\"CREATE TABLE IF NOT EXISTS schema_version (version INTEGER NOT NULL)\");\n        Integer version = jdbc.query(\"SELECT version FROM schema_version\", rs -> rs.next() ? rs.getInt(1) : null);\n        if (version == null) {\n            createV1();\n            jdbc.update(\"INSERT INTO schema_version(version) VALUES (1)\");\n            version = 1;\n        }\n        if (version < 2) {\n            migrateToV2();\n            version = 2;\n        }\n        log.info(\"schema version {}\", version);\n        return version;\n    }\n\n    /**\n     * v2: optional expiry. Additive nullable column, so v1 rows keep working untouched and the migration\n     * is safe to run on a live database. Rolling the code back leaves the column in place, which v1\n     * ignores — forward-compatible.\n     */\n    private void migrateToV2() {\n        boolean present = Boolean.TRUE.equals(jdbc.query(\n                \"SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE UPPER(TABLE_NAME) = 'LINKS' AND UPPER(COLUMN_NAME) = 'EXPIRES_AT'\",\n                rs -> rs.next() && rs.getInt(1) > 0));\n        if (!present) jdbc.execute(\"ALTER TABLE links ADD COLUMN expires_at TIMESTAMP\");\n        jdbc.update(\"UPDATE schema_version SET version = 2\");\n    }\n\n    private void createV1() {\n        for (String ddl : List.of(\n                \"\"\"\n                CREATE TABLE IF NOT EXISTS links (\n                  code        VARCHAR(32)   PRIMARY KEY,\n                  target_url  VARCHAR(8192) NOT NULL,\n                  created_at  TIMESTAMP     NOT NULL,\n                  deleted_at  TIMESTAMP,\n                  custom      BOOLEAN       NOT NULL DEFAULT FALSE,\n                  owner_id    VARCHAR(128)\n                )\"\"\",\n                \"\"\"\n                CREATE TABLE IF NOT EXISTS idempotency_keys (\n                  idem_key    VARCHAR(128) PRIMARY KEY,\n                  code        VARCHAR(32)  NOT NULL,\n                  created_at  TIMESTAMP    NOT NULL\n                )\"\"\",\n                \"\"\"\n                CREATE TABLE IF NOT EXISTS clicks (\n                  id          BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\n                  code        VARCHAR(32)  NOT NULL,\n                  occurred_at TIMESTAMP    NOT NULL,\n                  referrer    VARCHAR(255) NOT NULL,\n                  user_agent  VARCHAR(64)  NOT NULL\n                )\"\"\",\n                \"CREATE INDEX IF NOT EXISTS idx_clicks_code_time ON clicks(code, occurred_at)\")) {\n            jdbc.execute(ddl);\n        }\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertNull;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport dev.rajeev.shortener.analytics.AnalyticsQueue;\nimport dev.rajeev.shortener.repository.InMemoryLinkRepository;\nimport dev.rajeev.shortener.repository.LinkStats;\nimport java.time.Clock;\nimport java.time.Instant;\nimport java.time.ZoneOffset;\nimport java.util.ArrayDeque;\nimport java.util.Deque;\nimport java.util.List;\nimport java.util.function.Predicate;\nimport org.junit.jupiter.api.AfterEach;\nimport org.junit.jupiter.api.Test;\n\nclass LinkServiceTest {\n\n    /** Test clock that advances one second per read, so ordering is deterministic. */\n    static class TickingClock extends Clock {\n        private Instant now = Instant.now().minusSeconds(60);\n\n        @Override public ZoneOffset getZone() { return ZoneOffset.UTC; }\n        @Override public Clock withZone(java.time.ZoneId zone) { return this; }\n        @Override public Instant instant() { now = now.plusSeconds(1); return now; }\n    }\n\n    static class QueuedCodes implements CodeGenerator {\n        final Deque<String> codes = new ArrayDeque<>(List.of(\"gen0001\", \"gen0002\", \"gen0003\"));\n\n        @Override\n        public String generate(Predicate<String> exists) {\n            while (!codes.isEmpty()) {\n                String c = codes.pop();\n                if (!exists.test(c)) return c;\n            }\n            throw new IllegalStateException(\"out of test codes\");\n        }\n    }\n\n    private final InMemoryLinkRepository repo = new InMemoryLinkRepository();\n    private final AnalyticsQueue analytics = new AnalyticsQueue(repo, 10_000, 10, 100, 3);\n    private final LinkService service = new LinkService(repo, new QueuedCodes(), analytics, new UrlPolicy(2048, List.of(\"localhost:8080\"), false), new TickingClock());\n\n    @AfterEach\n    void tearDown() {\n        analytics.close();\n    }\n\n    private static ErrorCode codeOf(Runnable r) {\n        DomainException e = assertThrows(DomainException.class, r::run);\n        return e.code();\n    }\n\n    @Test\n    void createsALinkWithAGeneratedCode() {\n        var result = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null);\n        assertTrue(result.created());\n        assertEquals(\"gen0001\", result.link().code());\n        assertEquals(\"https://example.com/\", result.link().targetUrl());\n        assertFalse(result.link().custom());\n        assertNull(result.link().deletedAt());\n    }\n\n    @Test\n    void usesACustomAliasWhenGiven() {\n        var result = service.create(new CreateLinkRequest(\"https://example.com\", \"my-link\", \"owner-1\", null), null);\n        assertEquals(\"my-link\", result.link().code());\n        assertTrue(result.link().custom());\n        assertEquals(\"owner-1\", result.link().ownerId());\n    }\n\n    @Test\n    void rejectsTakenReservedAndInvalidAliases() {\n        service.create(new CreateLinkRequest(\"https://example.com\", \"taken1\", null, null), null);\n        assertEquals(ErrorCode.ALIAS_TAKEN, codeOf(() -> service.create(new CreateLinkRequest(\"https://other.com\", \"taken1\", null, null), null)));\n        assertEquals(ErrorCode.ALIAS_RESERVED, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", \"health\", null, null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", \"a b\", null, null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"\", null, null, null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", null, \"x\".repeat(200), null), null)));\n    }\n\n    @Test\n    void rejectsDisallowedUrlsWithThePolicyReason() {\n        assertEquals(ErrorCode.URL_NOT_ALLOWED, codeOf(() -> service.create(new CreateLinkRequest(\"javascript:alert(1)\", null, null, null), null)));\n        assertEquals(ErrorCode.INVALID_URL, codeOf(() -> service.create(new CreateLinkRequest(\"nope\", null, null, null), null)));\n        assertEquals(ErrorCode.URL_NOT_ALLOWED, codeOf(() -> service.create(new CreateLinkRequest(\"http://localhost:8080/x\", null, null, null), null)));\n    }\n\n    @Test\n    void isIdempotentOnIdempotencyKey() {\n        var a = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), \"key-1\");\n        var b = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), \"key-1\");\n        assertTrue(a.created());\n        assertFalse(b.created());\n        assertEquals(a.link().code(), b.link().code());\n    }\n\n    @Test\n    void mapsCodeExhaustionToCodeExhausted() {\n        LinkService exhausted = new LinkService(repo, exists -> { throw new CodeExhaustedException(5); }, analytics, new UrlPolicy(2048, List.of(), false), Clock.systemUTC());\n        assertEquals(ErrorCode.CODE_EXHAUSTED, codeOf(() -> exhausted.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null)));\n    }\n\n    @Test\n    void resolvesActiveLinksAndTracksClicksAsynchronously() {\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null).link();\n        Link resolved = service.resolveAndTrack(link.code(), \"https://news.ycombinator.com/\", \"curl/8\");\n        assertEquals(\"https://example.com/\", resolved.targetUrl());\n        assertEquals(1, analytics.metrics().enqueued());\n        LinkStats stats = service.stats(link.code(), 30, 5);\n        assertEquals(1, stats.totalClicks());\n        assertEquals(List.of(new LinkStats.ReferrerCount(\"news.ycombinator.com\", 1)), stats.topReferrers());\n        assertEquals(List.of(new LinkStats.UserAgentCount(\"curl\", 1)), stats.topUserAgents());\n    }\n\n    @Test\n    void returnsNotFoundForUnknownAndGoneForDeleted() {\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.resolve(\"missing\")));\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null).link();\n        service.remove(link.code());\n        assertEquals(ErrorCode.GONE, codeOf(() -> service.resolve(link.code())));\n        assertEquals(ErrorCode.GONE, codeOf(() -> service.remove(link.code())));\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.remove(\"missing\")));\n    }\n\n    @Test\n    void keepsStatsReadableAfterDeletion() {\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null).link();\n        service.resolveAndTrack(link.code(), null, null);\n        service.remove(link.code());\n        assertEquals(1, service.stats(link.code(), 30, 5).totalClicks());\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.stats(\"missing\", 30, 5)));\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/repository/LinkRepositoryContractTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.repository;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertNull;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport dev.rajeev.shortener.analytics.ClickEvent;\nimport dev.rajeev.shortener.domain.Link;\nimport java.time.Instant;\nimport java.time.temporal.ChronoUnit;\nimport java.util.List;\nimport org.junit.jupiter.api.AfterEach;\nimport org.junit.jupiter.api.BeforeEach;\nimport org.junit.jupiter.api.Test;\n\n/**\n * Contract every LinkRepository adapter must satisfy. Adding Postgres later means adding one\n * subclass, nothing else.\n */\nabstract class LinkRepositoryContractTest {\n\n    protected LinkRepository repo;\n\n    protected abstract LinkRepository createRepository();\n\n    protected void cleanup() {}\n\n    @BeforeEach\n    void setUp() {\n        repo = createRepository();\n    }\n\n    @AfterEach\n    void tearDown() {\n        cleanup();\n    }\n\n    static Link link(String code) {\n        return new Link(code, \"https://example.com/\", Instant.parse(\"2026-01-01T00:00:00Z\"), null, null, false, null);\n    }\n\n    @Test\n    void persistsAnOptionalExpiry() {\n        Instant expires = Instant.parse(\"2030-01-01T00:00:00Z\");\n        repo.insert(new Link(\"exp1234\", \"https://example.com/\", Instant.parse(\"2026-01-01T00:00:00Z\"), null, expires, false, null));\n        assertEquals(expires, repo.findByCode(\"exp1234\").orElseThrow().expiresAt());\n        repo.insert(link(\"noexp12\"));\n        assertNull(repo.findByCode(\"noexp12\").orElseThrow().expiresAt());\n    }\n\n    @Test\n    void insertsAndFindsALink() {\n        Link l = new Link(\"abc1234\", \"https://example.com/\", Instant.parse(\"2026-01-01T00:00:00Z\"), null, null, true, \"u1\");\n        repo.insert(l);\n        assertEquals(l, repo.findByCode(\"abc1234\").orElseThrow());\n        assertTrue(repo.exists(\"abc1234\"));\n        assertFalse(repo.exists(\"nope\"));\n        assertTrue(repo.findByCode(\"nope\").isEmpty());\n    }\n\n    @Test\n    void rejectsDuplicateCodesAtomically() {\n        repo.insert(link(\"dup1234\"));\n        assertThrows(AliasTakenException.class, () -> repo.insert(link(\"dup1234\")));\n    }\n\n    @Test\n    void softDeletesOnceAndKeepsTheCodeReserved() {\n        repo.insert(link(\"del1234\"));\n        Instant at = Instant.parse(\"2026-02-01T00:00:00Z\");\n        assertTrue(repo.softDelete(\"del1234\", at));\n        assertFalse(repo.softDelete(\"del1234\", Instant.parse(\"2026-02-02T00:00:00Z\")));\n        assertEquals(at, repo.findByCode(\"del1234\").orElseThrow().deletedAt());\n        assertThrows(AliasTakenException.class, () -> repo.insert(link(\"del1234\")));\n        assertFalse(repo.softDelete(\"missing\", at));\n    }\n\n    @Test\n    void remembersIdempotencyKeys() {\n        repo.insert(link(\"idem123\"));\n        assertTrue(repo.findByIdempotencyKey(\"k1\").isEmpty());\n        repo.rememberIdempotencyKey(\"k1\", \"idem123\", Instant.now());\n        repo.rememberIdempotencyKey(\"k1\", \"idem123\", Instant.now()); // repeat is a no-op\n        assertEquals(\"idem123\", repo.findByIdempotencyKey(\"k1\").orElseThrow().code());\n    }\n\n    @Test\n    void aggregatesClickStats() {\n        repo.insert(link(\"stat123\"));\n        Instant today = Instant.now().truncatedTo(ChronoUnit.MILLIS);\n        Instant yesterday = today.minus(1, ChronoUnit.DAYS);\n        Instant ancient = Instant.parse(\"2020-01-01T00:00:00Z\");\n        repo.recordClicks(List.of(\n                new ClickEvent(\"stat123\", today, \"a.com\", \"Chrome\"),\n                new ClickEvent(\"stat123\", today, \"a.com\", \"curl\"),\n                new ClickEvent(\"stat123\", yesterday, \"b.com\", \"Chrome\"),\n                new ClickEvent(\"stat123\", ancient, \"old.com\", \"Bot\"),\n                new ClickEvent(\"other12\", today, \"z.com\", \"Chrome\")));\n        LinkStats s = repo.stats(\"stat123\", 30, 1);\n        assertEquals(\"stat123\", s.code());\n        assertEquals(4, s.totalClicks()); // total counts everything ever\n        assertEquals(3, s.clicksByDay().stream().mapToLong(LinkStats.DayCount::clicks).sum()); // window excludes the ancient click\n        assertEquals(List.of(new LinkStats.ReferrerCount(\"a.com\", 2)), s.topReferrers());\n        assertEquals(List.of(new LinkStats.UserAgentCount(\"Chrome\", 2)), s.topUserAgents());\n        assertEquals(today, s.lastClickAt());\n    }\n\n    @Test\n    void returnsEmptyStatsForAnUnclickedCode() {\n        LinkStats s = repo.stats(\"never12\", 30, 5);\n        assertEquals(0, s.totalClicks());\n        assertTrue(s.clicksByDay().isEmpty());\n        assertTrue(s.topReferrers().isEmpty());\n        assertNull(s.lastClickAt());\n    }\n\n    @Test\n    void emptyBatchIsANoOpAndPingWorks() {\n        repo.recordClicks(List.of());\n        repo.ping();\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/repository/SchemaMigratorTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.repository;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\n\nimport java.util.UUID;\nimport org.junit.jupiter.api.Test;\nimport org.springframework.jdbc.core.JdbcTemplate;\n\nclass SchemaMigratorTest {\n\n    private static JdbcTemplate fresh() {\n        org.h2.jdbcx.JdbcDataSource ds = new org.h2.jdbcx.JdbcDataSource();\n        ds.setURL(\"jdbc:h2:mem:\" + UUID.randomUUID() + \";MODE=PostgreSQL;DB_CLOSE_DELAY=-1\");\n        return new JdbcTemplate(ds);\n    }\n\n    @Test\n    void createsTheSchemaOnceAndIsIdempotent() {\n        JdbcTemplate jdbc = fresh();\n        assertEquals(SchemaMigrator.CURRENT_VERSION, new SchemaMigrator(jdbc).migrate());\n        assertEquals(SchemaMigrator.CURRENT_VERSION, new SchemaMigrator(jdbc).migrate());\n        assertEquals(Integer.valueOf(1), jdbc.queryForObject(\"SELECT COUNT(*) FROM schema_version\", Integer.class));\n        assertEquals(Integer.valueOf(2), jdbc.queryForObject(\"SELECT version FROM schema_version\", Integer.class));\n        assertEquals(Integer.valueOf(0), jdbc.queryForObject(\"SELECT COUNT(*) FROM links\", Integer.class));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ "Removed the .env.local from the previous attempt per policy feedback (path-allowlist)." ]
+      }
+    },
+    "CODE_PATCH:T4" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T4",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "579c3d7fc673de31",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "createdAt" : "2026-09-03T01:41:15.925569037Z",
+      "content" : {
+        "summary" : "Migration tests: a schema-v1 H2 database is upgraded in place to v2, legacy rows read back with expiresAt=null, new rows persist an expiry, and re-opening is idempotent.",
+        "taskId" : "T4",
+        "files" : [ {
+          "path" : "src/test/java/dev/rajeev/shortener/repository/SchemaUpgradeTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.repository;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertNull;\n\nimport dev.rajeev.shortener.domain.Link;\nimport java.time.Clock;\nimport java.time.Instant;\nimport java.util.UUID;\nimport org.junit.jupiter.api.Test;\nimport org.springframework.jdbc.core.JdbcTemplate;\nimport org.springframework.jdbc.datasource.DataSourceTransactionManager;\nimport org.springframework.transaction.support.TransactionTemplate;\n\n/**\n * Upgrade path: a database created by schema v1 (no expires_at column) must be migrated in place,\n * keep its rows, read them back with expiresAt = null, and survive being opened twice.\n */\nclass SchemaUpgradeTest {\n\n    private static org.h2.jdbcx.JdbcDataSource v1Database() {\n        org.h2.jdbcx.JdbcDataSource ds = new org.h2.jdbcx.JdbcDataSource();\n        ds.setURL(\"jdbc:h2:mem:\" + UUID.randomUUID() + \";MODE=PostgreSQL;DB_CLOSE_DELAY=-1\");\n        JdbcTemplate jdbc = new JdbcTemplate(ds);\n        jdbc.execute(\"CREATE TABLE schema_version (version INTEGER NOT NULL)\");\n        jdbc.update(\"INSERT INTO schema_version(version) VALUES (1)\");\n        jdbc.execute(\"CREATE TABLE links (code VARCHAR(32) PRIMARY KEY, target_url VARCHAR(8192) NOT NULL, created_at TIMESTAMP NOT NULL, deleted_at TIMESTAMP, custom BOOLEAN NOT NULL DEFAULT FALSE, owner_id VARCHAR(128))\");\n        jdbc.execute(\"CREATE TABLE idempotency_keys (idem_key VARCHAR(128) PRIMARY KEY, code VARCHAR(32) NOT NULL, created_at TIMESTAMP NOT NULL)\");\n        jdbc.execute(\"CREATE TABLE clicks (id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, code VARCHAR(32) NOT NULL, occurred_at TIMESTAMP NOT NULL, referrer VARCHAR(255) NOT NULL, user_agent VARCHAR(64) NOT NULL)\");\n        jdbc.update(\"INSERT INTO links(code, target_url, created_at) VALUES ('legacy1', 'https://example.com/', TIMESTAMP '2026-01-01 00:00:00')\");\n        return ds;\n    }\n\n    private static JdbcLinkRepository open(org.h2.jdbcx.JdbcDataSource ds) {\n        return new JdbcLinkRepository(new JdbcTemplate(ds), new TransactionTemplate(new DataSourceTransactionManager(ds)), Clock.systemUTC());\n    }\n\n    @Test\n    void addsExpiresAtBumpsTheVersionAndPreservesLegacyRows() {\n        org.h2.jdbcx.JdbcDataSource ds = v1Database();\n        JdbcLinkRepository repo = open(ds);\n        assertEquals(2, new JdbcTemplate(ds).queryForObject(\"SELECT version FROM schema_version\", Integer.class));\n        Link legacy = repo.findByCode(\"legacy1\").orElseThrow();\n        assertEquals(\"https://example.com/\", legacy.targetUrl());\n        assertNull(legacy.expiresAt());\n        Instant expires = Instant.parse(\"2030-01-01T00:00:00Z\");\n        repo.insert(new Link(\"new0001\", \"https://example.com/n\", Instant.parse(\"2026-02-01T00:00:00Z\"), null, expires, false, null));\n        assertEquals(expires, repo.findByCode(\"new0001\").orElseThrow().expiresAt());\n    }\n\n    @Test\n    void isIdempotentWhenReopened() {\n        org.h2.jdbcx.JdbcDataSource ds = v1Database();\n        open(ds);\n        open(ds);\n        assertEquals(2, new JdbcTemplate(ds).queryForObject(\"SELECT version FROM schema_version\", Integer.class));\n        assertEquals(1, new JdbcTemplate(ds).queryForObject(\"SELECT COUNT(*) FROM schema_version\", Integer.class));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "CODE_PATCH:T3" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T3",
+      "attempt" : 2,
+      "version" : 1,
+      "hash" : "0cdf5222887566c2",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "createdAt" : "2026-09-03T01:41:36.133342776Z",
+      "content" : {
+        "summary" : "Enforce and expose expiry: ErrorCode gains EXPIRED (mapped to 410 in ApiExceptionHandler.statusFor); LinkService rejects a past expiresAt (VALIDATION) and resolve() throws EXPIRED against the injected clock; service unit tests with the fake clock.",
+        "taskId" : "T3",
+        "files" : [ {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/ErrorCode.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\n/**\n * Domain outcomes that are not success. The HTTP status for each lives in the web layer\n * ({@code ApiExceptionHandler}) as an exhaustive switch, so adding a code here without deciding\n * its status is a compile error, not a 500 in production.\n */\npublic enum ErrorCode {\n    VALIDATION,\n    INVALID_URL,\n    URL_NOT_ALLOWED,\n    ALIAS_TAKEN,\n    ALIAS_RESERVED,\n    NOT_FOUND,\n    GONE,\n    EXPIRED,\n    CODE_EXHAUSTED,\n    RATE_LIMITED\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport dev.rajeev.shortener.analytics.AnalyticsQueue;\nimport dev.rajeev.shortener.analytics.ClickEvent;\nimport dev.rajeev.shortener.analytics.ClickNormalizer;\nimport dev.rajeev.shortener.repository.AliasTakenException;\nimport dev.rajeev.shortener.repository.LinkRepository;\nimport dev.rajeev.shortener.repository.LinkStats;\nimport java.time.Clock;\nimport java.util.Locale;\n\n/**\n * Application service: owns the use cases, knows nothing about HTTP. Routes are a thin adapter\n * over this class, which is what makes behaviour testable without a server and what lets the\n * orchestrator's impact analysis point at one module when a rule changes.\n */\npublic class LinkService {\n\n    public record CreateResult(Link link, boolean created) {}\n\n    private final LinkRepository repo;\n    private final CodeGenerator codegen;\n    private final AnalyticsQueue analytics;\n    private final UrlPolicy urlPolicy;\n    private final Clock clock;\n\n    public LinkService(LinkRepository repo, CodeGenerator codegen, AnalyticsQueue analytics, UrlPolicy urlPolicy, Clock clock) {\n        this.repo = repo;\n        this.codegen = codegen;\n        this.analytics = analytics;\n        this.urlPolicy = urlPolicy;\n        this.clock = clock;\n    }\n\n    public CreateResult create(CreateLinkRequest req, String idempotencyKey) {\n        if (idempotencyKey != null && !idempotencyKey.isBlank()) {\n            var existing = repo.findByIdempotencyKey(idempotencyKey);\n            if (existing.isPresent()) return new CreateResult(existing.get(), false);\n        }\n        validate(req);\n        validateExpiry(req);\n\n        String normalized = switch (urlPolicy.evaluate(req.url())) {\n            case UrlPolicy.Ok ok -> ok.normalized();\n            case UrlPolicy.Rejected rejected -> throw new DomainException(rejected.code(), rejected.message());\n        };\n\n        String code;\n        if (req.customAlias() != null) {\n            if (LinkRules.RESERVED_CODES.contains(req.customAlias().toLowerCase(Locale.ROOT))) {\n                throw new DomainException(ErrorCode.ALIAS_RESERVED, \"'\" + req.customAlias() + \"' is reserved\");\n            }\n            code = req.customAlias();\n        } else {\n            try {\n                code = codegen.generate(repo::exists);\n            } catch (CodeExhaustedException e) {\n                throw new DomainException(ErrorCode.CODE_EXHAUSTED, e.getMessage());\n            }\n        }\n\n        Link link = new Link(code, normalized, clock.instant(), null, req.expiresAt(), req.customAlias() != null, req.ownerId());\n        try {\n            repo.insert(link);\n        } catch (AliasTakenException e) {\n            throw new DomainException(ErrorCode.ALIAS_TAKEN, e.getMessage());\n        }\n        if (idempotencyKey != null && !idempotencyKey.isBlank()) repo.rememberIdempotencyKey(idempotencyKey, code, clock.instant());\n        return new CreateResult(link, true);\n    }\n\n    /** Explicit validation so the rules hold for every caller, not only for @Valid at the HTTP edge. */\n    private static void validate(CreateLinkRequest req) {\n        if (req == null || req.url() == null || req.url().isBlank()) throw new DomainException(ErrorCode.VALIDATION, \"url is required\");\n        if (req.url().length() > 8192) throw new DomainException(ErrorCode.VALIDATION, \"url is too long\");\n        if (req.customAlias() != null && !LinkRules.CUSTOM_ALIAS_PATTERN.matcher(req.customAlias()).matches()) {\n            throw new DomainException(ErrorCode.VALIDATION, \"alias must be 4-32 URL-safe characters\");\n        }\n        if (req.ownerId() != null && req.ownerId().length() > 128) throw new DomainException(ErrorCode.VALIDATION, \"ownerId is too long\");\n    }\n\n    private void validateExpiry(CreateLinkRequest req) {\n        if (req.expiresAt() != null && !req.expiresAt().isAfter(clock.instant())) {\n            throw new DomainException(ErrorCode.VALIDATION, \"expiresAt must be in the future\");\n        }\n    }\n\n    /** Returns the active link or throws NOT_FOUND / GONE. */\n    public Link resolve(String code) {\n        Link link = repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        if (link.deleted()) throw new DomainException(ErrorCode.GONE, \"short link has been deleted\");\n        // Expiry is evaluated on read against the injected clock: no background sweeper, no drift between workers.\n        if (link.expiredAt(clock.instant())) throw new DomainException(ErrorCode.EXPIRED, \"short link has expired\");\n        return link;\n    }\n\n    /** Resolve + fire-and-forget analytics. Redirect latency never waits on the store. */\n    public Link resolveAndTrack(String code, String referrer, String userAgent) {\n        Link link = resolve(code);\n        analytics.enqueue(new ClickEvent(link.code(), clock.instant(), ClickNormalizer.referrer(referrer), ClickNormalizer.userAgent(userAgent)));\n        return link;\n    }\n\n    public Link get(String code) {\n        return resolve(code);\n    }\n\n    public void remove(String code) {\n        Link link = repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        if (link.deleted()) throw new DomainException(ErrorCode.GONE, \"short link has already been deleted\");\n        repo.softDelete(code, clock.instant());\n    }\n\n    public LinkStats stats(String code, int days, int topN) {\n        repo.findByCode(code).orElseThrow(() -> new DomainException(ErrorCode.NOT_FOUND, \"short link not found\"));\n        // Stats stay readable after deletion: owners often want the final numbers.\n        analytics.flush();\n        return repo.stats(code, days, topN);\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.web;\n\nimport dev.rajeev.shortener.domain.DomainException;\nimport dev.rajeev.shortener.domain.ErrorCode;\nimport jakarta.servlet.http.HttpServletRequest;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.http.converter.HttpMessageNotReadableException;\nimport org.springframework.web.HttpRequestMethodNotSupportedException;\nimport org.springframework.web.bind.MethodArgumentNotValidException;\nimport org.springframework.web.bind.annotation.ExceptionHandler;\nimport org.springframework.web.bind.annotation.RestControllerAdvice;\nimport org.springframework.web.method.annotation.HandlerMethodValidationException;\nimport org.springframework.web.servlet.resource.NoResourceFoundException;\n\n/**\n * One place where domain outcomes become HTTP statuses. {@link #statusFor} is an exhaustive switch\n * over {@link ErrorCode}: adding a code without deciding its status does not compile.\n */\n@RestControllerAdvice\npublic class ApiExceptionHandler {\n\n    private static final Logger log = LoggerFactory.getLogger(ApiExceptionHandler.class);\n\n    static HttpStatus statusFor(ErrorCode code) {\n        return switch (code) {\n            case VALIDATION, INVALID_URL -> HttpStatus.BAD_REQUEST;\n            case URL_NOT_ALLOWED, ALIAS_RESERVED -> HttpStatus.UNPROCESSABLE_ENTITY;\n            case ALIAS_TAKEN -> HttpStatus.CONFLICT;\n            case NOT_FOUND -> HttpStatus.NOT_FOUND;\n            case GONE, EXPIRED -> HttpStatus.GONE;\n            case CODE_EXHAUSTED -> HttpStatus.SERVICE_UNAVAILABLE;\n            case RATE_LIMITED -> HttpStatus.TOO_MANY_REQUESTS;\n        };\n    }\n\n    @ExceptionHandler(DomainException.class)\n    ResponseEntity<ApiError> domain(DomainException e, HttpServletRequest req) {\n        return ResponseEntity.status(statusFor(e.code())).body(new ApiError(e.code().name(), e.getMessage(), RequestIdFilter.current(req)));\n    }\n\n    @ExceptionHandler({MethodArgumentNotValidException.class, HandlerMethodValidationException.class, HttpMessageNotReadableException.class})\n    ResponseEntity<ApiError> validation(Exception e, HttpServletRequest req) {\n        String message = e instanceof MethodArgumentNotValidException m && m.getBindingResult().getFieldError() != null\n                ? m.getBindingResult().getFieldError().getField() + \": \" + m.getBindingResult().getFieldError().getDefaultMessage()\n                : \"request body is malformed\";\n        return ResponseEntity.badRequest().body(new ApiError(ErrorCode.VALIDATION.name(), message, RequestIdFilter.current(req)));\n    }\n\n    @ExceptionHandler(NoResourceFoundException.class)\n    ResponseEntity<ApiError> notFound(NoResourceFoundException e, HttpServletRequest req) {\n        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError(ErrorCode.NOT_FOUND.name(), \"no such resource\", RequestIdFilter.current(req)));\n    }\n\n    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)\n    ResponseEntity<ApiError> method(HttpRequestMethodNotSupportedException e, HttpServletRequest req) {\n        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(new ApiError(\"METHOD_NOT_ALLOWED\", e.getMessage(), RequestIdFilter.current(req)));\n    }\n\n    @ExceptionHandler(Exception.class)\n    ResponseEntity<ApiError> unhandled(Exception e, HttpServletRequest req) {\n        log.error(\"unhandled error [requestId={}]\", RequestIdFilter.current(req), e);\n        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiError(\"INTERNAL\", \"internal error\", RequestIdFilter.current(req)));\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/dev/rajeev/shortener/domain/LinkServiceTest.java",
+          "action" : "write",
+          "content" : "package dev.rajeev.shortener.domain;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertNull;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport dev.rajeev.shortener.analytics.AnalyticsQueue;\nimport dev.rajeev.shortener.repository.InMemoryLinkRepository;\nimport dev.rajeev.shortener.repository.LinkStats;\nimport java.time.Clock;\nimport java.time.Instant;\nimport java.time.ZoneOffset;\nimport java.util.ArrayDeque;\nimport java.util.Deque;\nimport java.util.List;\nimport java.util.function.Predicate;\nimport org.junit.jupiter.api.AfterEach;\nimport org.junit.jupiter.api.Test;\n\nclass LinkServiceTest {\n\n    /** Test clock that advances one second per read, so ordering is deterministic. */\n    static class TickingClock extends Clock {\n        private Instant now = Instant.now().minusSeconds(60);\n\n        @Override public ZoneOffset getZone() { return ZoneOffset.UTC; }\n        @Override public Clock withZone(java.time.ZoneId zone) { return this; }\n        @Override public Instant instant() { now = now.plusSeconds(1); return now; }\n    }\n\n    static class QueuedCodes implements CodeGenerator {\n        final Deque<String> codes = new ArrayDeque<>(List.of(\"gen0001\", \"gen0002\", \"gen0003\"));\n\n        @Override\n        public String generate(Predicate<String> exists) {\n            while (!codes.isEmpty()) {\n                String c = codes.pop();\n                if (!exists.test(c)) return c;\n            }\n            throw new IllegalStateException(\"out of test codes\");\n        }\n    }\n\n    private final InMemoryLinkRepository repo = new InMemoryLinkRepository();\n    private final AnalyticsQueue analytics = new AnalyticsQueue(repo, 10_000, 10, 100, 3);\n    private final LinkService service = new LinkService(repo, new QueuedCodes(), analytics, new UrlPolicy(2048, List.of(\"localhost:8080\"), false), new TickingClock());\n\n    @AfterEach\n    void tearDown() {\n        analytics.close();\n    }\n\n    private static ErrorCode codeOf(Runnable r) {\n        DomainException e = assertThrows(DomainException.class, r::run);\n        return e.code();\n    }\n\n    @Test\n    void createsALinkWithAGeneratedCode() {\n        var result = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null);\n        assertTrue(result.created());\n        assertEquals(\"gen0001\", result.link().code());\n        assertEquals(\"https://example.com/\", result.link().targetUrl());\n        assertFalse(result.link().custom());\n        assertNull(result.link().deletedAt());\n    }\n\n    @Test\n    void usesACustomAliasWhenGiven() {\n        var result = service.create(new CreateLinkRequest(\"https://example.com\", \"my-link\", \"owner-1\", null), null);\n        assertEquals(\"my-link\", result.link().code());\n        assertTrue(result.link().custom());\n        assertEquals(\"owner-1\", result.link().ownerId());\n    }\n\n    @Test\n    void rejectsTakenReservedAndInvalidAliases() {\n        service.create(new CreateLinkRequest(\"https://example.com\", \"taken1\", null, null), null);\n        assertEquals(ErrorCode.ALIAS_TAKEN, codeOf(() -> service.create(new CreateLinkRequest(\"https://other.com\", \"taken1\", null, null), null)));\n        assertEquals(ErrorCode.ALIAS_RESERVED, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", \"health\", null, null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", \"a b\", null, null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"\", null, null, null), null)));\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", null, \"x\".repeat(200), null), null)));\n    }\n\n    @Test\n    void rejectsDisallowedUrlsWithThePolicyReason() {\n        assertEquals(ErrorCode.URL_NOT_ALLOWED, codeOf(() -> service.create(new CreateLinkRequest(\"javascript:alert(1)\", null, null, null), null)));\n        assertEquals(ErrorCode.INVALID_URL, codeOf(() -> service.create(new CreateLinkRequest(\"nope\", null, null, null), null)));\n        assertEquals(ErrorCode.URL_NOT_ALLOWED, codeOf(() -> service.create(new CreateLinkRequest(\"http://localhost:8080/x\", null, null, null), null)));\n    }\n\n    @Test\n    void isIdempotentOnIdempotencyKey() {\n        var a = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), \"key-1\");\n        var b = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), \"key-1\");\n        assertTrue(a.created());\n        assertFalse(b.created());\n        assertEquals(a.link().code(), b.link().code());\n    }\n\n    @Test\n    void mapsCodeExhaustionToCodeExhausted() {\n        LinkService exhausted = new LinkService(repo, exists -> { throw new CodeExhaustedException(5); }, analytics, new UrlPolicy(2048, List.of(), false), Clock.systemUTC());\n        assertEquals(ErrorCode.CODE_EXHAUSTED, codeOf(() -> exhausted.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null)));\n    }\n\n    @Test\n    void storesExpiresAtAndExposesItOnTheLink() {\n        Instant expires = Instant.now().plusSeconds(3600);\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, expires), null).link();\n        assertEquals(expires, link.expiresAt());\n        assertNull(service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null).link().expiresAt());\n    }\n\n    @Test\n    void rejectsAnExpiryInThePastAsValidation() {\n        assertEquals(ErrorCode.VALIDATION, codeOf(() -> service.create(new CreateLinkRequest(\"https://example.com\", null, null, Instant.now().minusSeconds(3600)), null)));\n    }\n\n    @Test\n    void resolvesExpiredOnceTheInjectedClockPassesExpiresAtAndStatsStayReadable() {\n        // The fake clock advances one second per read; expire 2.5 s from the current tick.\n        Instant expires = Instant.now().minusSeconds(60).plusMillis(3500);\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, expires), null).link();\n        service.resolveAndTrack(link.code(), null, null); // still valid\n        assertEquals(ErrorCode.EXPIRED, codeOf(() -> service.resolve(link.code()))); // clock has moved past expiry\n        assertEquals(1, service.stats(link.code(), 30, 5).totalClicks());\n    }\n\n    @Test\n    void resolvesActiveLinksAndTracksClicksAsynchronously() {\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null).link();\n        Link resolved = service.resolveAndTrack(link.code(), \"https://news.ycombinator.com/\", \"curl/8\");\n        assertEquals(\"https://example.com/\", resolved.targetUrl());\n        assertEquals(1, analytics.metrics().enqueued());\n        LinkStats stats = service.stats(link.code(), 30, 5);\n        assertEquals(1, stats.totalClicks());\n        assertEquals(List.of(new LinkStats.ReferrerCount(\"news.ycombinator.com\", 1)), stats.topReferrers());\n        assertEquals(List.of(new LinkStats.UserAgentCount(\"curl\", 1)), stats.topUserAgents());\n    }\n\n    @Test\n    void returnsNotFoundForUnknownAndGoneForDeleted() {\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.resolve(\"missing\")));\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null).link();\n        service.remove(link.code());\n        assertEquals(ErrorCode.GONE, codeOf(() -> service.resolve(link.code())));\n        assertEquals(ErrorCode.GONE, codeOf(() -> service.remove(link.code())));\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.remove(\"missing\")));\n    }\n\n    @Test\n    void keepsStatsReadableAfterDeletion() {\n        Link link = service.create(new CreateLinkRequest(\"https://example.com\", null, null, null), null).link();\n        service.resolveAndTrack(link.code(), null, null);\n        service.remove(link.code());\n        assertEquals(1, service.stats(link.code(), 30, 5).totalClicks());\n        assertEquals(ErrorCode.NOT_FOUND, codeOf(() -> service.stats(\"missing\", 30, 5)));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ "Fixes the compile error from attempt 1 by adding EXPIRED to the exhaustive status switch in ApiExceptionHandler (protected file — needs reviewer approval)." ]
+      }
+    },
+    "REVIEW_REPORT" : {
+      "kind" : "REVIEW_REPORT",
+      "producedBy" : "review",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "ca85f88c7244abde",
+      "inputHashes" : {
+        "ARCHITECTURE" : "6bd3ce43fe7e1214",
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "createdAt" : "2026-09-03T01:41:36.264326197Z",
+      "content" : {
+        "verdict" : "approve",
+        "summary" : "Change is small, additive and well-tested. Expiry is enforced in one place (LinkService.resolve) and inherited by both read paths; stats intentionally bypass it. Migration is additive and idempotent with upgrade tests against a v1 database. The only protected-file change (ApiExceptionHandler) is a single switch case.",
+        "findings" : [ {
+          "severity" : "low",
+          "category" : "correctness",
+          "file" : "src/main/java/dev/rajeev/shortener/domain/LinkService.java",
+          "issue" : "validateExpiry runs after the idempotency short-circuit, so a replayed request with a now-past expiresAt still returns the original link.",
+          "recommendation" : "Intended: idempotent replays must return the original outcome. Document it."
+        }, {
+          "severity" : "low",
+          "category" : "maintainability",
+          "file" : "src/main/java/dev/rajeev/shortener/repository/SchemaMigrator.java",
+          "issue" : "Migrations are hand-rolled inside the repository.",
+          "recommendation" : "Fine at v2; move to Flyway before v4."
+        }, {
+          "severity" : "info",
+          "category" : "testing",
+          "file" : "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java",
+          "issue" : "AC-4/AC-5 use real sleeps (1.2 s).",
+          "recommendation" : "Inject a Clock bean override for integration tests to remove wall-clock waits."
+        }, {
+          "severity" : "info",
+          "category" : "compliance",
+          "file" : "src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java",
+          "issue" : "Protected file modified.",
+          "recommendation" : "Diff reviewed: `case GONE, EXPIRED -> HttpStatus.GONE`. No handler logic changed. Approved via policy:implement:T3 checkpoint."
+        } ],
+        "policySummary" : [ "path-allowlist blocked a stray .env.local in T2 attempt 1 (retry succeeded)", "protected-files-require-approval raised on T3 attempt 2 and was approved by the reviewer" ]
+      }
+    },
+    "DOC_UPDATE" : {
+      "kind" : "DOC_UPDATE",
+      "producedBy" : "docs",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "1f62adb9ed356887",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214"
+      },
+      "createdAt" : "2026-09-03T01:41:36.271220392Z",
+      "content" : {
+        "summary" : "Documentation for link expiry: CHANGELOG entry, README section, openapi.yaml contract update, and ADR-0003 recording the read-time enforcement and additive migration decisions.",
+        "files" : [ {
+          "path" : "CHANGELOG.md",
+          "action" : "write",
+          "content" : "# Changelog\n\n## 1.1.0 — link expiry\n\n### Added\n- `expiresAt` (optional, ISO-8601, must be in the future) on `POST /api/links`.\n- `expiresAt` on every link response (`null` when the link never expires).\n- `410 EXPIRED` from `GET /:code` and `GET /api/links/:code` once a link has expired. Stats stay readable.\n- SQLite schema v2: `links.expires_at` (nullable). Migration runs automatically and is idempotent.\n\n### Compatibility\n- Existing clients are unaffected: the field is optional and previously created links never expire.\n- Rolling back to 1.0.0 needs no schema rollback; v1 ignores the new column.\n\n## 1.0.0\n- Initial release: create/redirect/metadata/delete/stats, batched analytics, rate limiting, idempotent create, SSRF-safe URL policy, health/readiness/metrics, OpenAPI.\n",
+          "delete" : false
+        }, {
+          "path" : "README.md",
+          "action" : "write",
+          "content" : "# URL shortener service\n\nCreate short links, redirect with click analytics, and operate it safely.\n\n## Link expiry (since 1.1.0)\n\nSet `expiresAt` when creating a link to make it stop working at a fixed instant:\n\n```bash\ncurl -X POST http://localhost:8080/api/links \\\n  -H 'content-type: application/json' \\\n  -d '{\"url\":\"https://example.com/spring-sale\",\"expiresAt\":\"2026-12-31T23:59:59Z\"}'\n```\n\n- `expiresAt` must be an ISO-8601 instant in the future, otherwise `400 VALIDATION`.\n- After that instant, `GET /:code` and `GET /api/links/:code` answer `410` with `error: \"EXPIRED\"` (distinct from `GONE`, which means deleted).\n- `GET /api/links/:code/stats` keeps working after expiry so campaign numbers survive the campaign.\n- Expiry is evaluated on read against the server clock. There is no background job and no purge.\n\n## Running\n\n```bash\nmvn spring-boot:run        # SERVER_PORT, SHORTENER_BASE_URL, SPRING_DATASOURCE_URL via env\nmvn test\n```\n\nContract: `src/main/resources/static/openapi.yaml` (served at `/openapi.yaml`).\n",
+          "delete" : false
+        }, {
+          "path" : "docs/adr/0003-link-expiry.md",
+          "action" : "write",
+          "content" : "# ADR-0003: Link expiry is enforced at read time with an additive schema change\n\n**Status:** accepted · **Date:** 2026-09-02\n\n## Context\nCampaign links need a hard end date. The service already soft-deletes links and keeps analytics after deletion; the expiry feature must be backward compatible for clients and stored data, and must not add operational moving parts.\n\n## Decision\n1. `Link.expiresAt: string | null`. `LinkService.resolve()` throws `EXPIRED` when `now >= expiresAt`, using the injected clock. Both read paths (redirect, metadata) inherit the check; `stats()` deliberately does not.\n2. The database gains `links.expires_at TIMESTAMP NULL` via an idempotent in-code migration guarded by `schema_version` (1 → 2), using an INFORMATION_SCHEMA check that works on H2 and PostgreSQL.\n3. `EXPIRED` maps to HTTP 410, alongside `GONE`, with a distinct error code so clients can tell the two apart.\n4. \"Future only\" is validated in `LinkService` against the injected `Clock` and surfaces as `400 VALIDATION`.\n\n## Alternatives considered\n- Background sweeper that soft-deletes expired rows: extra infrastructure, and it would conflate \"expired\" with \"deleted\".\n- Separate expiry table: more joins for a single nullable column.\n- 404 for expired links: violates the requirement for a clear signal.\n\n## Consequences\n- Rollback to v1 requires no schema rollback; links with an expiry would temporarily stop expiring under v1.\n- Migrations remain hand-rolled in the repository; extract a runner before the schema grows further.\n- Clock skew across instances can make expiry appear a few seconds inconsistent; acceptable for campaign links.\n",
+          "delete" : false
+        }, {
+          "path" : "src/main/resources/static/openapi.yaml",
+          "action" : "write",
+          "content" : "openapi: 3.0.3\ninfo:\n  title: URL Shortener API\n  version: 1.1.0\n  description: Create short links, redirect with click analytics, and read statistics. Contract-first; every path below is covered by an integration test.\nservers:\n  - url: http://localhost:8080\ntags:\n  - name: links\n  - name: analytics\n  - name: ops\npaths:\n  /api/links:\n    post:\n      tags: [links]\n      summary: Create a short link\n      description: Send an `Idempotency-Key` header to make retries safe; the same key returns the original link with 200 instead of creating a duplicate. Rate-limited per client IP.\n      parameters:\n        - in: header\n          name: Idempotency-Key\n          required: false\n          schema: { type: string, maxLength: 128 }\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema: { $ref: '#/components/schemas/CreateLinkRequest' }\n      responses:\n        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/LinkResponse' } } } }\n        '200': { description: Existing link returned for a repeated Idempotency-Key, content: { application/json: { schema: { $ref: '#/components/schemas/LinkResponse' } } } }\n        '400': { description: Malformed request or URL (VALIDATION, INVALID_URL), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }\n        '409': { description: Custom alias already in use (ALIAS_TAKEN), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }\n        '422': { description: URL rejected by policy or alias reserved (URL_NOT_ALLOWED, ALIAS_RESERVED), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }\n        '429': { description: Rate limited (RATE_LIMITED), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }\n  /api/links/{code}:\n    parameters:\n      - $ref: '#/components/parameters/Code'\n    get:\n      tags: [links]\n      summary: Get short link metadata\n      responses:\n        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/LinkResponse' } } } }\n        '404': { description: Unknown code, content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }\n        '410': { description: Link was deleted (GONE) or has expired (EXPIRED), content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }\n    delete:\n      tags: [links]\n      summary: Delete a short link (soft delete; the code is never reissued)\n      responses:\n        '204': { description: Deleted }\n        '404': { description: Unknown code }\n        '410': { description: Already deleted }\n  /api/links/{code}/stats:\n    parameters:\n      - $ref: '#/components/parameters/Code'\n    get:\n      tags: [analytics]\n      summary: Click analytics for a short link (readable after deletion)\n      parameters:\n        - { in: query, name: days, schema: { type: integer, minimum: 1, maximum: 365, default: 30 } }\n        - { in: query, name: topN, schema: { type: integer, minimum: 1, maximum: 50, default: 5 } }\n      responses:\n        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/LinkStats' } } } }\n        '404': { description: Unknown code }\n  /{code}:\n    parameters:\n      - $ref: '#/components/parameters/Code'\n    get:\n      tags: [links]\n      summary: Redirect to the target URL (302, Cache-Control no-store); records a click asynchronously. Not rate-limited.\n      responses:\n        '302': { description: Redirect, headers: { Location: { schema: { type: string, format: uri } } } }\n        '404': { description: Unknown code }\n        '410': { description: Deleted (GONE) or expired (EXPIRED) }\n  /actuator/health/liveness:\n    get: { tags: [ops], summary: Liveness, responses: { '200': { description: UP } } }\n  /actuator/health/readiness:\n    get: { tags: [ops], summary: Readiness (503 when the store cannot be pinged), responses: { '200': { description: UP }, '503': { description: OUT_OF_SERVICE } } }\n  /actuator/metrics/{name}:\n    get:\n      tags: [ops]\n      summary: Micrometer metric (e.g. analytics.queue.dropped, analytics.queue.pending)\n      parameters:\n        - { in: path, name: name, required: true, schema: { type: string } }\n      responses:\n        '200': { description: OK }\ncomponents:\n  parameters:\n    Code:\n      in: path\n      name: code\n      required: true\n      schema: { type: string, pattern: '^[A-Za-z0-9_-]{4,32}$' }\n  schemas:\n    CreateLinkRequest:\n      type: object\n      required: [url]\n      properties:\n        url: { type: string, maxLength: 8192, description: Absolute http(s) URL. Private-network, credentialed and self-referencing targets are rejected. }\n        customAlias: { type: string, pattern: '^[A-Za-z0-9_-]{4,32}$' }\n        ownerId: { type: string, maxLength: 128 }\n        expiresAt: { type: string, format: date-time, description: Optional hard expiry; must be in the future. }\n    LinkResponse:\n      type: object\n      required: [code, shortUrl, targetUrl, createdAt, expiresAt, custom]\n      properties:\n        code: { type: string }\n        shortUrl: { type: string, format: uri }\n        targetUrl: { type: string, format: uri }\n        createdAt: { type: string, format: date-time }\n        expiresAt: { type: string, format: date-time, nullable: true, description: Hard expiry; null when the link never expires }\n        custom: { type: boolean }\n    LinkStats:\n      type: object\n      required: [code, totalClicks, clicksByDay, topReferrers, topUserAgents, lastClickAt]\n      properties:\n        code: { type: string }\n        totalClicks: { type: integer, format: int64 }\n        clicksByDay: { type: array, items: { type: object, properties: { day: { type: string, format: date }, clicks: { type: integer } } } }\n        topReferrers: { type: array, items: { type: object, properties: { referrer: { type: string }, clicks: { type: integer } } } }\n        topUserAgents: { type: array, items: { type: object, properties: { userAgent: { type: string }, clicks: { type: integer } } } }\n        lastClickAt: { type: string, format: date-time, nullable: true }\n    ApiError:\n      type: object\n      required: [error, message]\n      properties:\n        error: { type: string, enum: [VALIDATION, INVALID_URL, URL_NOT_ALLOWED, ALIAS_TAKEN, ALIAS_RESERVED, NOT_FOUND, GONE, EXPIRED, CODE_EXHAUSTED, RATE_LIMITED, INTERNAL] }\n        message: { type: string }\n        requestId: { type: string }\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "TEST_REPORT" : {
+      "kind" : "TEST_REPORT",
+      "producedBy" : "test",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "4a63e800b3d731c0",
+      "inputHashes" : {
+        "TASK_PLAN" : "e62bdc13682ae57c"
+      },
+      "createdAt" : "2026-09-03T01:41:58.520837578Z",
+      "content" : {
+        "toolchain" : "javac",
+        "typecheck" : {
+          "ok" : true,
+          "output" : "Picked up JAVA_TOOL_OPTIONS: \nPicked up JAVA_TOOL_OPTIONS:"
+        },
+        "tests" : {
+          "ok" : true,
+          "passed" : 106,
+          "failed" : 0,
+          "total" : 106,
+          "durationMs" : 17090,
+          "failures" : [ ]
+        },
+        "verdict" : "green"
+      }
+    },
+    "RELEASE_CHECKLIST" : {
+      "kind" : "RELEASE_CHECKLIST",
+      "producedBy" : "release",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "6764fa33b08be2ae",
+      "inputHashes" : {
+        "TEST_REPORT" : "4a63e800b3d731c0",
+        "REVIEW_REPORT" : "ca85f88c7244abde",
+        "ARCHITECTURE" : "6bd3ce43fe7e1214"
+      },
+      "createdAt" : "2026-09-03T01:41:58.554288262Z",
+      "content" : {
+        "version" : "1.1.0",
+        "changeSummary" : "Optional hard expiry for short links (expiresAt). Expired links answer 410 EXPIRED; stats remain readable; additive SQLite migration to schema v2.",
+        "changes" : [ "POST /api/links accepts optional expiresAt (ISO-8601, future-only)", "All link responses include expiresAt (null when absent)", "GET /:code and GET /api/links/:code return 410 EXPIRED after expiry", "Schema v2: links.expires_at (nullable, additive, idempotent migration; H2 and PostgreSQL)", "Tests: acceptance (AC-1..AC-5), service fake-clock, repository contract, v1->v2 upgrade" ],
+        "riskAssessment" : {
+          "level" : "low",
+          "rationale" : "Backward-compatible API (optional field), additive schema, read-time enforcement with no new infrastructure, full suite green including migration tests."
+        },
+        "rollbackPlan" : [ "Redeploy the previous build (v1.0.0).", "Leave the expires_at column and schema_version=2 in place; v1 ignores both.", "Communicate that links created with an expiry during the window will not expire under v1 until roll-forward.", "Roll forward once the issue is fixed; the migration is idempotent so no manual schema work is needed." ],
+        "checklist" : [ {
+          "item" : "Typecheck and full test suite green",
+          "status" : "done",
+          "evidence" : "test-report: green"
+        }, {
+          "item" : "Security/quality review approved",
+          "status" : "done",
+          "evidence" : "review-report: approve, no high/critical findings"
+        }, {
+          "item" : "Protected-file change approved by a human",
+          "status" : "done",
+          "evidence" : "policy:implement:T3 approval"
+        }, {
+          "item" : "Schema migration is additive and tested",
+          "status" : "done",
+          "evidence" : "src/test/java/dev/rajeev/shortener/repository/SchemaUpgradeTest.java"
+        }, {
+          "item" : "openapi.yaml updated for expiresAt and 410 EXPIRED",
+          "status" : "done",
+          "evidence" : "docs stage patch"
+        }, {
+          "item" : "CHANGELOG and README updated",
+          "status" : "done",
+          "evidence" : "docs stage patch"
+        }, {
+          "item" : "Rollback plan documented",
+          "status" : "done",
+          "evidence" : "this checklist"
+        } ],
+        "goNoGo" : "go"
+      }
+    }
+  },
+  "approvals" : {
+    "design-review" : {
+      "gateId" : "design-review",
+      "stageId" : "architecture",
+      "spec" : {
+        "gateId" : "design-review",
+        "reason" : "Architecture and impacted-module analysis need a human design sign-off before implementation starts.",
+        "riskLevel" : "MEDIUM"
+      },
+      "requestedAt" : "2026-09-03T01:40:38.538501917Z",
+      "decidedAt" : "2026-09-03T01:40:38.546828416Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "Impact analysis matches the codebase; additive migration and read-time expiry check are the right calls. Proceed.",
+      "consumedAt" : "2026-09-03T01:40:38.546828416Z"
+    },
+    "policy:implement:T3" : {
+      "gateId" : "policy:implement:T3",
+      "stageId" : "implement:T3",
+      "spec" : {
+        "gateId" : "policy:implement:T3",
+        "reason" : "[protected-files-require-approval] patch modifies protected files: src/main/java/dev/rajeev/shortener/web/ApiExceptionHandler.java",
+        "riskLevel" : "MEDIUM"
+      },
+      "requestedAt" : "2026-09-03T01:41:11.267778899Z",
+      "decidedAt" : "2026-09-03T01:41:11.269868674Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "Reviewed the ApiExceptionHandler diff: one case added to the exhaustive status switch (EXPIRED -> 410). No change to handler logic.",
+      "consumedAt" : "2026-09-03T01:41:11.269868674Z"
+    },
+    "release-approval" : {
+      "gateId" : "release-approval",
+      "stageId" : "release",
+      "spec" : {
+        "gateId" : "release-approval",
+        "reason" : "Releasing to production is a high-impact action; a human owns the go/no-go.",
+        "riskLevel" : "HIGH"
+      },
+      "requestedAt" : "2026-09-03T01:41:58.550768442Z",
+      "decidedAt" : "2026-09-03T01:41:58.552564912Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "Green suite incl. upgrade tests, review approved, rollback plan is a code rollback with the additive column left in place. Go.",
+      "consumedAt" : "2026-09-03T01:41:58.552564912Z"
+    }
+  },
+  "metrics" : {
+    "stagesTotal" : 11,
+    "stagesSucceeded" : 11,
+    "stagesFailed" : 0,
+    "attemptsTotal" : 13,
+    "retries" : 2,
+    "rollbacks" : 2,
+    "replans" : 0,
+    "approvalsRequested" : 3,
+    "approvalsHuman" : 3,
+    "approvalsAuto" : 0,
+    "policyViolations" : 2,
+    "policyBlocks" : 1,
+    "llmCalls" : 12,
+    "llmInputTokens" : 49800,
+    "llmOutputTokens" : 34356,
+    "toolCalls" : 15,
+    "mttrMs" : 15103,
+    "endToEndMs" : 80537,
+    "stageLatencyMs" : {
+      "requirements" : 168,
+      "architecture" : 80,
+      "plan" : 43,
+      "test" : 22380,
+      "review" : 121,
+      "docs" : 144,
+      "release" : 30,
+      "implement:T1" : 22377,
+      "implement:T2" : 5195,
+      "implement:T3" : 29938,
+      "implement:T4" : 9729
+    },
+    "successRate" : 0.846
+  },
+  "notices" : [ ]
+}

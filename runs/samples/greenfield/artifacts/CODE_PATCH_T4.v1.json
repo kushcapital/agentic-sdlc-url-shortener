@@ -1,0 +1,25 @@
+{
+  "kind" : "CODE_PATCH",
+  "producedBy" : "implement:T4",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "eb504850eab6ec06",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+    "ARCHITECTURE" : "61359cc9c6858e7d",
+    "TASK_PLAN" : "f6fc3fe0fbea830c"
+  },
+  "createdAt" : "2026-09-03T01:40:21.375134285Z",
+  "content" : {
+    "summary" : "HTTP adapter: create (URL scheme validation), 302 + no-store redirect with click recording, stats, health. Turns the acceptance suite green.",
+    "taskId" : "T4",
+    "files" : [ {
+      "path" : "src/main/java/demo/LinkController.java",
+      "action" : "write",
+      "content" : "package demo;\n\nimport java.net.URI;\nimport java.net.URISyntaxException;\nimport java.time.Instant;\nimport java.util.Locale;\nimport java.util.Map;\nimport org.springframework.beans.factory.annotation.Value;\nimport org.springframework.http.CacheControl;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RestController;\n\n/** HTTP adapter: create, redirect (302 + no-store so every click is counted), stats, health. */\n@RestController\npublic class LinkController {\n\n    private final LinkStore store = new LinkStore.InMemory();\n    private final String baseUrl;\n\n    public LinkController(@Value(\"${app.base-url:http://localhost:8080}\") String baseUrl) {\n        this.baseUrl = baseUrl.endsWith(\"/\") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;\n    }\n\n    /** Only absolute http(s) URLs may be shortened: anything else turns the redirect into an attack vector. */\n    static String validateUrl(Object raw) {\n        if (!(raw instanceof String s) || s.isBlank()) return null;\n        try {\n            URI u = new URI(s.trim());\n            String scheme = u.getScheme() == null ? \"\" : u.getScheme().toLowerCase(Locale.ROOT);\n            return (scheme.equals(\"http\") || scheme.equals(\"https\")) && u.getHost() != null ? u.toString() : null;\n        } catch (URISyntaxException e) {\n            return null;\n        }\n    }\n\n    @GetMapping(\"/health\")\n    public Map<String, String> health() {\n        return Map.of(\"status\", \"ok\");\n    }\n\n    @PostMapping(\"/api/links\")\n    public ResponseEntity<Map<String, Object>> create(@RequestBody Map<String, Object> body) {\n        String target = validateUrl(body.get(\"url\"));\n        if (target == null) return ResponseEntity.badRequest().body(Map.of(\"error\", \"INVALID_URL\", \"message\", \"only absolute http(s) URLs are accepted\"));\n        String code = Codes.unique(store::exists, 7, 5);\n        LinkStore.Link link = new LinkStore.Link(code, target, Instant.now());\n        store.insert(link);\n        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(\"code\", code, \"targetUrl\", target, \"createdAt\", link.createdAt().toString(), \"shortUrl\", baseUrl + \"/\" + code));\n    }\n\n    @GetMapping(\"/api/links/{code:[0-9A-Za-z]{7}}/stats\")\n    public ResponseEntity<Map<String, Object>> stats(@PathVariable(\"code\") String code) {\n        return store.stats(code)\n                .<ResponseEntity<Map<String, Object>>>map(s -> {\n                    Map<String, Object> m = new java.util.LinkedHashMap<>();\n                    m.put(\"code\", s.code());\n                    m.put(\"clicks\", s.clicks());\n                    m.put(\"lastClickAt\", s.lastClickAt() == null ? null : s.lastClickAt().toString());\n                    return ResponseEntity.ok(m);\n                })\n                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(\"error\", \"NOT_FOUND\")));\n    }\n\n    @GetMapping(\"/{code:[0-9A-Za-z]{7}}\")\n    public ResponseEntity<Void> redirect(@PathVariable(\"code\") String code) {\n        return store.find(code)\n                .map(link -> {\n                    store.recordClick(code, Instant.now());\n                    return ResponseEntity.status(HttpStatus.FOUND).cacheControl(CacheControl.noStore()).location(URI.create(link.targetUrl())).<Void>build();\n                })\n                .orElseGet(() -> ResponseEntity.notFound().build());\n    }\n}\n",
+      "delete" : false
+    } ],
+    "dependencyChanges" : [ ],
+    "notes" : [ "Replaces nothing: the T2 App stub stays as the composition root." ]
+  }
+}

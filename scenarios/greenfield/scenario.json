@@ -1,0 +1,34 @@
+{
+  "name": "greenfield",
+  "title": "Greenfield: build a URL shortener from an empty workspace",
+  "kind": "greenfield",
+  "description": "From an empty sandbox to a runnable, tested v0 Spring Boot URL shortener. Exercises requirement normalisation, architecture from scratch, TDD sequencing (scaffold -> red tests -> parallel codes/store -> controller turns green), a supply-chain approval on the first pom.xml, and release readiness.",
+  "requirement": "Build a URL shortener service. Users submit a long URL and get back a short link; visiting the short link redirects to the original. We want to see how many times each link was clicked. It should be safe to expose on the internet and easy to run locally.",
+  "seedFrom": null,
+  "fixtures": "fixtures",
+  "toolchain": "auto",
+  "approvals": {
+    "policy:implement:T1": {
+      "decision": "approve",
+      "note": "Dependencies reviewed: spring-boot-starter-web (runtime), spring-boot-starter-test (test), both managed by spring-boot-starter-parent 3.4.4 already used in the org."
+    },
+    "design-review": {
+      "decision": "approve",
+      "note": "Ports-and-adapters with an in-memory store is right for v0; a JDBC adapter can slot behind LinkStore. Proceed."
+    },
+    "release-approval": {
+      "decision": "approve",
+      "note": "v0 acceptance suite green, review approved, in-memory store documented as a v0 limitation. Go for internal preview."
+    }
+  },
+  "injections": [],
+  "expectations": {
+    "status": "completed",
+    "humanApprovals": 3,
+    "parallelStages": [
+      "implement:T3a",
+      "implement:T3b"
+    ],
+    "policyBlocks": 0
+  }
+}

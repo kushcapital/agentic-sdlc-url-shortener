@@ -1,0 +1,62 @@
+{
+  "kind" : "TASK_PLAN",
+  "producedBy" : "plan",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "f6fc3fe0fbea830c",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+    "ARCHITECTURE" : "61359cc9c6858e7d"
+  },
+  "createdAt" : "2026-09-03T01:39:52.070184578Z",
+  "content" : {
+    "summary" : "Five tasks. T1 scaffolds the Maven project (the pom needs a human sign-off on dependencies). T2 writes the acceptance suite plus a compile-only App stub and must be red. T3a (codes) and T3b (store) are independent and run in parallel. T4 wires the controller and must turn the suite green.",
+    "tasks" : [ {
+      "id" : "T1",
+      "title" : "Project scaffold",
+      "description" : "pom.xml on spring-boot-starter-parent with starter-web and starter-test.",
+      "files" : [ "pom.xml" ],
+      "dependsOn" : [ ],
+      "verify" : "none",
+      "riskLevel" : "medium",
+      "acceptance" : "File exists; dependencies approved."
+    }, {
+      "id" : "T2",
+      "title" : "Acceptance tests (red) and App stub",
+      "description" : "src/test/java/demo/AppTest.java for AC-1..AC-6; src/main/java/demo/App.java with no endpoints.",
+      "files" : [ "src/test/java/demo/AppTest.java", "src/main/java/demo/App.java" ],
+      "dependsOn" : [ "T1" ],
+      "verify" : "tests-red",
+      "riskLevel" : "low",
+      "acceptance" : "Compiles; suite fails (404s)."
+    }, {
+      "id" : "T3a",
+      "title" : "Short-code generation",
+      "description" : "Codes.java with unit tests.",
+      "files" : [ "src/main/java/demo/Codes.java", "src/test/java/demo/CodesTest.java" ],
+      "dependsOn" : [ "T2" ],
+      "verify" : "typecheck",
+      "riskLevel" : "low",
+      "acceptance" : "Compiles; Codes tests green in isolation."
+    }, {
+      "id" : "T3b",
+      "title" : "Storage port and in-memory adapter",
+      "description" : "LinkStore.java with unit tests.",
+      "files" : [ "src/main/java/demo/LinkStore.java", "src/test/java/demo/LinkStoreTest.java" ],
+      "dependsOn" : [ "T2" ],
+      "verify" : "typecheck",
+      "riskLevel" : "low",
+      "acceptance" : "Compiles; store tests green in isolation."
+    }, {
+      "id" : "T4",
+      "title" : "HTTP adapter",
+      "description" : "LinkController: create, redirect, stats, health.",
+      "files" : [ "src/main/java/demo/LinkController.java" ],
+      "dependsOn" : [ "T3a", "T3b" ],
+      "verify" : "tests-green",
+      "riskLevel" : "medium",
+      "acceptance" : "Whole suite green."
+    } ],
+    "sequencingRationale" : "Scaffold first (nothing compiles without it), tests second so the target is executable, the two pure classes in parallel because they share nothing, and the controller last so 'green' means the acceptance criteria are met."
+  }
+}

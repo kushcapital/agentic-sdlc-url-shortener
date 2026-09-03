@@ -1,0 +1,17 @@
+target/
+build/
+.orchestrator-env
+data/
+*.db
+*.log
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Orchestrator runs are ephemeral, except the committed samples (see runs/samples/README.md)
+runs/*
+!runs/samples/
+runs/samples/*/snapshots/
+runs/samples/*/worktrees/
+runs/samples/*/sandbox/target/

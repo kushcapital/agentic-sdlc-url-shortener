@@ -1,0 +1,25 @@
+{
+  "kind" : "CODE_PATCH",
+  "producedBy" : "implement:T1",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "d5980a4474e45992",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "8e574d1e7f18ee82",
+    "ARCHITECTURE" : "6bd3ce43fe7e1214",
+    "TASK_PLAN" : "e62bdc13682ae57c"
+  },
+  "createdAt" : "2026-09-03T01:41:00.990293083Z",
+  "content" : {
+    "summary" : "TDD red: acceptance tests for link expiry (AC-1..AC-5) through the HTTP layer. They compile against the current domain model and fail at runtime until the feature exists.",
+    "taskId" : "T1",
+    "files" : [ {
+      "path" : "src/test/java/dev/rajeev/shortener/web/ExpiryIntegrationTest.java",
+      "action" : "write",
+      "content" : "package dev.rajeev.shortener.web;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\nimport static org.junit.jupiter.api.Assertions.assertNull;\n\nimport java.time.Instant;\nimport java.util.Map;\nimport org.junit.jupiter.api.AfterAll;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.Test;\n\n/**\n * Acceptance tests for link expiry, written first — they must fail until the feature lands.\n * Mirrors the Given/When/Then criteria in the requirements spec. Black-box through HTTP only, so the\n * file compiles against the current domain model.\n */\nclass ExpiryIntegrationTest {\n\n    static TestServer server;\n\n    @BeforeAll\n    static void start() {\n        server = new TestServer();\n    }\n\n    @AfterAll\n    static void stop() {\n        server.close();\n    }\n\n    private static String future(long seconds) {\n        return Instant.now().plusSeconds(seconds).toString();\n    }\n\n    @Test\n    void ac1_acceptsAFutureExpiresAtAndEchoesItBack() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/campaign\\\",\\\"expiresAt\\\":\\\"\" + future(3600) + \"\\\"}\");\n        assertEquals(201, r.status(), r.body());\n        assertNotNull(server.json(r).get(\"expiresAt\"));\n    }\n\n    @Test\n    void ac2_rejectsAPastExpiresAtWith400Validation() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/late\\\",\\\"expiresAt\\\":\\\"\" + Instant.now().minusSeconds(60) + \"\\\"}\");\n        assertEquals(400, r.status(), r.body());\n        assertEquals(\"VALIDATION\", server.json(r).get(\"error\"));\n    }\n\n    @Test\n    void ac3_linksWithoutExpiryKeepWorkingExactlyAsBefore() {\n        TestServer.Resp r = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/evergreen\\\"}\");\n        assertEquals(201, r.status());\n        Map<String, Object> body = server.json(r);\n        assertEquals(true, body.containsKey(\"expiresAt\"), \"response must carry expiresAt (null when absent)\");\n        assertNull(body.get(\"expiresAt\"));\n        assertEquals(302, server.get(\"/\" + body.get(\"code\")).status());\n    }\n\n    @Test\n    void ac4_anExpiredLinkStopsRedirectingWith410ExpiredAndMetadataSaysSo() throws InterruptedException {\n        TestServer.Resp created = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/flash\\\",\\\"expiresAt\\\":\\\"\" + future(1) + \"\\\"}\");\n        assertEquals(201, created.status(), created.body());\n        String code = (String) server.json(created).get(\"code\");\n        Thread.sleep(1200);\n        TestServer.Resp redirect = server.get(\"/\" + code);\n        assertEquals(410, redirect.status());\n        assertEquals(\"EXPIRED\", server.json(redirect).get(\"error\"));\n        TestServer.Resp meta = server.get(\"/api/links/\" + code);\n        assertEquals(410, meta.status());\n        assertEquals(\"EXPIRED\", server.json(meta).get(\"error\"));\n    }\n\n    @Test\n    void ac5_statsRemainReadableAfterExpiry() throws InterruptedException {\n        TestServer.Resp created = server.post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/stats-after\\\",\\\"expiresAt\\\":\\\"\" + future(1) + \"\\\"}\");\n        assertEquals(201, created.status(), created.body());\n        String code = (String) server.json(created).get(\"code\");\n        server.get(\"/\" + code);\n        Thread.sleep(1200);\n        TestServer.Resp stats = server.get(\"/api/links/\" + code + \"/stats\");\n        assertEquals(200, stats.status());\n        assertEquals(1, server.json(stats).get(\"totalClicks\"));\n    }\n}\n",
+      "delete" : false
+    } ],
+    "dependencyChanges" : [ ],
+    "notes" : [ "Black-box only so the file needs no reference to the not-yet-existing Link.expiresAt accessor." ]
+  }
+}

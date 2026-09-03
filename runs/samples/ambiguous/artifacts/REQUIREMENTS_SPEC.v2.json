@@ -1,0 +1,117 @@
+{
+  "kind" : "REQUIREMENTS_SPEC",
+  "producedBy" : "requirements",
+  "attempt" : 3,
+  "version" : 2,
+  "hash" : "d6619414407c6df1",
+  "inputHashes" : { },
+  "createdAt" : "2026-09-03T01:42:02.652099406Z",
+  "content" : {
+    "problemStatement" : "Users report short links feel guessable. Product reviewed the tickets: complaints cover both generated codes (7 chars) and short custom aliases ('sale1'). Harden both: newly generated codes become 8 base62 characters, and custom aliases must be at least 6 characters at creation. Nothing already issued may break: legacy 7-char codes and existing 4/5-char aliases must keep resolving, which means the creation-time alias rule and the path-resolution rule must be separated.",
+    "scenarioType" : "ambiguous",
+    "functionalRequirements" : [ {
+      "id" : "FR-1",
+      "text" : "Newly generated codes are 8 base62 characters by default (configurable via shortener.code-length).",
+      "priority" : "must"
+    }, {
+      "id" : "FR-2",
+      "text" : "All previously issued codes (7-char generated, custom aliases of any accepted length) keep resolving on GET /:code, metadata and stats.",
+      "priority" : "must"
+    }, {
+      "id" : "FR-3",
+      "text" : "Collision handling (bounded retry) is unchanged.",
+      "priority" : "should"
+    }, {
+      "id" : "FR-4",
+      "text" : "POST /api/links rejects customAlias shorter than 6 characters with 400 VALIDATION.",
+      "priority" : "must"
+    }, {
+      "id" : "FR-5",
+      "text" : "Path resolution (GET /:code, /api/links/:code, /stats) still accepts 4-32 character codes so legacy aliases resolve.",
+      "priority" : "must"
+    } ],
+    "nonFunctionalRequirements" : [ {
+      "id" : "NFR-1",
+      "text" : "No measurable latency change on redirect.",
+      "category" : "performance"
+    }, {
+      "id" : "NFR-2",
+      "text" : "Backward compatible API for existing clients.",
+      "category" : "compatibility"
+    } ],
+    "acceptanceCriteria" : [ {
+      "id" : "AC-1",
+      "given" : "a valid URL",
+      "when" : "POST /api/links without customAlias",
+      "then" : "the code is 8 base62 characters"
+    }, {
+      "id" : "AC-3",
+      "given" : "a legacy 7-char code exists in the store",
+      "when" : "GET /:code",
+      "then" : "302 to its target"
+    }, {
+      "id" : "AC-2",
+      "given" : "customAlias 'sale1'",
+      "when" : "POST /api/links",
+      "then" : "400; 'spring-sale' is accepted"
+    }, {
+      "id" : "AC-3b",
+      "given" : "a legacy 4-char alias exists in the store",
+      "when" : "GET /:code and GET /api/links/:code/stats",
+      "then" : "302 and 200 respectively"
+    } ],
+    "assumptions" : [ "'Guess' refers to an attacker or curious user finding links they were not given.", "No incident has occurred; this is preventive hardening." ],
+    "outOfScope" : [ "Rotating or regenerating existing codes", "Authentication for viewing links (unless AMB-1 selects C)" ],
+    "ambiguities" : [ {
+      "id" : "AMB-1",
+      "question" : "What does 'too easy to guess' mean for the users who complained?",
+      "options" : [ {
+        "key" : "A",
+        "description" : "Generated codes are short (7 base62 chars); raise their entropy (e.g. 8 chars, 62^8 ≈ 2.2e14).",
+        "impact" : "Small, contained change to config/codegen and tests; legacy 7-char codes keep resolving."
+      }, {
+        "key" : "B",
+        "description" : "User-chosen custom aliases are predictable ('sale1', 'promo2'); enforce alias rules (minimum length, maybe a denylist).",
+        "impact" : "Validation change in the domain model and routes; must not break already-issued short aliases."
+      }, {
+        "key" : "C",
+        "description" : "Users expect links to be private; add unlisted/authenticated links.",
+        "impact" : "A new feature (tokens or auth), not a hardening change; separate product decision."
+      } ],
+      "recommended" : "A",
+      "blocking" : false,
+      "resolution" : "Stakeholder chose A, then product widened scope to B as well after reviewing tickets (requirement revised mid-run). C remains out of scope."
+    }, {
+      "id" : "AMB-2",
+      "question" : "Should already-issued codes be regenerated to the new rule?",
+      "options" : [ {
+        "key" : "no",
+        "description" : "Only new links follow the new rule",
+        "impact" : "Zero breakage; old links stay as guessable as they were."
+      }, {
+        "key" : "yes",
+        "description" : "Rotate existing codes",
+        "impact" : "Breaks every link already shared; unacceptable."
+      } ],
+      "recommended" : "no",
+      "blocking" : false,
+      "resolution" : "No: never rotate issued codes."
+    } ],
+    "risks" : [ {
+      "risk" : "Building the wrong interpretation wastes an implementation cycle.",
+      "likelihood" : "high",
+      "impact" : "medium",
+      "mitigation" : "Blocking clarification before design."
+    }, {
+      "risk" : "Tightening any pattern used by the routes breaks legacy codes.",
+      "likelihood" : "medium",
+      "impact" : "high",
+      "mitigation" : "Separate creation-time rules from path-resolution rules; acceptance test for legacy codes."
+    }, {
+      "risk" : "The same regex currently validates aliases at creation AND appears in the controllers' path templates; raising the minimum in one place would 404 legacy aliases.",
+      "likelihood" : "high",
+      "impact" : "high",
+      "mitigation" : "Introduce LinkRules.CODE_PATH for the path templates, keep CUSTOM_ALIAS_REGEX for creation; acceptance test AC-3."
+    } ]
+  }
+}

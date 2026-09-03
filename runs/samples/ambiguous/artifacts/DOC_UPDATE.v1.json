@@ -1,0 +1,28 @@
+{
+  "kind" : "DOC_UPDATE",
+  "producedBy" : "docs",
+  "attempt" : 1,
+  "version" : 1,
+  "hash" : "c085cd1162b3f9c9",
+  "inputHashes" : {
+    "REQUIREMENTS_SPEC" : "d6619414407c6df1",
+    "ARCHITECTURE" : "942c74df4def626e"
+  },
+  "createdAt" : "2026-09-03T01:42:30.901686982Z",
+  "content" : {
+    "summary" : "CHANGELOG for 1.0.1 and ADR-0004 on the creation/resolution rule split.",
+    "files" : [ {
+      "path" : "CHANGELOG.md",
+      "action" : "write",
+      "content" : "# Changelog\n\n## 1.0.1 — guessability hardening\n\n### Changed\n- Generated short codes are now 8 base62 characters (was 7; `shortener.code-length`). Clients must not assume a code length.\n- **Breaking for alias creation:** `customAlias` must be 6-32 characters (was 4-32). Codes already issued, including 4/5-character aliases, keep resolving.\n\n### Why\nSupport tickets reported links that \"feel too easy to guess\" — both short generated codes and short custom aliases. Raising the keyspace to 62^8 and the alias minimum to 6 addresses both without touching anything already shared.\n\n## 1.0.0\n- Initial release.\n",
+      "delete" : false
+    }, {
+      "path" : "docs/adr/0004-creation-vs-resolution-patterns.md",
+      "action" : "write",
+      "content" : "# ADR-0004: Separate the alias creation rule from the code resolution rule\n\n**Status:** accepted\n\n## Context\nOne regex (`LinkRules.CUSTOM_ALIAS_REGEX`, 4-32 chars) validated custom aliases on creation, and the same expression was hard-coded in the controllers' `{code:...}` path templates. Raising the alias minimum to 6 in that single place would have made every legacy 4/5-character alias return 404.\n\n## Decision\n- `LinkRules.CUSTOM_ALIAS_REGEX` (6-32) applies only when a client creates an alias.\n- `LinkRules.CODE_PATH` (4-32) is the path-template constant for every route that resolves a code. It must stay at least as wide as anything ever issued.\n\n## Consequences\n- Hardening creation rules never breaks issued links.\n- Two patterns to keep in sync mentally; both are documented at their definition and covered by tests.\n",
+      "delete" : false
+    } ],
+    "dependencyChanges" : [ ],
+    "notes" : [ ]
+  }
+}

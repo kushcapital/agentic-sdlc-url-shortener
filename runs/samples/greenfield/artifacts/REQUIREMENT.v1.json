@@ -1,0 +1,12 @@
+{
+  "kind" : "REQUIREMENT",
+  "producedBy" : "scenario",
+  "attempt" : 0,
+  "version" : 1,
+  "hash" : "a5e868c6d5da4e2e",
+  "inputHashes" : { },
+  "createdAt" : "2026-09-03T01:39:51.724568939Z",
+  "content" : {
+    "text" : "Build a URL shortener service. Users submit a long URL and get back a short link; visiting the short link redirects to the original. We want to see how many times each link was clicked. It should be safe to expose on the internet and easy to run locally."
+  }
+}

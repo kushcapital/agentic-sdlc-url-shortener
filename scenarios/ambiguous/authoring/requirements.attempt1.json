@@ -1,0 +1,102 @@
+{
+  "problemStatement": "Users report that short links 'feel too easy to guess'. The complaint is ambiguous: it could mean generated codes are enumerable, that user-chosen aliases are predictable, or that links are expected to be private. The engineering problem cannot be fixed until the intended meaning is confirmed, because the three readings lead to different changes (code entropy, alias rules, or an authentication feature).",
+  "scenarioType": "ambiguous",
+  "functionalRequirements": [
+    {
+      "id": "FR-0",
+      "text": "Make short links materially harder to guess, in the sense confirmed by the stakeholder (see AMB-1).",
+      "priority": "must"
+    },
+    {
+      "id": "FR-1",
+      "text": "Do not break any short code that has already been issued.",
+      "priority": "must"
+    }
+  ],
+  "nonFunctionalRequirements": [
+    {
+      "id": "NFR-1",
+      "text": "No measurable latency change on redirect.",
+      "category": "performance"
+    },
+    {
+      "id": "NFR-2",
+      "text": "Backward compatible API for existing clients.",
+      "category": "compatibility"
+    }
+  ],
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0",
+      "given": "the stakeholder's interpretation is confirmed",
+      "when": "the fix is implemented",
+      "then": "a measurable guessability property improves (keyspace size or alias rule) and all previously issued codes still resolve"
+    }
+  ],
+  "assumptions": [
+    "'Guess' refers to an attacker or curious user finding links they were not given.",
+    "No incident has occurred; this is preventive hardening."
+  ],
+  "outOfScope": [
+    "Rotating or regenerating existing codes",
+    "Authentication for viewing links (unless AMB-1 selects C)"
+  ],
+  "ambiguities": [
+    {
+      "id": "AMB-1",
+      "question": "What does 'too easy to guess' mean for the users who complained?",
+      "options": [
+        {
+          "key": "A",
+          "description": "Generated codes are short (7 base62 chars); raise their entropy (e.g. 8 chars, 62^8 \u2248 2.2e14).",
+          "impact": "Small, contained change to config/codegen and tests; legacy 7-char codes keep resolving."
+        },
+        {
+          "key": "B",
+          "description": "User-chosen custom aliases are predictable ('sale1', 'promo2'); enforce alias rules (minimum length, maybe a denylist).",
+          "impact": "Validation change in the domain model and routes; must not break already-issued short aliases."
+        },
+        {
+          "key": "C",
+          "description": "Users expect links to be private; add unlisted/authenticated links.",
+          "impact": "A new feature (tokens or auth), not a hardening change; separate product decision."
+        }
+      ],
+      "recommended": "A",
+      "blocking": true
+    },
+    {
+      "id": "AMB-2",
+      "question": "Should already-issued codes be regenerated to the new rule?",
+      "options": [
+        {
+          "key": "no",
+          "description": "Only new links follow the new rule",
+          "impact": "Zero breakage; old links stay as guessable as they were."
+        },
+        {
+          "key": "yes",
+          "description": "Rotate existing codes",
+          "impact": "Breaks every link already shared; unacceptable."
+        }
+      ],
+      "recommended": "no",
+      "blocking": false,
+      "resolution": "No: never rotate issued codes."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Building the wrong interpretation wastes an implementation cycle.",
+      "likelihood": "high",
+      "impact": "medium",
+      "mitigation": "Blocking clarification before design."
+    },
+    {
+      "risk": "Tightening any pattern used by the routes breaks legacy codes.",
+      "likelihood": "medium",
+      "impact": "high",
+      "mitigation": "Separate creation-time rules from path-resolution rules; acceptance test for legacy codes."
+    }
+  ]
+}

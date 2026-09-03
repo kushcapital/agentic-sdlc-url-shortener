@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: url-shortener
+  datasource:
+    url: jdbc:h2:file:./data/shortener;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ""
+  jackson:
+    default-property-inclusion: always
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+
+shortener:
+  base-url: http://localhost:8080
+  code-length: 8
+  max-url-length: 2048
+  rate-limit:
+    max: 100
+    window-ms: 60000
+  analytics:
+    flush-interval-ms: 500
+    max-batch: 200
+    max-queue: 10000
+    max-retries: 3
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+      group:
+        readiness:
+          include: readinessState,store
+  health:
+    db:
+      enabled: false
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%X{requestId}] %logger{36} - %msg%n"
+  level:
+    root: INFO
+    dev.rajeev: INFO

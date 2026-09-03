@@ -1,0 +1,144 @@
+{
+  "summary": "Small hexagonal service: an HTTP adapter (Spring MVC @RestController) over a storage port (LinkStore) with an in-memory adapter, and a pure code-generation class. The controller owns validation and status codes; the store owns links and click counters; Codes owns randomness. Tests boot the real context on a random port and use java.net.http.",
+  "components": [
+    {
+      "name": "App (composition root)",
+      "responsibility": "@SpringBootApplication entrypoint.",
+      "path": "src/main/java/demo/App.java"
+    },
+    {
+      "name": "LinkController",
+      "responsibility": "Routes, URL policy, 302/no-store redirects, JSON responses.",
+      "path": "src/main/java/demo/LinkController.java"
+    },
+    {
+      "name": "LinkStore port + InMemory adapter",
+      "responsibility": "Persist links and click counters; the seam for a JDBC adapter.",
+      "path": "src/main/java/demo/LinkStore.java"
+    },
+    {
+      "name": "Codes",
+      "responsibility": "Random base62 codes with rejection sampling; bounded collision retry.",
+      "path": "src/main/java/demo/Codes.java"
+    }
+  ],
+  "impactedModules": [
+    {
+      "path": "pom.xml",
+      "changeType": "create",
+      "reason": "spring-boot-starter-parent 3.4.4, starter-web, starter-test."
+    },
+    {
+      "path": "src/main/java/demo/App.java",
+      "changeType": "create",
+      "reason": "Entrypoint."
+    },
+    {
+      "path": "src/main/java/demo/LinkController.java",
+      "changeType": "create",
+      "reason": "HTTP adapter."
+    },
+    {
+      "path": "src/main/java/demo/LinkStore.java",
+      "changeType": "create",
+      "reason": "Storage port and in-memory adapter."
+    },
+    {
+      "path": "src/main/java/demo/Codes.java",
+      "changeType": "create",
+      "reason": "Short-code generation."
+    },
+    {
+      "path": "src/test/java/demo/AppTest.java",
+      "changeType": "create",
+      "reason": "Acceptance tests AC-1..AC-6."
+    },
+    {
+      "path": "src/test/java/demo/LinkStoreTest.java",
+      "changeType": "create",
+      "reason": "Store contract."
+    },
+    {
+      "path": "src/test/java/demo/CodesTest.java",
+      "changeType": "create",
+      "reason": "Alphabet, bias, collision retry."
+    }
+  ],
+  "dataFlow": [
+    "POST /api/links -> validateUrl (http/https only) -> Codes.unique(store::exists) -> store.insert -> 201 {code, shortUrl, targetUrl, createdAt}",
+    "GET /{code} -> store.find -> 404 | (store.recordClick, 302 Location + Cache-Control: no-store)",
+    "GET /api/links/{code}/stats -> store.stats -> 404 | 200 {code, clicks, lastClickAt}"
+  ],
+  "apiChanges": [
+    {
+      "method": "POST",
+      "path": "/api/links",
+      "change": "new"
+    },
+    {
+      "method": "GET",
+      "path": "/{code}",
+      "change": "new"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/{code}/stats",
+      "change": "new"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "change": "new"
+    }
+  ],
+  "schemaChanges": [
+    "In-memory: ConcurrentHashMap<code, Link>, ConcurrentHashMap<code, Counter>"
+  ],
+  "decisions": [
+    {
+      "id": "D-1",
+      "decision": "Random base62 codes (7 chars) instead of an encoded counter.",
+      "rationale": "Counters are enumerable; random codes with a collision check are not. 62^7 \u2248 3.5e12 keys.",
+      "alternatives": [
+        "Base62(auto-increment)",
+        "Hash of URL"
+      ],
+      "tradeoffs": "Needs an existence check per create; negligible at v0 scale."
+    },
+    {
+      "id": "D-2",
+      "decision": "302 + Cache-Control: no-store for redirects.",
+      "rationale": "301 is cached by browsers, which would hide repeat clicks from analytics.",
+      "alternatives": [
+        "301",
+        "307"
+      ],
+      "tradeoffs": "Slightly more traffic to the service; acceptable, analytics is a requirement."
+    },
+    {
+      "id": "D-3",
+      "decision": "Storage behind a LinkStore port with an in-memory adapter.",
+      "rationale": "Zero-setup local run now; JDBC/Postgres later without touching the controller.",
+      "alternatives": [
+        "H2 + JdbcTemplate from day one"
+      ],
+      "tradeoffs": "Data lost on restart in v0 (documented)."
+    },
+    {
+      "id": "D-4",
+      "decision": "Validate URLs explicitly in the controller with a scheme allowlist.",
+      "rationale": "javascript:/data: targets would make the redirect an XSS vector.",
+      "alternatives": [
+        "Accept any parseable URI"
+      ],
+      "tradeoffs": "None material."
+    }
+  ],
+  "securityConsiderations": [
+    "Scheme allowlist on target URLs",
+    "Random, non-enumerable codes",
+    "Path templates constrain codes to 7 base62 characters",
+    "No user input is reflected in responses unescaped"
+  ],
+  "rollbackStrategy": "v0 is a new service: rollback is stopping the process. No data migration exists."
+}

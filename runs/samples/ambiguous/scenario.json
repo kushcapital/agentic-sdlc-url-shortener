@@ -1,0 +1,47 @@
+{
+  "name" : "ambiguous",
+  "title" : "Ambiguous: \"our short links feel too easy to guess\"",
+  "kind" : "ambiguous",
+  "description" : "A vague, user-reported complaint with at least three defensible interpretations. Exercises ambiguity detection with a blocking clarification checkpoint (the stakeholder picks an interpretation), a mid-run requirement revision that invalidates downstream stages and re-plans the graph, a change-control rejection whose feedback drives the implementer's retry, parallel implementation tasks in isolated worktrees, and release readiness.",
+  "requirement" : "Several users have told support that our short links \"feel too easy to guess\". Fix it.",
+  "seedFrom" : "url-shortener",
+  "fixtures" : "fixtures",
+  "toolchain" : "auto",
+  "approvals" : {
+    "clarify-requirements" : [ {
+      "decision" : "APPROVE",
+      "note" : "The tickets are about generated codes being short (7 chars). Go with A: raise entropy of generated codes. Private/authenticated links are a separate product decision.",
+      "answers" : {
+        "AMB-1" : "A"
+      }
+    } ],
+    "design-review" : [ {
+      "decision" : "APPROVE",
+      "note" : "Agree with keeping the path pattern wide so legacy codes still resolve; the split between creation and resolution rules is the key design point."
+    } ],
+    "policy:implement:T2" : [ {
+      "decision" : "REJECT",
+      "note" : "A changed default with no test pinning it will silently regress. Add a test asserting shortener.code-length binds to 8 before this lands.",
+      "onRequest" : 1
+    } ],
+    "release-approval" : [ {
+      "decision" : "APPROVE",
+      "note" : "Suite green including legacy-resolution tests; no breaking change for issued codes; alias rule change is documented in the CHANGELOG. Go."
+    } ]
+  },
+  "injections" : [ {
+    "afterStage" : "plan",
+    "kind" : "revise-requirement",
+    "requirement" : "Several users have told support that our short links \"feel too easy to guess\". Fix it. UPDATE from product after reviewing the tickets: half of the complaints are about custom aliases like 'sale1' and 'promo2', not generated codes. Also enforce a minimum length of 6 characters for custom aliases. Existing short aliases must keep working.",
+    "note" : "Product reviewed the support tickets after planning had started and widened the scope to custom aliases."
+  } ],
+  "policy" : { },
+  "expectations" : {
+    "status" : "completed",
+    "minReplans" : 1,
+    "humanApprovals" : 5,
+    "rejectedApprovals" : 1,
+    "parallelStages" : [ "implement:T2", "implement:T3" ]
+  },
+  "scenarioDir" : "scenarios/ambiguous"
+}

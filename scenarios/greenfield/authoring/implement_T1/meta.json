@@ -1,0 +1,1 @@
+{ "taskId": "T1", "summary": "Project scaffold: Maven pom on spring-boot-starter-parent 3.4.4 with spring-boot-starter-web (runtime) and spring-boot-starter-test (test), Java 21. No source yet.", "notes": ["Declaring dependencies is a supply-chain decision: the policy engine asks a human to approve the pom."] }

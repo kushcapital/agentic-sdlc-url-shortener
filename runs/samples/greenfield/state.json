@@ -1,0 +1,1150 @@
+{
+  "runId" : "greenfield",
+  "scenario" : "greenfield",
+  "status" : "COMPLETED",
+  "createdAt" : "2026-09-03T01:39:51.601062701Z",
+  "updatedAt" : "2026-09-03T01:40:34.458103208Z",
+  "requirement" : "Build a URL shortener service. Users submit a long URL and get back a short link; visiting the short link redirects to the original. We want to see how many times each link was clicked. It should be safe to expose on the internet and easy to run locally.",
+  "stages" : {
+    "requirements" : {
+      "id" : "requirements",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:39:51.819696597Z",
+      "finishedAt" : "2026-09-03T01:39:51.923347547Z",
+      "feedback" : [ ],
+      "inputHashes" : { },
+      "outputHash" : "46e4925ba7a69e56"
+    },
+    "architecture" : {
+      "id" : "architecture",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:39:51.926537171Z",
+      "finishedAt" : "2026-09-03T01:39:52.008017542Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56"
+      },
+      "outputHash" : "61359cc9c6858e7d"
+    },
+    "plan" : {
+      "id" : "plan",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:39:52.016163382Z",
+      "finishedAt" : "2026-09-03T01:39:52.071950984Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d"
+      },
+      "outputHash" : "f6fc3fe0fbea830c"
+    },
+    "test" : {
+      "id" : "test",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:21.379176439Z",
+      "finishedAt" : "2026-09-03T01:40:34.419774517Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "outputHash" : "9397b5136a4e1f48"
+    },
+    "review" : {
+      "id" : "review",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:21.384722161Z",
+      "finishedAt" : "2026-09-03T01:40:21.427955007Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "outputHash" : "33afe13fd7d2d591"
+    },
+    "docs" : {
+      "id" : "docs",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:21.384754474Z",
+      "finishedAt" : "2026-09-03T01:40:21.510350325Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d"
+      },
+      "outputHash" : "93ff267e5038eae0"
+    },
+    "release" : {
+      "id" : "release",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:34.422836307Z",
+      "finishedAt" : "2026-09-03T01:40:34.451124285Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "TEST_REPORT" : "9397b5136a4e1f48",
+        "REVIEW_REPORT" : "33afe13fd7d2d591",
+        "ARCHITECTURE" : "61359cc9c6858e7d"
+      },
+      "outputHash" : "bc46fe855e463135"
+    },
+    "implement:T1" : {
+      "id" : "implement:T1",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:39:52.079485021Z",
+      "finishedAt" : "2026-09-03T01:39:52.155300234Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "outputHash" : "897147f40381ce1c"
+    },
+    "implement:T2" : {
+      "id" : "implement:T2",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:39:52.158475328Z",
+      "finishedAt" : "2026-09-03T01:40:03.275634372Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "outputHash" : "4de21a1952a0f4eb"
+    },
+    "implement:T3a" : {
+      "id" : "implement:T3a",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:03.282964912Z",
+      "finishedAt" : "2026-09-03T01:40:08.475425324Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "outputHash" : "18118de0ae1097ef"
+    },
+    "implement:T3b" : {
+      "id" : "implement:T3b",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:03.284557892Z",
+      "finishedAt" : "2026-09-03T01:40:08.535808151Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "outputHash" : "dcaf5e541ebbb9a4"
+    },
+    "implement:T4" : {
+      "id" : "implement:T4",
+      "status" : "SUCCEEDED",
+      "attempts" : 1,
+      "startedAt" : "2026-09-03T01:40:08.539905019Z",
+      "finishedAt" : "2026-09-03T01:40:21.376416661Z",
+      "feedback" : [ ],
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "outputHash" : "eb504850eab6ec06"
+    }
+  },
+  "stageOrder" : [ "requirements", "architecture", "plan", "implement:T1", "implement:T2", "implement:T3a", "implement:T3b", "implement:T4", "test", "review", "docs", "release" ],
+  "graph" : [ {
+    "id" : "requirements",
+    "name" : "Requirement understanding",
+    "phase" : "REQUIREMENTS",
+    "agent" : "REQUIREMENTS_ANALYST",
+    "dependsOn" : [ ],
+    "consumes" : [ ],
+    "produces" : "REQUIREMENTS_SPEC",
+    "entryGates" : [ "workspace-ready" ],
+    "exitGates" : [ "clarifications-resolved" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "architecture",
+    "name" : "Architecture & impact analysis",
+    "phase" : "DESIGN",
+    "agent" : "ARCHITECT",
+    "dependsOn" : [ "requirements" ],
+    "consumes" : [ "REQUIREMENTS_SPEC" ],
+    "produces" : "ARCHITECTURE",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ ],
+    "approval" : {
+      "gateId" : "design-review",
+      "reason" : "Architecture and impacted-module analysis need a human design sign-off before implementation starts.",
+      "riskLevel" : "MEDIUM"
+    },
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "plan",
+    "name" : "Task decomposition",
+    "phase" : "PLANNING",
+    "agent" : "PLANNER",
+    "dependsOn" : [ "architecture" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE" ],
+    "produces" : "TASK_PLAN",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "plan-valid" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : {
+      "expands" : "implement"
+    }
+  }, {
+    "id" : "implement:T1",
+    "name" : "Implementation: Project scaffold",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T1"
+    },
+    "params" : {
+      "verify" : "none",
+      "riskLevel" : "medium"
+    }
+  }, {
+    "id" : "implement:T2",
+    "name" : "Implementation: Acceptance tests (red) and App stub",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T1" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T2"
+    },
+    "params" : {
+      "verify" : "tests-red",
+      "riskLevel" : "low"
+    }
+  }, {
+    "id" : "implement:T3a",
+    "name" : "Implementation: Short-code generation",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T2" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T3a"
+    },
+    "params" : {
+      "verify" : "typecheck",
+      "riskLevel" : "low"
+    }
+  }, {
+    "id" : "implement:T3b",
+    "name" : "Implementation: Storage port and in-memory adapter",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T2" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T3b"
+    },
+    "params" : {
+      "verify" : "typecheck",
+      "riskLevel" : "low"
+    }
+  }, {
+    "id" : "implement:T4",
+    "name" : "Implementation: HTTP adapter",
+    "phase" : "IMPLEMENTATION",
+    "agent" : "IMPLEMENTER",
+    "dependsOn" : [ "plan", "implement:T3a", "implement:T3b" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "CODE_PATCH",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+    "retry" : {
+      "maxAttempts" : 3,
+      "backoffMs" : 100,
+      "factor" : 2.0
+    },
+    "onFailure" : "ROLLBACK_AND_STOP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 600000,
+    "dynamic" : {
+      "fromStage" : "implement",
+      "taskId" : "T4"
+    },
+    "params" : {
+      "verify" : "tests-green",
+      "riskLevel" : "medium"
+    }
+  }, {
+    "id" : "test",
+    "name" : "Verification (compile + full suite)",
+    "phase" : "TESTING",
+    "agent" : "TESTER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3a", "implement:T3b", "implement:T4" ],
+    "consumes" : [ "TASK_PLAN" ],
+    "produces" : "TEST_REPORT",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "tests-green" ],
+    "retry" : {
+      "maxAttempts" : 1,
+      "backoffMs" : 0,
+      "factor" : 2.0
+    },
+    "onFailure" : "ESCALATE",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 900000,
+    "params" : { }
+  }, {
+    "id" : "review",
+    "name" : "Security & quality review",
+    "phase" : "REVIEW",
+    "agent" : "REVIEWER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3a", "implement:T3b", "implement:T4" ],
+    "consumes" : [ "ARCHITECTURE", "TASK_PLAN" ],
+    "produces" : "REVIEW_REPORT",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "review-approved" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "ESCALATE",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "docs",
+    "name" : "Documentation",
+    "phase" : "DOCUMENTATION",
+    "agent" : "DOC_WRITER",
+    "dependsOn" : [ "implement:T1", "implement:T2", "implement:T3a", "implement:T3b", "implement:T4" ],
+    "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE" ],
+    "produces" : "DOC_UPDATE",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "policy-check", "apply-patch" ],
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "SKIP",
+    "mutatesWorkspace" : true,
+    "timeoutMs" : 120000,
+    "params" : { }
+  }, {
+    "id" : "release",
+    "name" : "Release readiness",
+    "phase" : "RELEASE",
+    "agent" : "RELEASE_MANAGER",
+    "dependsOn" : [ "test", "review", "docs" ],
+    "consumes" : [ "TEST_REPORT", "REVIEW_REPORT", "ARCHITECTURE" ],
+    "produces" : "RELEASE_CHECKLIST",
+    "entryGates" : [ "upstream-artifacts-present" ],
+    "exitGates" : [ "release-ready" ],
+    "approval" : {
+      "gateId" : "release-approval",
+      "reason" : "Releasing to production is a high-impact action; a human owns the go/no-go.",
+      "riskLevel" : "HIGH"
+    },
+    "retry" : {
+      "maxAttempts" : 2,
+      "backoffMs" : 50,
+      "factor" : 2.0
+    },
+    "onFailure" : "FAIL_RUN",
+    "mutatesWorkspace" : false,
+    "timeoutMs" : 120000,
+    "params" : { }
+  } ],
+  "templates" : {
+    "implement" : {
+      "id" : "implement",
+      "name" : "Implementation",
+      "phase" : "IMPLEMENTATION",
+      "agent" : "IMPLEMENTER",
+      "dependsOn" : [ "plan" ],
+      "consumes" : [ "REQUIREMENTS_SPEC", "ARCHITECTURE", "TASK_PLAN" ],
+      "produces" : "CODE_PATCH",
+      "entryGates" : [ "upstream-artifacts-present" ],
+      "exitGates" : [ "policy-check", "apply-patch", "verify-patch" ],
+      "retry" : {
+        "maxAttempts" : 3,
+        "backoffMs" : 100,
+        "factor" : 2.0
+      },
+      "onFailure" : "ROLLBACK_AND_STOP",
+      "mutatesWorkspace" : true,
+      "timeoutMs" : 600000,
+      "params" : { }
+    }
+  },
+  "artifacts" : {
+    "REQUIREMENT" : {
+      "kind" : "REQUIREMENT",
+      "producedBy" : "scenario",
+      "attempt" : 0,
+      "version" : 1,
+      "hash" : "a5e868c6d5da4e2e",
+      "inputHashes" : { },
+      "createdAt" : "2026-09-03T01:39:51.724568939Z",
+      "content" : {
+        "text" : "Build a URL shortener service. Users submit a long URL and get back a short link; visiting the short link redirects to the original. We want to see how many times each link was clicked. It should be safe to expose on the internet and easy to run locally."
+      }
+    },
+    "REQUIREMENTS_SPEC" : {
+      "kind" : "REQUIREMENTS_SPEC",
+      "producedBy" : "requirements",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "46e4925ba7a69e56",
+      "inputHashes" : { },
+      "createdAt" : "2026-09-03T01:39:51.920398982Z",
+      "content" : {
+        "problemStatement" : "Build a minimal, internet-safe URL shortener as a Spring Boot 3 / Java 21 HTTP service: create a short code for an absolute http(s) URL, redirect visitors of the short code to the original URL while counting the click, expose per-link click statistics, and provide a health endpoint. v0 runs locally with no external dependencies; persistence is in-memory behind a storage port so a JDBC store can be added without touching the HTTP layer.",
+        "scenarioType" : "greenfield",
+        "functionalRequirements" : [ {
+          "id" : "FR-1",
+          "text" : "POST /api/links with {url} returns 201 with a 7-character base62 code and the full short URL.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-2",
+          "text" : "GET /:code redirects (302) to the original URL and records a click.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-3",
+          "text" : "GET /api/links/:code/stats returns the click count and last click time.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-4",
+          "text" : "Only absolute http/https URLs are accepted; anything else is a 400.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-5",
+          "text" : "Unknown codes return 404 on redirect and stats.",
+          "priority" : "must"
+        }, {
+          "id" : "FR-6",
+          "text" : "GET /health returns {status:'ok'} for load balancers.",
+          "priority" : "should"
+        } ],
+        "nonFunctionalRequirements" : [ {
+          "id" : "NFR-1",
+          "text" : "Codes are random (not sequential) so links cannot be enumerated.",
+          "category" : "security"
+        }, {
+          "id" : "NFR-2",
+          "text" : "Redirects use 302 with Cache-Control: no-store so every click is counted.",
+          "category" : "correctness"
+        }, {
+          "id" : "NFR-3",
+          "text" : "Runs with `mvn spring-boot:run`; no database or container required for v0.",
+          "category" : "operability"
+        }, {
+          "id" : "NFR-4",
+          "text" : "Storage is behind an interface with a contract test so a durable adapter can be added later.",
+          "category" : "maintainability"
+        } ],
+        "acceptanceCriteria" : [ {
+          "id" : "AC-1",
+          "given" : "a valid https URL",
+          "when" : "POST /api/links",
+          "then" : "201 with a 7-char base62 code and shortUrl = baseUrl/code"
+        }, {
+          "id" : "AC-2",
+          "given" : "javascript:, ftp:, malformed or empty URL",
+          "when" : "POST /api/links",
+          "then" : "400"
+        }, {
+          "id" : "AC-3",
+          "given" : "an existing code",
+          "when" : "GET /:code",
+          "then" : "302 with Location = original URL"
+        }, {
+          "id" : "AC-4",
+          "given" : "an unknown code",
+          "when" : "GET /:code",
+          "then" : "404"
+        }, {
+          "id" : "AC-5",
+          "given" : "a code clicked twice",
+          "when" : "GET /api/links/:code/stats",
+          "then" : "200 with clicks=2 and a lastClickAt timestamp"
+        }, {
+          "id" : "AC-6",
+          "given" : "the service is up",
+          "when" : "GET /health",
+          "then" : "200 {status:'ok'}"
+        } ],
+        "assumptions" : [ "No authentication in v0; anyone can create links (rate limiting is a v1 concern and is noted as a risk).", "'How many times clicked' means a total count plus last click time; referrer/UA breakdowns are v1.", "'Safe to expose' means: scheme allowlist on targets, random codes, no caching of redirects, schema-validated input.", "In-memory persistence is acceptable for v0 as long as the storage port makes replacement straightforward." ],
+        "outOfScope" : [ "Custom aliases", "Link deletion or expiry", "Durable storage", "Per-referrer analytics", "Rate limiting and abuse controls" ],
+        "ambiguities" : [ {
+          "id" : "AMB-1",
+          "question" : "What does 'how many times each link was clicked' need to include?",
+          "options" : [ {
+            "key" : "count+last",
+            "description" : "Total clicks and last click time",
+            "impact" : "Trivial in-memory counter; enough for v0."
+          }, {
+            "key" : "breakdown",
+            "description" : "Per-day, referrer and user-agent breakdowns",
+            "impact" : "Requires an event log and aggregation; better as v1 once storage is durable."
+          } ],
+          "recommended" : "count+last",
+          "blocking" : false,
+          "resolution" : "count+last for v0; breakdowns tracked as a follow-up."
+        }, {
+          "id" : "AMB-2",
+          "question" : "Does 'safe to expose on the internet' require rate limiting in v0?",
+          "options" : [ {
+            "key" : "no",
+            "description" : "Input validation and random codes only",
+            "impact" : "Ships faster; abuse control added with durable storage."
+          }, {
+            "key" : "yes",
+            "description" : "Per-IP rate limiting on the create endpoint",
+            "impact" : "One more dependency and config surface."
+          } ],
+          "recommended" : "no",
+          "blocking" : false,
+          "resolution" : "Not in v0; recorded as a risk with a mitigation plan."
+        } ],
+        "risks" : [ {
+          "risk" : "Open redirect abuse (phishing links).",
+          "likelihood" : "medium",
+          "impact" : "medium",
+          "mitigation" : "Scheme allowlist now; denylist/reputation checks and rate limiting in v1."
+        }, {
+          "risk" : "In-memory store loses data on restart.",
+          "likelihood" : "high",
+          "impact" : "low",
+          "mitigation" : "Documented v0 limitation; storage port + contract test make SQLite/Postgres a contained change."
+        }, {
+          "risk" : "Code collisions as the keyspace fills.",
+          "likelihood" : "low",
+          "impact" : "low",
+          "mitigation" : "62^7 keys, collision check with bounded retry."
+        } ]
+      }
+    },
+    "ARCHITECTURE" : {
+      "kind" : "ARCHITECTURE",
+      "producedBy" : "architecture",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "61359cc9c6858e7d",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56"
+      },
+      "createdAt" : "2026-09-03T01:39:52.000589976Z",
+      "content" : {
+        "summary" : "Small hexagonal service: an HTTP adapter (Spring MVC @RestController) over a storage port (LinkStore) with an in-memory adapter, and a pure code-generation class. The controller owns validation and status codes; the store owns links and click counters; Codes owns randomness. Tests boot the real context on a random port and use java.net.http.",
+        "components" : [ {
+          "name" : "App (composition root)",
+          "responsibility" : "@SpringBootApplication entrypoint.",
+          "path" : "src/main/java/demo/App.java"
+        }, {
+          "name" : "LinkController",
+          "responsibility" : "Routes, URL policy, 302/no-store redirects, JSON responses.",
+          "path" : "src/main/java/demo/LinkController.java"
+        }, {
+          "name" : "LinkStore port + InMemory adapter",
+          "responsibility" : "Persist links and click counters; the seam for a JDBC adapter.",
+          "path" : "src/main/java/demo/LinkStore.java"
+        }, {
+          "name" : "Codes",
+          "responsibility" : "Random base62 codes with rejection sampling; bounded collision retry.",
+          "path" : "src/main/java/demo/Codes.java"
+        } ],
+        "impactedModules" : [ {
+          "path" : "pom.xml",
+          "changeType" : "create",
+          "reason" : "spring-boot-starter-parent 3.4.4, starter-web, starter-test."
+        }, {
+          "path" : "src/main/java/demo/App.java",
+          "changeType" : "create",
+          "reason" : "Entrypoint."
+        }, {
+          "path" : "src/main/java/demo/LinkController.java",
+          "changeType" : "create",
+          "reason" : "HTTP adapter."
+        }, {
+          "path" : "src/main/java/demo/LinkStore.java",
+          "changeType" : "create",
+          "reason" : "Storage port and in-memory adapter."
+        }, {
+          "path" : "src/main/java/demo/Codes.java",
+          "changeType" : "create",
+          "reason" : "Short-code generation."
+        }, {
+          "path" : "src/test/java/demo/AppTest.java",
+          "changeType" : "create",
+          "reason" : "Acceptance tests AC-1..AC-6."
+        }, {
+          "path" : "src/test/java/demo/LinkStoreTest.java",
+          "changeType" : "create",
+          "reason" : "Store contract."
+        }, {
+          "path" : "src/test/java/demo/CodesTest.java",
+          "changeType" : "create",
+          "reason" : "Alphabet, bias, collision retry."
+        } ],
+        "dataFlow" : [ "POST /api/links -> validateUrl (http/https only) -> Codes.unique(store::exists) -> store.insert -> 201 {code, shortUrl, targetUrl, createdAt}", "GET /{code} -> store.find -> 404 | (store.recordClick, 302 Location + Cache-Control: no-store)", "GET /api/links/{code}/stats -> store.stats -> 404 | 200 {code, clicks, lastClickAt}" ],
+        "apiChanges" : [ {
+          "method" : "POST",
+          "path" : "/api/links",
+          "change" : "new"
+        }, {
+          "method" : "GET",
+          "path" : "/{code}",
+          "change" : "new"
+        }, {
+          "method" : "GET",
+          "path" : "/api/links/{code}/stats",
+          "change" : "new"
+        }, {
+          "method" : "GET",
+          "path" : "/health",
+          "change" : "new"
+        } ],
+        "schemaChanges" : [ "In-memory: ConcurrentHashMap<code, Link>, ConcurrentHashMap<code, Counter>" ],
+        "decisions" : [ {
+          "id" : "D-1",
+          "decision" : "Random base62 codes (7 chars) instead of an encoded counter.",
+          "rationale" : "Counters are enumerable; random codes with a collision check are not. 62^7 ≈ 3.5e12 keys.",
+          "alternatives" : [ "Base62(auto-increment)", "Hash of URL" ],
+          "tradeoffs" : "Needs an existence check per create; negligible at v0 scale."
+        }, {
+          "id" : "D-2",
+          "decision" : "302 + Cache-Control: no-store for redirects.",
+          "rationale" : "301 is cached by browsers, which would hide repeat clicks from analytics.",
+          "alternatives" : [ "301", "307" ],
+          "tradeoffs" : "Slightly more traffic to the service; acceptable, analytics is a requirement."
+        }, {
+          "id" : "D-3",
+          "decision" : "Storage behind a LinkStore port with an in-memory adapter.",
+          "rationale" : "Zero-setup local run now; JDBC/Postgres later without touching the controller.",
+          "alternatives" : [ "H2 + JdbcTemplate from day one" ],
+          "tradeoffs" : "Data lost on restart in v0 (documented)."
+        }, {
+          "id" : "D-4",
+          "decision" : "Validate URLs explicitly in the controller with a scheme allowlist.",
+          "rationale" : "javascript:/data: targets would make the redirect an XSS vector.",
+          "alternatives" : [ "Accept any parseable URI" ],
+          "tradeoffs" : "None material."
+        } ],
+        "securityConsiderations" : [ "Scheme allowlist on target URLs", "Random, non-enumerable codes", "Path templates constrain codes to 7 base62 characters", "No user input is reflected in responses unescaped" ],
+        "rollbackStrategy" : "v0 is a new service: rollback is stopping the process. No data migration exists."
+      }
+    },
+    "TASK_PLAN" : {
+      "kind" : "TASK_PLAN",
+      "producedBy" : "plan",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "f6fc3fe0fbea830c",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d"
+      },
+      "createdAt" : "2026-09-03T01:39:52.070184578Z",
+      "content" : {
+        "summary" : "Five tasks. T1 scaffolds the Maven project (the pom needs a human sign-off on dependencies). T2 writes the acceptance suite plus a compile-only App stub and must be red. T3a (codes) and T3b (store) are independent and run in parallel. T4 wires the controller and must turn the suite green.",
+        "tasks" : [ {
+          "id" : "T1",
+          "title" : "Project scaffold",
+          "description" : "pom.xml on spring-boot-starter-parent with starter-web and starter-test.",
+          "files" : [ "pom.xml" ],
+          "dependsOn" : [ ],
+          "verify" : "none",
+          "riskLevel" : "medium",
+          "acceptance" : "File exists; dependencies approved."
+        }, {
+          "id" : "T2",
+          "title" : "Acceptance tests (red) and App stub",
+          "description" : "src/test/java/demo/AppTest.java for AC-1..AC-6; src/main/java/demo/App.java with no endpoints.",
+          "files" : [ "src/test/java/demo/AppTest.java", "src/main/java/demo/App.java" ],
+          "dependsOn" : [ "T1" ],
+          "verify" : "tests-red",
+          "riskLevel" : "low",
+          "acceptance" : "Compiles; suite fails (404s)."
+        }, {
+          "id" : "T3a",
+          "title" : "Short-code generation",
+          "description" : "Codes.java with unit tests.",
+          "files" : [ "src/main/java/demo/Codes.java", "src/test/java/demo/CodesTest.java" ],
+          "dependsOn" : [ "T2" ],
+          "verify" : "typecheck",
+          "riskLevel" : "low",
+          "acceptance" : "Compiles; Codes tests green in isolation."
+        }, {
+          "id" : "T3b",
+          "title" : "Storage port and in-memory adapter",
+          "description" : "LinkStore.java with unit tests.",
+          "files" : [ "src/main/java/demo/LinkStore.java", "src/test/java/demo/LinkStoreTest.java" ],
+          "dependsOn" : [ "T2" ],
+          "verify" : "typecheck",
+          "riskLevel" : "low",
+          "acceptance" : "Compiles; store tests green in isolation."
+        }, {
+          "id" : "T4",
+          "title" : "HTTP adapter",
+          "description" : "LinkController: create, redirect, stats, health.",
+          "files" : [ "src/main/java/demo/LinkController.java" ],
+          "dependsOn" : [ "T3a", "T3b" ],
+          "verify" : "tests-green",
+          "riskLevel" : "medium",
+          "acceptance" : "Whole suite green."
+        } ],
+        "sequencingRationale" : "Scaffold first (nothing compiles without it), tests second so the target is executable, the two pure classes in parallel because they share nothing, and the controller last so 'green' means the acceptance criteria are met."
+      }
+    },
+    "CODE_PATCH:T1" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T1",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "897147f40381ce1c",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "createdAt" : "2026-09-03T01:39:52.148831101Z",
+      "content" : {
+        "summary" : "Project scaffold: Maven pom on spring-boot-starter-parent 3.4.4 with spring-boot-starter-web (runtime) and spring-boot-starter-test (test), Java 21. No source yet.",
+        "taskId" : "T1",
+        "files" : [ {
+          "path" : "pom.xml",
+          "action" : "write",
+          "content" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n  <modelVersion>4.0.0</modelVersion>\n\n  <parent>\n    <groupId>org.springframework.boot</groupId>\n    <artifactId>spring-boot-starter-parent</artifactId>\n    <version>3.4.4</version>\n    <relativePath/>\n  </parent>\n\n  <groupId>demo</groupId>\n  <artifactId>url-shortener-v0</artifactId>\n  <version>0.1.0</version>\n  <name>url-shortener-v0</name>\n\n  <properties>\n    <java.version>21</java.version>\n  </properties>\n\n  <dependencies>\n    <dependency>\n      <groupId>org.springframework.boot</groupId>\n      <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n      <groupId>org.springframework.boot</groupId>\n      <artifactId>spring-boot-starter-test</artifactId>\n      <scope>test</scope>\n    </dependency>\n  </dependencies>\n\n  <build>\n    <plugins>\n      <plugin>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-maven-plugin</artifactId>\n      </plugin>\n    </plugins>\n  </build>\n</project>\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ "Declaring dependencies is a supply-chain decision: the policy engine asks a human to approve the pom." ]
+      }
+    },
+    "CODE_PATCH:T2" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T2",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "4de21a1952a0f4eb",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "createdAt" : "2026-09-03T01:40:03.273764809Z",
+      "content" : {
+        "summary" : "TDD red: acceptance tests AC-1..AC-6 over real HTTP against a booted Spring Boot context, plus a compile-only App stub so the suite compiles and fails at runtime (404s).",
+        "taskId" : "T2",
+        "files" : [ {
+          "path" : "src/main/java/demo/App.java",
+          "action" : "write",
+          "content" : "package demo;\n\nimport org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\n\n/** Stub so the acceptance tests compile and boot. Endpoints arrive in T4. */\n@SpringBootApplication\npublic class App {\n\n    public static void main(String[] args) {\n        SpringApplication.run(App.class, args);\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/demo/AppTest.java",
+          "action" : "write",
+          "content" : "package demo;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport com.fasterxml.jackson.databind.ObjectMapper;\nimport java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.util.Map;\nimport org.junit.jupiter.api.AfterAll;\nimport org.junit.jupiter.api.BeforeAll;\nimport org.junit.jupiter.api.Test;\nimport org.springframework.boot.SpringApplication;\nimport org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;\nimport org.springframework.context.ConfigurableApplicationContext;\n\n/** Acceptance tests for the v0 URL shortener, written before the implementation (TDD red). Black-box over HTTP. */\nclass AppTest {\n\n    static ConfigurableApplicationContext ctx;\n    static String base;\n    static final HttpClient http = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).build();\n    static final ObjectMapper json = new ObjectMapper();\n\n    @BeforeAll\n    static void start() {\n        ctx = SpringApplication.run(App.class, \"--server.port=0\", \"--app.base-url=http://short.test\", \"--logging.level.root=WARN\");\n        base = \"http://localhost:\" + ((ServletWebServerApplicationContext) ctx).getWebServer().getPort();\n    }\n\n    @AfterAll\n    static void stop() {\n        ctx.close();\n    }\n\n    static HttpResponse<String> post(String path, String body) throws Exception {\n        return http.send(HttpRequest.newBuilder(URI.create(base + path)).header(\"Content-Type\", \"application/json\").POST(HttpRequest.BodyPublishers.ofString(body)).build(), HttpResponse.BodyHandlers.ofString());\n    }\n\n    static HttpResponse<String> get(String path) throws Exception {\n        return http.send(HttpRequest.newBuilder(URI.create(base + path)).GET().build(), HttpResponse.BodyHandlers.ofString());\n    }\n\n    @SuppressWarnings(\"unchecked\")\n    static Map<String, Object> body(HttpResponse<String> r) throws Exception {\n        return json.readValue(r.body(), Map.class);\n    }\n\n    @Test\n    void ac1_postCreatesASevenCharBase62ShortLink() throws Exception {\n        HttpResponse<String> r = post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/a\\\"}\");\n        assertEquals(201, r.statusCode(), r.body());\n        String code = (String) body(r).get(\"code\");\n        assertTrue(code.matches(\"^[0-9A-Za-z]{7}$\"), code);\n        assertEquals(\"http://short.test/\" + code, body(r).get(\"shortUrl\"));\n    }\n\n    @Test\n    void ac2_rejectsNonHttpAndMalformedUrlsWith400() throws Exception {\n        for (String url : new String[] {\"javascript:alert(1)\", \"ftp://x\", \"not a url\", \"\"}) {\n            assertEquals(400, post(\"/api/links\", \"{\\\"url\\\":\\\"\" + url + \"\\\"}\").statusCode(), url);\n        }\n    }\n\n    @Test\n    void ac3_getCodeRedirectsWith302ToTheTarget() throws Exception {\n        String code = (String) body(post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/r\\\"}\")).get(\"code\");\n        HttpResponse<String> r = get(\"/\" + code);\n        assertEquals(302, r.statusCode());\n        assertEquals(\"https://example.com/r\", r.headers().firstValue(\"Location\").orElse(null));\n    }\n\n    @Test\n    void ac4_unknownCodesReturn404() throws Exception {\n        assertEquals(404, get(\"/zzzzzzz\").statusCode());\n    }\n\n    @Test\n    void ac5_statsCountClicksAndReportLastClickTime() throws Exception {\n        String code = (String) body(post(\"/api/links\", \"{\\\"url\\\":\\\"https://example.com/s\\\"}\")).get(\"code\");\n        get(\"/\" + code);\n        get(\"/\" + code);\n        HttpResponse<String> r = get(\"/api/links/\" + code + \"/stats\");\n        assertEquals(200, r.statusCode());\n        assertEquals(2, body(r).get(\"clicks\"));\n        assertNotNull(body(r).get(\"lastClickAt\"));\n    }\n\n    @Test\n    void ac6_healthReportsOk() throws Exception {\n        HttpResponse<String> r = get(\"/health\");\n        assertEquals(200, r.statusCode());\n        assertEquals(\"ok\", body(r).get(\"status\"));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "CODE_PATCH:T3a" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T3a",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "18118de0ae1097ef",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "createdAt" : "2026-09-03T01:40:08.470019827Z",
+      "content" : {
+        "summary" : "Short-code generation: random base62 with rejection sampling and a bounded collision-retry helper. Unit tests included.",
+        "taskId" : "T3a",
+        "files" : [ {
+          "path" : "src/main/java/demo/Codes.java",
+          "action" : "write",
+          "content" : "package demo;\n\nimport java.security.SecureRandom;\nimport java.util.function.IntFunction;\nimport java.util.function.Predicate;\n\n/**\n * Random base62 codes with rejection sampling (bytes >= 248 are discarded so every character is\n * equally likely). Random rather than sequential so codes cannot be enumerated.\n */\npublic final class Codes {\n\n    public static final String BASE62 = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";\n    private static final SecureRandom RANDOM = new SecureRandom();\n\n    private Codes() {}\n\n    public static String random(int length) {\n        return random(length, n -> {\n            byte[] b = new byte[n];\n            RANDOM.nextBytes(b);\n            return b;\n        });\n    }\n\n    public static String random(int length, IntFunction<byte[]> bytes) {\n        if (length < 1) throw new IllegalArgumentException(\"length must be >= 1\");\n        StringBuilder out = new StringBuilder(length);\n        while (out.length() < length) {\n            for (byte b : bytes.apply(length * 2)) {\n                int v = b & 0xFF;\n                if (v < 248) {\n                    out.append(BASE62.charAt(v % 62));\n                    if (out.length() == length) break;\n                }\n            }\n        }\n        return out.toString();\n    }\n\n    /** Generate a code that {@code exists} reports as free; bounded so a full keyspace can't spin forever. */\n    public static String unique(Predicate<String> exists, int length, int maxAttempts) {\n        for (int i = 0; i < maxAttempts; i++) {\n            String c = random(length);\n            if (!exists.test(c)) return c;\n        }\n        throw new IllegalStateException(\"no free code after \" + maxAttempts + \" attempts\");\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/demo/CodesTest.java",
+          "action" : "write",
+          "content" : "package demo;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport java.util.concurrent.atomic.AtomicInteger;\nimport org.junit.jupiter.api.Test;\n\nclass CodesTest {\n\n    @Test\n    void emitsBase62CodesOfTheRequestedLength() {\n        for (int i = 0; i < 100; i++) {\n            String c = Codes.random(7);\n            assertEquals(7, c.length());\n            for (char ch : c.toCharArray()) assertTrue(Codes.BASE62.indexOf(ch) >= 0);\n        }\n    }\n\n    @Test\n    void skipsBiasedBytes() {\n        AtomicInteger calls = new AtomicInteger();\n        String c = Codes.random(3, n -> {\n            if (calls.incrementAndGet() == 1) return new byte[] {(byte) 255, (byte) 250, 0, 1, 2};\n            byte[] b = new byte[n];\n            java.util.Arrays.fill(b, (byte) 3);\n            return b;\n        });\n        assertEquals(\"012\", c);\n    }\n\n    @Test\n    void retriesOnCollisionAndGivesUpAfterMaxAttempts() {\n        AtomicInteger probes = new AtomicInteger();\n        String code = Codes.unique(c -> probes.incrementAndGet() < 3, 7, 5);\n        assertEquals(7, code.length());\n        assertEquals(3, probes.get());\n        assertThrows(IllegalStateException.class, () -> Codes.unique(c -> true, 7, 2));\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "CODE_PATCH:T3b" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T3b",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "dcaf5e541ebbb9a4",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "createdAt" : "2026-09-03T01:40:08.533829404Z",
+      "content" : {
+        "summary" : "Storage port (LinkStore) with an in-memory adapter and click counting. Unit tests included.",
+        "taskId" : "T3b",
+        "files" : [ {
+          "path" : "src/main/java/demo/LinkStore.java",
+          "action" : "write",
+          "content" : "package demo;\n\nimport java.time.Instant;\nimport java.util.Map;\nimport java.util.Optional;\nimport java.util.concurrent.ConcurrentHashMap;\n\n/**\n * Storage port + in-memory adapter. The interface is the seam for JDBC/Postgres later; v0 ships\n * in-memory so the service is runnable with zero setup.\n */\npublic interface LinkStore {\n\n    record Link(String code, String targetUrl, Instant createdAt) {}\n\n    record Stats(String code, long clicks, Instant lastClickAt) {}\n\n    void insert(Link link);\n\n    Optional<Link> find(String code);\n\n    boolean exists(String code);\n\n    void recordClick(String code, Instant at);\n\n    Optional<Stats> stats(String code);\n\n    final class InMemory implements LinkStore {\n        private record Counter(long clicks, Instant last) {}\n\n        private final Map<String, Link> links = new ConcurrentHashMap<>();\n        private final Map<String, Counter> clicks = new ConcurrentHashMap<>();\n\n        @Override\n        public synchronized void insert(Link link) {\n            if (links.containsKey(link.code())) throw new IllegalStateException(\"code '\" + link.code() + \"' already exists\");\n            links.put(link.code(), link);\n            clicks.put(link.code(), new Counter(0, null));\n        }\n\n        @Override\n        public Optional<Link> find(String code) {\n            return Optional.ofNullable(links.get(code));\n        }\n\n        @Override\n        public boolean exists(String code) {\n            return links.containsKey(code);\n        }\n\n        @Override\n        public void recordClick(String code, Instant at) {\n            clicks.computeIfPresent(code, (k, c) -> new Counter(c.clicks() + 1, at));\n        }\n\n        @Override\n        public Optional<Stats> stats(String code) {\n            Counter c = clicks.get(code);\n            return c == null ? Optional.empty() : Optional.of(new Stats(code, c.clicks(), c.last()));\n        }\n    }\n}\n",
+          "delete" : false
+        }, {
+          "path" : "src/test/java/demo/LinkStoreTest.java",
+          "action" : "write",
+          "content" : "package demo;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertNull;\nimport static org.junit.jupiter.api.Assertions.assertThrows;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\n\nimport java.time.Instant;\nimport org.junit.jupiter.api.Test;\n\nclass LinkStoreTest {\n\n    @Test\n    void insertsFindsAndRejectsDuplicates() {\n        LinkStore s = new LinkStore.InMemory();\n        s.insert(new LinkStore.Link(\"abc1234\", \"https://example.com/\", Instant.EPOCH));\n        assertEquals(\"https://example.com/\", s.find(\"abc1234\").orElseThrow().targetUrl());\n        assertTrue(s.exists(\"abc1234\"));\n        assertFalse(s.exists(\"nope\"));\n        assertTrue(s.find(\"nope\").isEmpty());\n        assertThrows(IllegalStateException.class, () -> s.insert(new LinkStore.Link(\"abc1234\", \"https://x.com/\", Instant.EPOCH)));\n    }\n\n    @Test\n    void countsClicksAndRemembersTheLastOne() {\n        LinkStore s = new LinkStore.InMemory();\n        s.insert(new LinkStore.Link(\"clk0001\", \"https://example.com/\", Instant.EPOCH));\n        assertEquals(0, s.stats(\"clk0001\").orElseThrow().clicks());\n        assertNull(s.stats(\"clk0001\").orElseThrow().lastClickAt());\n        Instant t1 = Instant.parse(\"2026-01-02T00:00:00Z\");\n        Instant t2 = Instant.parse(\"2026-01-03T00:00:00Z\");\n        s.recordClick(\"clk0001\", t1);\n        s.recordClick(\"clk0001\", t2);\n        assertEquals(new LinkStore.Stats(\"clk0001\", 2, t2), s.stats(\"clk0001\").orElseThrow());\n        s.recordClick(\"missing\", t2); // no-op\n        assertTrue(s.stats(\"missing\").isEmpty());\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "CODE_PATCH:T4" : {
+      "kind" : "CODE_PATCH",
+      "producedBy" : "implement:T4",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "eb504850eab6ec06",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "createdAt" : "2026-09-03T01:40:21.375134285Z",
+      "content" : {
+        "summary" : "HTTP adapter: create (URL scheme validation), 302 + no-store redirect with click recording, stats, health. Turns the acceptance suite green.",
+        "taskId" : "T4",
+        "files" : [ {
+          "path" : "src/main/java/demo/LinkController.java",
+          "action" : "write",
+          "content" : "package demo;\n\nimport java.net.URI;\nimport java.net.URISyntaxException;\nimport java.time.Instant;\nimport java.util.Locale;\nimport java.util.Map;\nimport org.springframework.beans.factory.annotation.Value;\nimport org.springframework.http.CacheControl;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RestController;\n\n/** HTTP adapter: create, redirect (302 + no-store so every click is counted), stats, health. */\n@RestController\npublic class LinkController {\n\n    private final LinkStore store = new LinkStore.InMemory();\n    private final String baseUrl;\n\n    public LinkController(@Value(\"${app.base-url:http://localhost:8080}\") String baseUrl) {\n        this.baseUrl = baseUrl.endsWith(\"/\") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;\n    }\n\n    /** Only absolute http(s) URLs may be shortened: anything else turns the redirect into an attack vector. */\n    static String validateUrl(Object raw) {\n        if (!(raw instanceof String s) || s.isBlank()) return null;\n        try {\n            URI u = new URI(s.trim());\n            String scheme = u.getScheme() == null ? \"\" : u.getScheme().toLowerCase(Locale.ROOT);\n            return (scheme.equals(\"http\") || scheme.equals(\"https\")) && u.getHost() != null ? u.toString() : null;\n        } catch (URISyntaxException e) {\n            return null;\n        }\n    }\n\n    @GetMapping(\"/health\")\n    public Map<String, String> health() {\n        return Map.of(\"status\", \"ok\");\n    }\n\n    @PostMapping(\"/api/links\")\n    public ResponseEntity<Map<String, Object>> create(@RequestBody Map<String, Object> body) {\n        String target = validateUrl(body.get(\"url\"));\n        if (target == null) return ResponseEntity.badRequest().body(Map.of(\"error\", \"INVALID_URL\", \"message\", \"only absolute http(s) URLs are accepted\"));\n        String code = Codes.unique(store::exists, 7, 5);\n        LinkStore.Link link = new LinkStore.Link(code, target, Instant.now());\n        store.insert(link);\n        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(\"code\", code, \"targetUrl\", target, \"createdAt\", link.createdAt().toString(), \"shortUrl\", baseUrl + \"/\" + code));\n    }\n\n    @GetMapping(\"/api/links/{code:[0-9A-Za-z]{7}}/stats\")\n    public ResponseEntity<Map<String, Object>> stats(@PathVariable(\"code\") String code) {\n        return store.stats(code)\n                .<ResponseEntity<Map<String, Object>>>map(s -> {\n                    Map<String, Object> m = new java.util.LinkedHashMap<>();\n                    m.put(\"code\", s.code());\n                    m.put(\"clicks\", s.clicks());\n                    m.put(\"lastClickAt\", s.lastClickAt() == null ? null : s.lastClickAt().toString());\n                    return ResponseEntity.ok(m);\n                })\n                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(\"error\", \"NOT_FOUND\")));\n    }\n\n    @GetMapping(\"/{code:[0-9A-Za-z]{7}}\")\n    public ResponseEntity<Void> redirect(@PathVariable(\"code\") String code) {\n        return store.find(code)\n                .map(link -> {\n                    store.recordClick(code, Instant.now());\n                    return ResponseEntity.status(HttpStatus.FOUND).cacheControl(CacheControl.noStore()).location(URI.create(link.targetUrl())).<Void>build();\n                })\n                .orElseGet(() -> ResponseEntity.notFound().build());\n    }\n}\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ "Replaces nothing: the T2 App stub stays as the composition root." ]
+      }
+    },
+    "REVIEW_REPORT" : {
+      "kind" : "REVIEW_REPORT",
+      "producedBy" : "review",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "33afe13fd7d2d591",
+      "inputHashes" : {
+        "ARCHITECTURE" : "61359cc9c6858e7d",
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "createdAt" : "2026-09-03T01:40:21.426572444Z",
+      "content" : {
+        "verdict" : "approve",
+        "summary" : "Clean v0. Clear separation between HTTP, storage and codegen; validation at the edge; redirects are analytics-safe. Test coverage matches the acceptance criteria one-to-one.",
+        "findings" : [ {
+          "severity" : "medium",
+          "category" : "security",
+          "file" : "src/main/java/demo/LinkController.java",
+          "issue" : "No rate limiting on POST /api/links; an open create endpoint can be used to mint phishing links at volume.",
+          "recommendation" : "Track as v1 item alongside durable storage (per-IP limiter, e.g. Bucket4j)."
+        }, {
+          "severity" : "low",
+          "category" : "security",
+          "file" : "src/main/java/demo/LinkController.java",
+          "issue" : "validateUrl accepts private-network and localhost targets.",
+          "recommendation" : "Add a private-IP / localhost guard before any server-side fetching of targets is introduced."
+        }, {
+          "severity" : "low",
+          "category" : "maintainability",
+          "file" : "src/main/java/demo/LinkController.java",
+          "issue" : "The controller instantiates its own LinkStore instead of receiving a bean.",
+          "recommendation" : "Make LinkStore a @Bean once a second adapter exists."
+        }, {
+          "severity" : "info",
+          "category" : "maintainability",
+          "file" : "src/main/java/demo/LinkStore.java",
+          "issue" : "Contract tests only run against the in-memory adapter.",
+          "recommendation" : "Turn LinkStoreTest into an abstract contract when a JDBC adapter lands."
+        } ],
+        "policySummary" : [ "dependency-change-requires-approval raised on T1 (pom.xml) and approved", "tests-accompany-source waived on T4 because the stage is verified green against the T2 acceptance suite" ]
+      }
+    },
+    "DOC_UPDATE" : {
+      "kind" : "DOC_UPDATE",
+      "producedBy" : "docs",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "93ff267e5038eae0",
+      "inputHashes" : {
+        "REQUIREMENTS_SPEC" : "46e4925ba7a69e56",
+        "ARCHITECTURE" : "61359cc9c6858e7d"
+      },
+      "createdAt" : "2026-09-03T01:40:21.503827897Z",
+      "content" : {
+        "summary" : "README with run/test instructions, API summary and v0 limitations; ADR-0001 on random codes and 302 redirects.",
+        "files" : [ {
+          "path" : "README.md",
+          "action" : "write",
+          "content" : "# URL shortener (v0)\n\nCreate short links, redirect with click counting, read stats. Spring Boot 3 / Java 21.\n\n```bash\nmvn test\nmvn spring-boot:run          # http://localhost:8080 ; APP_BASE_URL to change the short-link host\n```\n\n## API\n| Method | Path | Purpose |\n|---|---|---|\n| POST | /api/links `{url}` | Create a short link (201) |\n| GET | /{code} | 302 redirect, counts the click |\n| GET | /api/links/{code}/stats | `{code, clicks, lastClickAt}` |\n| GET | /health | Liveness |\n\nOnly absolute `http`/`https` URLs are accepted.\n\n## v0 limitations\n- In-memory storage: links are lost on restart. `LinkStore` is the seam for a JDBC adapter.\n- No rate limiting or authentication. Do not expose publicly without them.\n- Stats are a count + last click time; breakdowns come with durable storage.\n",
+          "delete" : false
+        }, {
+          "path" : "docs/adr/0001-random-codes-and-302.md",
+          "action" : "write",
+          "content" : "# ADR-0001: Random base62 codes and 302 redirects\n\n**Status:** accepted\n\n## Decisions\n- Short codes are 7 random base62 characters (rejection-sampled) with a bounded collision retry, not an encoded counter: sequential codes let anyone enumerate every link.\n- Redirects are `302` with `Cache-Control: no-store`: a `301` would be cached by browsers and hide repeat clicks from analytics.\n\n## Consequences\n- One existence check per create; negligible at this scale.\n- Slightly more redirect traffic reaches the service; required for click counting.\n",
+          "delete" : false
+        } ],
+        "dependencyChanges" : [ ],
+        "notes" : [ ]
+      }
+    },
+    "TEST_REPORT" : {
+      "kind" : "TEST_REPORT",
+      "producedBy" : "test",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "9397b5136a4e1f48",
+      "inputHashes" : {
+        "TASK_PLAN" : "f6fc3fe0fbea830c"
+      },
+      "createdAt" : "2026-09-03T01:40:34.417818775Z",
+      "content" : {
+        "toolchain" : "javac",
+        "typecheck" : {
+          "ok" : true,
+          "output" : "Picked up JAVA_TOOL_OPTIONS: \nPicked up JAVA_TOOL_OPTIONS:"
+        },
+        "tests" : {
+          "ok" : true,
+          "passed" : 11,
+          "failed" : 0,
+          "total" : 11,
+          "durationMs" : 9452,
+          "failures" : [ ]
+        },
+        "verdict" : "green"
+      }
+    },
+    "RELEASE_CHECKLIST" : {
+      "kind" : "RELEASE_CHECKLIST",
+      "producedBy" : "release",
+      "attempt" : 1,
+      "version" : 1,
+      "hash" : "bc46fe855e463135",
+      "inputHashes" : {
+        "TEST_REPORT" : "9397b5136a4e1f48",
+        "REVIEW_REPORT" : "33afe13fd7d2d591",
+        "ARCHITECTURE" : "61359cc9c6858e7d"
+      },
+      "createdAt" : "2026-09-03T01:40:34.449660776Z",
+      "content" : {
+        "version" : "0.1.0",
+        "changeSummary" : "v0 URL shortener: create, redirect with click counting, stats, health. In-memory storage behind a port.",
+        "changes" : [ "POST /api/links", "GET /{code} (302, no-store)", "GET /api/links/{code}/stats", "GET /health", "Random base62 codes", "Acceptance + unit tests (11)" ],
+        "riskAssessment" : {
+          "level" : "low",
+          "rationale" : "New internal-preview service, no data migration, suite green, review approved with v1 follow-ups (rate limiting, private-IP guard) recorded."
+        },
+        "rollbackPlan" : [ "Stop the process.", "No persistent state to clean up in v0." ],
+        "checklist" : [ {
+          "item" : "Acceptance suite green",
+          "status" : "done",
+          "evidence" : "test-report: green"
+        }, {
+          "item" : "Review approved; medium finding tracked as v1 work",
+          "status" : "done",
+          "evidence" : "review-report"
+        }, {
+          "item" : "Dependencies approved by a human",
+          "status" : "done",
+          "evidence" : "policy:implement:T1"
+        }, {
+          "item" : "README documents run/test and v0 limitations",
+          "status" : "done",
+          "evidence" : "docs stage"
+        }, {
+          "item" : "Rollback plan documented",
+          "status" : "done"
+        } ],
+        "goNoGo" : "go"
+      }
+    }
+  },
+  "approvals" : {
+    "design-review" : {
+      "gateId" : "design-review",
+      "stageId" : "architecture",
+      "spec" : {
+        "gateId" : "design-review",
+        "reason" : "Architecture and impacted-module analysis need a human design sign-off before implementation starts.",
+        "riskLevel" : "MEDIUM"
+      },
+      "requestedAt" : "2026-09-03T01:39:51.988572968Z",
+      "decidedAt" : "2026-09-03T01:39:51.996616209Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "Ports-and-adapters with an in-memory store is right for v0; a JDBC adapter can slot behind LinkStore. Proceed.",
+      "consumedAt" : "2026-09-03T01:39:51.996616209Z"
+    },
+    "policy:implement:T1" : {
+      "gateId" : "policy:implement:T1",
+      "stageId" : "implement:T1",
+      "spec" : {
+        "gateId" : "policy:implement:T1",
+        "reason" : "[dependency-change-requires-approval] dependency changes detected: +org.springframework.boot:spring-boot-starter-web, +org.springframework.boot:spring-boot-starter-test",
+        "riskLevel" : "HIGH"
+      },
+      "requestedAt" : "2026-09-03T01:39:52.130802245Z",
+      "decidedAt" : "2026-09-03T01:39:52.133457348Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "Dependencies reviewed: spring-boot-starter-web (runtime), spring-boot-starter-test (test), both managed by spring-boot-starter-parent 3.4.4 already used in the org.",
+      "consumedAt" : "2026-09-03T01:39:52.133457348Z"
+    },
+    "release-approval" : {
+      "gateId" : "release-approval",
+      "stageId" : "release",
+      "spec" : {
+        "gateId" : "release-approval",
+        "reason" : "Releasing to production is a high-impact action; a human owns the go/no-go.",
+        "riskLevel" : "HIGH"
+      },
+      "requestedAt" : "2026-09-03T01:40:34.446924237Z",
+      "decidedAt" : "2026-09-03T01:40:34.448222795Z",
+      "decision" : "APPROVE",
+      "decidedBy" : "scripted-stakeholder",
+      "note" : "v0 acceptance suite green, review approved, in-memory store documented as a v0 limitation. Go for internal preview.",
+      "consumedAt" : "2026-09-03T01:40:34.448222795Z"
+    }
+  },
+  "metrics" : {
+    "stagesTotal" : 12,
+    "stagesSucceeded" : 12,
+    "stagesFailed" : 0,
+    "attemptsTotal" : 12,
+    "retries" : 0,
+    "rollbacks" : 0,
+    "replans" : 0,
+    "approvalsRequested" : 3,
+    "approvalsHuman" : 3,
+    "approvalsAuto" : 0,
+    "policyViolations" : 1,
+    "policyBlocks" : 0,
+    "llmCalls" : 11,
+    "llmInputTokens" : 11832,
+    "llmOutputTokens" : 8194,
+    "toolCalls" : 14,
+    "endToEndMs" : 42850,
+    "stageLatencyMs" : {
+      "requirements" : 104,
+      "architecture" : 82,
+      "plan" : 55,
+      "test" : 13040,
+      "review" : 43,
+      "docs" : 126,
+      "release" : 29,
+      "implement:T1" : 76,
+      "implement:T2" : 11117,
+      "implement:T3a" : 5193,
+      "implement:T3b" : 5251,
+      "implement:T4" : 12837
+    },
+    "successRate" : 1.0
+  },
+  "notices" : [ ]
+}

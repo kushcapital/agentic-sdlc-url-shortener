@@ -1,0 +1,10 @@
+{
+  "summary" : "Project scaffold: Maven pom on spring-boot-starter-parent 3.4.4 with spring-boot-starter-web (runtime) and spring-boot-starter-test (test), Java 21. No source yet.",
+  "taskId" : "T1",
+  "files" : [ {
+    "path" : "pom.xml",
+    "action" : "write",
+    "content" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n  <modelVersion>4.0.0</modelVersion>\n\n  <parent>\n    <groupId>org.springframework.boot</groupId>\n    <artifactId>spring-boot-starter-parent</artifactId>\n    <version>3.4.4</version>\n    <relativePath/>\n  </parent>\n\n  <groupId>demo</groupId>\n  <artifactId>url-shortener-v0</artifactId>\n  <version>0.1.0</version>\n  <name>url-shortener-v0</name>\n\n  <properties>\n    <java.version>21</java.version>\n  </properties>\n\n  <dependencies>\n    <dependency>\n      <groupId>org.springframework.boot</groupId>\n      <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n      <groupId>org.springframework.boot</groupId>\n      <artifactId>spring-boot-starter-test</artifactId>\n      <scope>test</scope>\n    </dependency>\n  </dependencies>\n\n  <build>\n    <plugins>\n      <plugin>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-maven-plugin</artifactId>\n      </plugin>\n    </plugins>\n  </build>\n</project>\n"
+  } ],
+  "notes" : [ "Declaring dependencies is a supply-chain decision: the policy engine asks a human to approve the pom." ]
+}

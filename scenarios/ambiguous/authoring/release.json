@@ -1,0 +1,45 @@
+{
+  "version": "1.0.1",
+  "changeSummary": "Guessability hardening: 8-char generated codes; custom aliases >= 6 chars; legacy codes unaffected.",
+  "changes": [
+    "Default generated code length 8 (shortener.code-length still configurable)",
+    "customAlias must be 6-32 characters at creation",
+    "Route resolution keeps accepting 4-32 so issued codes resolve",
+    "Acceptance tests for legacy resolution"
+  ],
+  "riskAssessment": {
+    "level": "low",
+    "rationale": "No data migration; resolution rules unchanged; one documented breaking validation rule for alias creation."
+  },
+  "rollbackPlan": [
+    "Redeploy previous build.",
+    "No data changes to undo; 8-char codes issued meanwhile still resolve under the old build (pattern 4-32)."
+  ],
+  "checklist": [
+    {
+      "item": "Suite green including legacy-resolution tests",
+      "status": "done",
+      "evidence": "test-report"
+    },
+    {
+      "item": "Review approved",
+      "status": "done",
+      "evidence": "review-report"
+    },
+    {
+      "item": "Change-control rejection resolved (config test added)",
+      "status": "done",
+      "evidence": "policy:implement:T2 history"
+    },
+    {
+      "item": "CHANGELOG notes the alias rule change",
+      "status": "done",
+      "evidence": "docs stage"
+    },
+    {
+      "item": "Rollback plan documented",
+      "status": "done"
+    }
+  ],
+  "goNoGo": "go"
+}
